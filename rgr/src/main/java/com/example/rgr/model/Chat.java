@@ -1,53 +1,30 @@
 package com.example.rgr.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
+@Builder
 @Table(name = "chat")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Chat  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "chatID", nullable = false)
-    private Long chatID;
+    private String chatID;
 
     @Column(name = "type", nullable = false)
     private String type;
 
     @Column(name = "attachedFilesID")
-    private Long attachedFilesID;
+    private String attachedFilesID;
 
     @Column(name = "isAdmin", nullable = false)
-    private Long isAdmin;
+    private String isAdmin;
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Long getAttachedFilesID() {
-        return attachedFilesID;
-    }
-
-    public void setAttachedFilesID(Long attachedFilesID) {
-        this.attachedFilesID = attachedFilesID;
-    }
-
-    public Long getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Long isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public Long getChatID() {
-        return chatID;
-    }
-
-    public void setChatID(Long chatID) {
-        this.chatID = chatID;
-    }
 }

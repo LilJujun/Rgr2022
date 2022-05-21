@@ -16,6 +16,16 @@ public class User {
     private String photo;
     private String status;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "ID=" + ID +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public User() {
     }
 
