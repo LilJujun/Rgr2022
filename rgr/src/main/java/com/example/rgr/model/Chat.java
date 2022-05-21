@@ -3,6 +3,7 @@ package com.example.rgr.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "chat")
 public class Chat  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
