@@ -8,4 +8,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Override
     Optional<User> findById(Long ID);
 
+    Optional<User> findByEmail(String email);
+
 }
