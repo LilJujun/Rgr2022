@@ -3,6 +3,7 @@ package com.example.rgr.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Builder
@@ -14,6 +15,9 @@ import javax.persistence.*;
 public class Chat  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @ManyToMany(mappedBy = "user-chat")
+    List<User> users;
+
     @Column(name = "chatID", nullable = false)
     private String chatID;
 

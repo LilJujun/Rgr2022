@@ -14,13 +14,21 @@ import java.util.List;
 @Table(name ="user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column( name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    @ManyToMany
+    @JoinTable(
+            name = "user-chat",
+            joinColumns = @JoinColumn(name = "userID"),
+            inverseJoinColumns = @JoinColumn(name = "chatID")
+    )
     private List<Chat> chats;
 
-    private Long ID;
+    @OneToMany(mappedBy = "user")
+    private List<Message> messages;
+
+
     private String nickname;
     private String email;
     private String password;

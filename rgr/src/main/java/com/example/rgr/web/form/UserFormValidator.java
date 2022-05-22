@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 
 
 @Component
-public class UserFormValidator {
+public class UserFormValidator implements Validator{
     @Autowired
     private UserService userService;
 
@@ -19,7 +19,7 @@ public class UserFormValidator {
     public void validate(Object target, Errors errors){
         UserForm form = (UserForm) target;
         String email = form.getEmail();
-        if (userService.isUserEmailExists(email)){
+        if (userService.isUserEmailExist(email)){
             errors.rejectValue("email", "", "User already exists");
         }
     }

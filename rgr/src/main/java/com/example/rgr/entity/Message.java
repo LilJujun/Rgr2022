@@ -15,14 +15,19 @@ import java.util.Date;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column( name = "messageID", nullable = false)
-
     private String messageID;
-    private String userID;
     private String recipientID;
     private Date date;
     private String content;
     private String attachedFiles;
+
+    @ManyToOne
+    @JoinColumn(name = "recipientID")
+    private Chat recipient;
+
+    @ManyToOne
+    @JoinColumn(name = "userID")
+    private User user;
 
 
 }
