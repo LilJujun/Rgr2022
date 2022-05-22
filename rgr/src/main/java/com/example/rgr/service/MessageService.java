@@ -1,13 +1,12 @@
 package com.example.rgr.service;
 
 import com.example.rgr.entity.Message;
+import com.example.rgr.model.MessageDto;
 import com.example.rgr.model.MessageStatus;
 import com.example.rgr.repo.MessageRepository;
-import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 

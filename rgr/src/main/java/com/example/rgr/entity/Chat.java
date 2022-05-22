@@ -31,7 +31,7 @@ public class Chat  {
     private String isAdmin;
 
     @OneToMany
-    @JoinColumn(name ="recipient_id")
+    @JoinColumn(name ="chat_id")
     private List<Message> messages;
 
     @ManyToMany @JoinTable(

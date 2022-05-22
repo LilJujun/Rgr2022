@@ -17,6 +17,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nickname;
+    private String email;
+    private String password;
+    private String photo;
+    private String status;
+
+    @OneToMany(mappedBy = "user")
+    private List<Message> messages;
+
     @ManyToMany
     @JoinTable(
             name = "user_chat",
@@ -24,14 +33,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "chat_id")
     )
     private List<Chat> chats;
-
-    @OneToMany(mappedBy = "user")
-    private List<Message> messages;
-
-
-    private String nickname;
-    private String email;
-    private String password;
-    private String photo;
-    private String status;
 }

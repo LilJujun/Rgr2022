@@ -17,6 +17,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+
     private Date date;
     private String content;
     private String attachedFiles;

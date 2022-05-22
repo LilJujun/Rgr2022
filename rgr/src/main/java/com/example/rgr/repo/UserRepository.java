@@ -11,7 +11,6 @@ public interface UserRepository extends CrudRepository<User,Long> {
     @Override
     Optional<User> findById(Long ID);
 
-    List<Chat> findAllChatsById(Long ID);
 
     long countByEmail(String email);
 
