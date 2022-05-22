@@ -1,5 +1,6 @@
 package com.example.rgr.entity;
 
+import com.example.rgr.model.MessageStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Message {
     private Date date;
     private String content;
     private String attachedFiles;
-
+    private MessageStatus status;
     @ManyToOne
     @JoinColumn(name = "recipientID")
     private Chat recipient;
