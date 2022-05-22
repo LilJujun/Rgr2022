@@ -1,25 +1,67 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import Message from './components/Messege/Message';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Profile from './components/Profile/Profile';
+import Login from './LoginAndReg/Login';
+import Regestration from './LoginAndReg/Regestration';
+import MessAndProf from './components/MessAndProf';
+
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      route: 'login',
+    }
+  }
+
+      OnMainProfile = (props) => {
+        this.setState({ route: 'profile' })
+      }
+      OnMainMessenge = (props) =>{
+        this.setState({route:'messenge'})
+      }
+      OnMainLogin = (props) =>{
+        this.setState({route:'login'})
+      }
+      OnRegestration= (props)=>{
+        this.setState({route:'registration'})
+      }
+      render(){
+        const{route}=this.state;
+        if (route === 'login'){
+          return(
+            <div>
+              <Login Login={this.OnMainProfile}/>
+              
+            </div>
+          );
+        }
+        else if(route === ' profile'){
+          return(
+            <div>
+              <MessAndProf Message={this.OnMainMessenge}/>
+            </div>
+          );
+        }
+        
+        else if(route === 'messenge'){
+          return(
+            <div>
+              <Message />
+            </div>
+          )
+        }
+        
+      
+      }
+  
 }
+
+
 
 export default App;
