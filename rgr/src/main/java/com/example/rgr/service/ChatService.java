@@ -14,6 +14,6 @@ public class ChatService {
 
 
     Optional<String> getChatID(String chatID){
-        return chatRepository.findById(chatID).map(Chat::getChatID);
+        return chatRepository.findById(chatID).map(Chat::getId);
     }
 }

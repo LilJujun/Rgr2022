@@ -16,18 +16,17 @@ import java.util.Date;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String messageID;
-    private String recipientID;
+    private String id;
     private Date date;
     private String content;
     private String attachedFiles;
     private MessageStatus status;
-    @ManyToOne
-    @JoinColumn(name = "recipientID")
-    private Chat recipient;
 
     @ManyToOne
-    @JoinColumn(name = "userID")
+    private Chat chat;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
 

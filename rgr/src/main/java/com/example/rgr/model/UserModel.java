@@ -15,7 +15,7 @@ public class UserModel {
     private String nickname;
 
     public static UserModel toModel(User user){
-        UserModel userModel = new UserModel(user.getID(), user.getNickname());
+        UserModel userModel = new UserModel(user.getId(), user.getNickname());
 
         return userModel;
     }

@@ -1,7 +1,6 @@
-package com.example.rgr.controller;
+package com.example.rgr.web.controller;
 
 import com.example.rgr.entity.Message;
-import com.example.rgr.model.MessageStatus;
 import com.example.rgr.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class ChatController {
     @MessageMapping("/chat")
     public void processMessage(@Payload Message message){
         Message saved = messageService.save(message);
-        simpMessagingTemplate.convertAndSend(message.getRecipientID(),"/messages");
+        simpMessagingTemplate.convertAndSend(message.getChat().getId(),"/messages");
     }
     @GetMapping("/messages/{chatID}")
     public ResponseEntity<?> findChatMessages (@PathVariable String chatID){

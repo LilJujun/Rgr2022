@@ -27,7 +27,7 @@ public class MessageService {
 
     public List<Message> findChatMessages(String chatID){
         var chatID1=chatService.getChatID(chatID);
-        var messages=chatID1.map(cID -> messageRepository.findAllByChatId(cID)).orElse(new ArrayList<>());
+        var messages=chatID1.map(cID -> messageRepository.findAllByChat_id(cID)).orElse(new ArrayList<>());
 
         if(messages.size()>0){
             messages.forEach(message -> {
