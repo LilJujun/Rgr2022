@@ -1,4 +1,4 @@
-package com.example.rgr.model;
+package com.example.rgr.entity;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
 package com.example.rgr.repo;
 
-import com.example.rgr.model.User;
+import com.example.rgr.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

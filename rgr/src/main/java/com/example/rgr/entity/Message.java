@@ -1,9 +1,8 @@
-package com.example.rgr.model;
+package com.example.rgr.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter

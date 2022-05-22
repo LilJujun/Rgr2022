@@ -1,4 +1,4 @@
-package com.example.rgr.model;
+package com.example.rgr.entity;
 
 import lombok.*;
 
@@ -17,7 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column( name = "ID", nullable = false)
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private List<Chat> chats;
 
     private Long ID;

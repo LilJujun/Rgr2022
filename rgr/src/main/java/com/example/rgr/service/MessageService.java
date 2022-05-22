@@ -1,7 +1,6 @@
 package com.example.rgr.service;
 
-import com.example.rgr.model.Message;
-import com.example.rgr.repo.ChatRepository;
+import com.example.rgr.entity.Message;
 import com.example.rgr.repo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.example.rgr.repo;
 
-import com.example.rgr.model.Message;
+import com.example.rgr.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
