@@ -22,7 +22,7 @@ const App = () => (
       
       <Routes>
         
-        <Route path='/ms' element={Mess}/>
+        <Route path='/ms/*' element={Mess}/>
         <Route path='/profile' element={Prof}/>
         <Route path='/reg' element={<Regestration/>}/>
           
