@@ -2,6 +2,7 @@ package com.example.rgr.web.controller;
 
 import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.Message;
+import com.example.rgr.model.ChatDto;
 import com.example.rgr.model.MessageDto;
 import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.service.ChatService;
@@ -23,28 +24,31 @@ public class ChatController {
     private ChatService chatService;
 
     @PostMapping("/chat/{chat_id}")
-    public ResponseEntity<?> processMessage(@RequestBody Message message, @RequestParam String chat_id ){
-
+    public ResponseEntity<?> processMessage(@RequestBody Message message, @PathVariable String chat_id ){
+        MessageDto messageDto = new MessageDto();
         if( chatService.findById(chat_id).isPresent()){
-            Chat chat=chatService.findById(chat_id).orElse(new Chat());
-            message.setChat(chat);
+            message.setChat(chatService.findById(chat_id).orElse(new Chat()));
             Message saved = messageService.save(message);
-            MessageDto messageDto = MessageDto.build(saved);
+            messageDto = MessageDto.build(saved);
+            //        return ResponseEntity.ok().build(messageDto);
+            return ResponseEntity.ok(messageDto);
         }else{
-            System.err.println("Chat not found");
+            System.err.println("Chat not found with this id");
+            return ResponseEntity.notFound().build();
         }
 
 
-        return ResponseEntity.ok().build();
+
     }
     @GetMapping("/chat/{chat_id}")
     public ResponseEntity<?> findChatMessages (@PathVariable String chat_id){
-        return ResponseEntity.ok(messageService.findAllByChatId(chat_id));
+        return ResponseEntity.ok(MessageDto.buildList(messageService.findAllByChatId(chat_id)));
     }
     @GetMapping("/chat")
     public ResponseEntity<?> findChats (){
         List<Chat> chats = chatService.findAll();
-        return ResponseEntity.ok(chats);
+        List<ChatDto> chatDtos = ChatDto.buildList(chats);
+        return ResponseEntity.ok(chatDtos);
     }
 
 }
