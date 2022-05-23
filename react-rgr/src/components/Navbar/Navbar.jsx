@@ -1,6 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './NavbarCss.module.css';
+import  './NavbarCss.module.css';
+
+const setActive = ({isActive})=> isActive ? 'activeLink' : '';
 
 const Navbar = () => {
   return (
@@ -9,7 +12,10 @@ const Navbar = () => {
         <NavLink  to='/profile' >Profile</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to='/dialogs'>Message</NavLink>
+        <NavLink to='/ms' >Message</NavLink>
+      </div>
+      <div className={s.item}>
+        <NavLink to='/' >Exit</NavLink>
       </div>
 
     </nav>

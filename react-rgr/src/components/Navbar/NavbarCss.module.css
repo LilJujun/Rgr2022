@@ -6,6 +6,10 @@
 .item a{
   color: white;
 }
-.active-link{
-  color:rgb(84, 113, 255);
+.item :active{
+  color: springgreen;
+}
+.activeLink{
+  color:(--var-acrive);
+  cursor: default;
 }

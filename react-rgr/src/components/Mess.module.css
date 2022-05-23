@@ -1,0 +1,16 @@
+.messenger {
+  display: grid;
+  width: 1000px;
+  height: 800px;
+  margin: 0 auto;
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+  grid-template-areas:
+  "h h "
+  "n c ";
+
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 3fr 10fr;
+ 
+}

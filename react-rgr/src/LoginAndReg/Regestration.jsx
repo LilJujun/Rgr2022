@@ -1,15 +1,18 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import s from "./Regestration.module.css";
 
-const Regestration = ({ Regestration }) => {
+const Regestration = () => {
     return (
-        <div className={s.Regestration}>
-            <input type="text" value="eMail"></input>
-            <input type="text" value="Имя"></input>
-            <input type="password" value="Пароль"></input>
-            <input type="password" value="Повторите пароль"></input>
-            <input type="button" onClick={Regestration} value="Зарегестрироваться"></input>
-
+        <div className={s.reg}>
+            <a>Регистрация</a>
+            <input type="text" placeholder="@mail"></input>
+            <input type="text" placeholder="Имя"></input>
+            <input type="password" placeholder="Пароль"></input>
+            <input type="password" placeholder="Повторите пароль"></input>
+            <input type="button" placeholder="Зарегестрироваться"></input>
+            <NavLink to='/'>У меня уже есть аккаунт</NavLink>
+            
         </div>
     )
 

@@ -1,0 +1,10 @@
+.reg{
+    display: grid;
+    width: 500px;
+    height: 200px;
+    
+    background-color: navy;
+    margin: 0 auto;
+    padding-top: 10%;
+    
+}

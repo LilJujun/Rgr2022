@@ -1,18 +1,20 @@
 import React from "react";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import s from "./Login.module.css";
 
-const Login = ({ Login},{Regestr}) => {
+const Login = ({ Login, Regestr}) => {
     return (
+        <>
         <div className={s.login}>
-            <a className={s.nadpis}>Login</a>
-
+            
             <input type="text" placeholder="Логин"></input>
             <input type="password" placeholder="Пароль"></input>
-            <input type="button" onClick={Login} value="Войти" className={s.inLogin}></input>
-            <input type="button" onClick={Regestr} value="Зарегестрироваться" className={s.inLogin}></input>
-
+            <NavLink  to='/ms' className={s.nadpis}> Войти</NavLink>
+            <NavLink to='/reg'>Зарегистрироваться</NavLink>
+            
         </div>
-
+        <Outlet />
+        </>
     )
 
 }
