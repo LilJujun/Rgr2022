@@ -13,22 +13,33 @@ import java.util.List;
 @Getter
 @Setter
 public class Chat  {
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ManyToMany(mappedBy = "user-chat")
-    List<User> users;
-
-    @Column(name = "chatID", nullable = false)
-    private String chatID;
+    @Column(name = "chat_id", nullable = false)
+    private String id;
 
     @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "attachedFilesID")
-    private String attachedFilesID;
+    @OneToMany(mappedBy = "chat")
+    private List<AttachedFile> attachedFiles;
 
     @Column(name = "isAdmin", nullable = false)
     private String isAdmin;
+
+    @OneToMany(mappedBy = "chat")
+    private List<Message> messages;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_chat",
+            joinColumns = @JoinColumn(name = "chat_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    List<User> users;
 
 
 }

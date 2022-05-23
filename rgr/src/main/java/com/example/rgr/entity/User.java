@@ -15,23 +15,22 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
-
-    @ManyToMany
-    @JoinTable(
-            name = "user-chat",
-            joinColumns = @JoinColumn(name = "userID"),
-            inverseJoinColumns = @JoinColumn(name = "chatID")
-    )
-    private List<Chat> chats;
-
-    @OneToMany(mappedBy = "user")
-    private List<Message> messages;
-
+    private Long id;
 
     private String nickname;
     private String email;
     private String password;
     private String photo;
     private String status;
+
+    @OneToMany(mappedBy = "user")
+    private List<Message> messages;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_chat",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "chat_id")
+    )
+    private List<Chat> chats;
 }

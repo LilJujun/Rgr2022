@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -16,19 +17,23 @@ import java.util.Date;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String messageID;
-    private String recipientID;
+    private String id;
+
     private Date date;
     private String content;
-    private String attachedFiles;
+
     private MessageStatus status;
-    @ManyToOne
-    @JoinColumn(name = "recipientID")
-    private Chat recipient;
 
     @ManyToOne
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "chat_id")
+    private Chat chat;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne(mappedBy = "message")
+    private AttachedFile attachedFile;
 
 
 }

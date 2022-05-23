@@ -3,11 +3,9 @@ package com.example.rgr.service;
 import com.example.rgr.entity.Message;
 import com.example.rgr.model.MessageStatus;
 import com.example.rgr.repo.MessageRepository;
-import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +23,9 @@ public class MessageService {
         return message;
     }
 
-    public List<Message> findChatMessages(String chatID){
+    public List<Message> findAllByChatId(String chatID){
         var chatID1=chatService.getChatID(chatID);
-        var messages=chatID1.map(cID -> messageRepository.findAllByChatId(cID)).orElse(new ArrayList<>());
+        var messages=chatID1.map(cID -> messageRepository.findAllByChat_id(cID)).orElse(new ArrayList<>());
 
         if(messages.size()>0){
             messages.forEach(message -> {
