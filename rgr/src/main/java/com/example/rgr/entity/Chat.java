@@ -24,6 +24,9 @@ public class Chat  {
     @Column(name = "type", nullable = false)
     private String type;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @OneToMany(mappedBy = "chat")
     private List<AttachedFile> attachedFiles;
 

@@ -13,6 +13,4 @@ public class ChatForm {
     private Long chatID;
     private String chatName;
     private MultipartFile[] file;
-
-
 }
