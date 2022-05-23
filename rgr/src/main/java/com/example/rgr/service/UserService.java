@@ -36,7 +36,7 @@ public class UserService {
         return users;
     }
 
-    public boolean isUserEmailExist(String email){return userService.countByEmail(email) != 0 ? true : false;}
+    public boolean isUserEmailExist(String email){return userService.countByEmail(email) != 0;}
     public Optional<User>  findByEmail(String email){
         return userService.findByEmail(email);
     }

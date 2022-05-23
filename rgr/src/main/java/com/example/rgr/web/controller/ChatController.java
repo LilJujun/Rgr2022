@@ -40,13 +40,25 @@ public class ChatController {
 
 
     }
+
+
     @GetMapping("/chat/{chat_id}")
     public ResponseEntity<?> findChatMessages (@PathVariable String chat_id){
         return ResponseEntity.ok(MessageDto.buildList(messageService.findAllByChatId(chat_id)));
     }
+    @GetMapping("/chat/{chat_id}/info")
+    public ResponseEntity<?> findChatUsers(@PathVariable String chat_id){
+
+        return ResponseEntity.ok(chatService.findById(chat_id).orElse(new Chat()).getUsers());
+    }
+    @PutMapping("/chat/{chat_id}/info")
+    public ResponseEntity<?> updateChat (@RequestParam Long id){
+
+    }
+
     @GetMapping("/chat")
-    public ResponseEntity<?> findChats (){
-        List<Chat> chats = chatService.findAll();
+    public ResponseEntity<?> findChats (@RequestParam Long id){
+        List<Chat> chats = chatService.findByUserId(id);
         List<ChatDto> chatDtos = ChatDto.buildList(chats);
         return ResponseEntity.ok(chatDtos);
     }
