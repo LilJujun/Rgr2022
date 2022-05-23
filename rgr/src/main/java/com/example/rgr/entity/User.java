@@ -22,6 +22,11 @@ public class User {
     private String password;
     private String photo;
     private String status;
+    private boolean enabled;
+
+    public boolean isEnabled() {
+        return enabled;
+    }
 
     @OneToMany(mappedBy = "user")
     private List<Message> messages;
