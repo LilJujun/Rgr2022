@@ -47,11 +47,13 @@ let messegesData = messageData.map(message => <Message name={message.name} />);
       <div className={s.dialogs}>
         <div className={s.dialogsItem}>
 
-          {dialogsElement}
+        <DialogItem name="Eldar" id='1' />
+          <DialogItem name="Katya" id='2' />
+          <DialogItem name="Grisha" id='3' />
 
 
         </div>
-        {messegesData}
+        <Messsage messsage="Hello world" />
 
       </div>
 
