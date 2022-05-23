@@ -1,9 +1,7 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import s from './MessageCss.module.css';
 import './MessageCss.module.css';
-import Header from '../Header/Header';
-import Navbar from '../Navbar/Navbar';
 
 const DialogItem = (props) => {
   let path = "/ms/*";
@@ -16,28 +14,29 @@ const DialogItem = (props) => {
 const Messsage = (props) => {
   return (
     <div className={s.messeng}>
-      {props.messsage}
+      {props.message}
     </div>
+    
   )
 }
 
 const Message = () => {
-  let dialogData = [
-    
-      {id: '1', name: 'Eldar'},
-      {id: '2', name: 'Grisha'},
-      {id: '3', name: 'Katya'}
-    
+  let dialogs = [
+
+    { id: '1', name: 'Eldar' },
+    { id: '2', name: 'Grisha' },
+    { id: '3', name: 'Katya' }
+
   ]
 
-  const messageData=[
-    {id:'1',message:'Hello Wrold!!'},
-    {id:'2', message:'I wanna die'}
+  let message = [
+    { id: '1', message: "Hello Wrold!!" },
+    { id: '2', message: "I wanna die" }
   ]
-  
-  
-let dialogsElement = dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-let messegesData = messageData.map(message => <Message name={message.name} />);
+
+
+  let dialogsElement = dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
+  let messegesData = message.map(m => <Messsage message={m.message} id={m.id}/>);
 
 
 
@@ -47,14 +46,12 @@ let messegesData = messageData.map(message => <Message name={message.name} />);
       <div className={s.dialogs}>
         <div className={s.dialogsItem}>
 
-        <DialogItem name="Eldar" id='1' />
-          <DialogItem name="Katya" id='2' />
-          <DialogItem name="Grisha" id='3' />
-
+          
+        {dialogsElement}
 
         </div>
-        <Messsage messsage="Hello world" />
-
+       
+          {messegesData}
       </div>
 
     </div>
