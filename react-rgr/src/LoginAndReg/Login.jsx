@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import s from "./Login.module.css";
 
-const Login = ({ Login, Regestr}) => {
+const Login = () => {
     return (
         <>
         <div className={s.back}>
@@ -15,7 +15,7 @@ const Login = ({ Login, Regestr}) => {
             
             </div>
         </div>
-        <Outlet />
+        
         </>
     )
 

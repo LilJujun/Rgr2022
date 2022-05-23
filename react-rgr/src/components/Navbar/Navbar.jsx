@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import s from './NavbarCss.module.css';
 import  './NavbarCss.module.css';
 
-const setActive = ({isActive})=> isActive ? 'activeLink' : '';
-
 const Navbar = () => {
   return (
     <nav className={s.nav}>
