@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -20,15 +21,19 @@ public class Message {
 
     private Date date;
     private String content;
-    private String attachedFiles;
+
     private MessageStatus status;
 
     @ManyToOne
+    @JoinColumn(name = "chat_id")
     private Chat chat;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne(mappedBy = "message")
+    private AttachedFile attachedFile;
 
 
 }

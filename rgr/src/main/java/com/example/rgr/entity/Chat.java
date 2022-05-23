@@ -24,21 +24,22 @@ public class Chat  {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "attachedFiles_id")
-    private String attachedFiles_id;
+    @OneToMany(mappedBy = "chat")
+    private List<AttachedFile> attachedFiles;
 
     @Column(name = "isAdmin", nullable = false)
     private String isAdmin;
 
-    @OneToMany
-    @JoinColumn(name ="chat_id")
+    @OneToMany(mappedBy = "chat")
     private List<Message> messages;
 
-    @ManyToMany @JoinTable(
+    @ManyToMany
+    @JoinTable(
             name = "user_chat",
             joinColumns = @JoinColumn(name = "chat_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     List<User> users;
+
 
 }
