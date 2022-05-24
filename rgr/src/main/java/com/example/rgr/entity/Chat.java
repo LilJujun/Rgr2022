@@ -36,7 +36,7 @@ public class Chat  {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "chatPhoto")
+    @Column(name = "chatPhoto", nullable = false)
     private String photoPath;
 
     @OneToMany(mappedBy = "chat")
