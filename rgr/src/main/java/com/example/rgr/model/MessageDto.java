@@ -6,14 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.*;
-
-import static java.util.stream.Collectors.toList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageDto {
+public class MessageDto { //to display messages in chat
     String text;
     String chat_id;
     Long user_id;

@@ -33,6 +33,12 @@ public class Chat  {
     @Column(name = "isAdmin", nullable = false)
     private String isAdmin;
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "chatPhoto")
+    private String photoPath;
+
     @OneToMany(mappedBy = "chat")
     private List<Message> messages;
 

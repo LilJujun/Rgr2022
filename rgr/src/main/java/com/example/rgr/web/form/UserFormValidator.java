@@ -16,7 +16,7 @@ public class UserFormValidator implements Validator{
     public boolean supports(Class<?> cl){return UserForm.class.equals(cl);}
 
     @Override
-    public void validate(Object target, Errors errors){
+    public void validate(Object target, Errors errors){ //checking existing emaill before registrstion
         UserForm form = (UserForm) target;
         String email = form.getEmail();
         if (userService.isUserEmailExist(email)){

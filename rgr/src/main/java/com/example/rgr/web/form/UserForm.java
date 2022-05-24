@@ -12,8 +12,9 @@ import javax.validation.constraints.Size;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserForm {
+public class UserForm { //for reg/auth
     private Long ID;
+
     @Email(message = "Email is not correct")
     private String email;
 

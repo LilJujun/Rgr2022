@@ -23,7 +23,7 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
-    @PostMapping("/chat/{chat_id}")
+    @PostMapping("/chat/{chat_id}") //sending message
     public ResponseEntity<?> processMessage(@RequestBody Message message, @PathVariable String chat_id ){
         MessageDto messageDto = new MessageDto();
         if( chatService.findById(chat_id).isPresent()){
@@ -36,9 +36,6 @@ public class ChatController {
             System.err.println("Chat not found with this id");
             return ResponseEntity.notFound().build();
         }
-
-
-
     }
 
 
@@ -51,10 +48,10 @@ public class ChatController {
 
         return ResponseEntity.ok(chatService.findById(chat_id).orElse(new Chat()).getUsers());
     }
-    @PutMapping("/chat/{chat_id}/info")
-    public ResponseEntity<?> updateChat (@RequestParam Long id){
-
-    }
+//    @PutMapping("/chat/{chat_id}/info")
+//    public ResponseEntity<?> updateChat (@RequestParam Long id){
+//
+//    }
 
     @GetMapping("/chat")
     public ResponseEntity<?> findChats (@RequestParam Long id){
@@ -62,5 +59,7 @@ public class ChatController {
         List<ChatDto> chatDtos = ChatDto.buildList(chats);
         return ResponseEntity.ok(chatDtos);
     }
+
+
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-public class ChatDto {
+public class ChatDto { //to display chats on main page
     private String id;
     private String type;
     private String name;

@@ -37,16 +37,17 @@ public class UserService {
     }
 
     public boolean isUserEmailExist(String email){return userService.countByEmail(email) != 0;}
+
     public Optional<User>  findByEmail(String email){
         return userService.findByEmail(email);
     }
 
-    public void update(@Valid UserForm form){
+    public User findById(Long ID){return userRepository.findById(ID).get();}
+
+    public void update(@Valid UserForm form){ //changing password
         User u = new User();
         BeanUtils.copyProperties(form, u,"password");
         u.setPassword(passwordEncoder.encode(form.getPassword()));
         userRepository.save(u);
     }
-    public User findById(Long ID){return userRepository.findById(ID).get();}
-
 }

@@ -3,9 +3,12 @@ package com.example.rgr.service;
 import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.User;
 import com.example.rgr.repo.ChatRepository;
+import com.example.rgr.web.form.ChatForm;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +45,12 @@ public class ChatService {
 
         }
         return userchats;
+    }
 
+    public void update(@Valid ChatForm form) { //changing chat params
+        Chat ch = new Chat();
+        BeanUtils.copyProperties(form, ch);
+        chatRepository.save(ch);
     }
 
 }
