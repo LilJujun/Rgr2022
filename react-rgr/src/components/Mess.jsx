@@ -5,13 +5,14 @@ import Message from './Messege/Message';
 import s from "./Mess.module.css"
 
 
+const Mess = (props) => {
+    
 
-const Mess = () => {
     return (
             <div className={s.messenger}>
                 <Header />
                 <Navbar />
-                <Message />
+                <Message dialogs={props.dialogs} message={props.message}/>
             </div> 
     )
 }
