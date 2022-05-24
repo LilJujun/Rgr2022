@@ -9,6 +9,7 @@ const App = (props) => (
 
 
   <div >
+   
     <Routes>
       <Route path='/' element={<Login />} />
     </Routes>
@@ -16,8 +17,9 @@ const App = (props) => (
       
       <Routes>
         
-        <Route path='/ms/*' element={<Mess/>}/>
-        <Route path='/profile' element={<Prof/>}/>
+        <Route path='ms/*' element={<Mess dialogs={props.dialogs} message={props.message}/>}/>
+        
+        <Route path='/profile' element={<Prof />}/>
         <Route path='/reg' element={<Regestration/>}/>
           
         
