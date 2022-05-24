@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -21,6 +22,9 @@ public class UserForm { //for reg/auth
     @NotBlank
     @Size(min = 3)
     private String name;
+
+    @NotBlank
+    private Date birthDate;
 
     @NotBlank
     @Size(min = 3)

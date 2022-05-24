@@ -3,6 +3,7 @@ package com.example.rgr.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,7 @@ public class User {
     private String nickname;
     private String email;
     private String password;
+    private Date birthDate;
     private String photo;
     private String status;
     private boolean enabled;
