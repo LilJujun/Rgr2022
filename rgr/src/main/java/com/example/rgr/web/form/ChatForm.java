@@ -13,10 +13,16 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class ChatForm {
-    private String ID;
+    private String id;
 
     @NotBlank
     private String chatName;
+
+    @NotBlank
+    private  String description;
+
+    @NotBlank
+    private String isAdmin;
 
     @NotBlank /////make im service!!!!!!!1
     private MultipartFile[] chatPhoto;

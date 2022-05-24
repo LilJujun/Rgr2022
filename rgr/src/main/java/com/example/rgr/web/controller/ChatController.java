@@ -49,16 +49,21 @@ public class ChatController {
     }
     @PutMapping("/chat/{chat_id}/info")
     public ResponseEntity<?> updateChat (@RequestBody ChatForm chatForm){
-        chatService.update(chatForm);
-        return ResponseEntity.ok("Chat is updated");
+
+        return ResponseEntity.ok(ChatDto.build(chatService.update(chatForm)));
     }
 
 
     @GetMapping("/chat")
-    public ResponseEntity<?> findChats (@RequestParam Long id){
-        List<Chat> chats = chatService.findByUserId(id);
-        List<ChatDto> chatDtos = ChatDto.buildList(chats);
-        return ResponseEntity.ok(chatDtos);
+    public ResponseEntity<?> findChats (@RequestParam Long user_id){
+        List<Chat> chats = chatService.findByUserId(user_id);
+        return ResponseEntity.ok(ChatDto.buildList(chats));
+    }
+
+    @PostMapping("/chat")
+    public ResponseEntity<?> createChat ( @RequestBody ChatForm chatForm ){
+
+        return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
     }
 
 

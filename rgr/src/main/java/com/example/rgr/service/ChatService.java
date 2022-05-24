@@ -47,10 +47,15 @@ public class ChatService {
         return userchats;
     }
 
-    public void update(@Valid ChatForm form) { //changing chat params
+    public Chat update(@Valid ChatForm form) { //changing chat params
         Chat ch = new Chat();
         BeanUtils.copyProperties(form, ch);
-        chatRepository.save(ch);
+        return chatRepository.save(ch);
+    }
+    public Chat save(@Valid ChatForm form) { //changing chat params
+        Chat ch = new Chat();
+        BeanUtils.copyProperties(form, ch);
+        return chatRepository.save(ch);
     }
 
 }
