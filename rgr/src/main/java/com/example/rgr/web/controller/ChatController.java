@@ -7,6 +7,7 @@ import com.example.rgr.model.MessageDto;
 import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.service.ChatService;
 import com.example.rgr.service.MessageService;
+import com.example.rgr.web.form.ChatForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,20 +39,20 @@ public class ChatController {
         }
     }
 
-
     @GetMapping("/chat/{chat_id}")
     public ResponseEntity<?> findChatMessages (@PathVariable String chat_id){
         return ResponseEntity.ok(MessageDto.buildList(messageService.findAllByChatId(chat_id)));
     }
     @GetMapping("/chat/{chat_id}/info")
-    public ResponseEntity<?> findChatUsers(@PathVariable String chat_id){
-
-        return ResponseEntity.ok(chatService.findById(chat_id).orElse(new Chat()).getUsers());
+    public ResponseEntity<?> findChat(@PathVariable String chat_id){
+        return ResponseEntity.ok(chatService.findById(chat_id).orElse(new Chat()));
     }
-//    @PutMapping("/chat/{chat_id}/info")
-//    public ResponseEntity<?> updateChat (@RequestParam Long id){
-//
-//    }
+    @PutMapping("/chat/{chat_id}/info")
+    public ResponseEntity<?> updateChat (@RequestBody ChatForm chatForm){
+        chatService.update(chatForm);
+        return ResponseEntity.ok("Chat is updated");
+    }
+
 
     @GetMapping("/chat")
     public ResponseEntity<?> findChats (@RequestParam Long id){

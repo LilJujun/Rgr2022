@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class ChatForm {
-    private Long ID;
+    private String ID;
 
     @NotBlank
     private String chatName;
