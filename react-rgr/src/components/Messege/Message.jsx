@@ -25,6 +25,8 @@ const Message = (props) => {
        
           {messegesData}
       </div>
+      <textarea></textarea>
+      <button>Нажми</button>
 
     </div>
 

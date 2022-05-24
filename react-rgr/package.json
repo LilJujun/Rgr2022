@@ -1,4 +1,5 @@
 {
+  "url":"http://localhost:8080",
   "name": "react-rgr",
   "version": "0.1.0",
   "private": true,

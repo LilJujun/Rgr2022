@@ -17,7 +17,7 @@ const App = (props) => (
       
       <Routes>
         
-        <Route path='ms/*' element={<Mess dialogs={props.dialogs} message={props.message}/>}/>
+        <Route path='ms/*' element={<Mess dialogs={props.state.dialogs} message={props.state.message}/>}/>
         
         <Route path='/profile' element={<Prof />}/>
         <Route path='/reg' element={<Regestration/>}/>

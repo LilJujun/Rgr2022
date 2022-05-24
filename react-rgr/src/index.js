@@ -5,25 +5,15 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
-let dialogs = [
+import state from './State'
 
-  { id: '1', name: 'Eldar',typeChat:"aoa",isAdmin:"asd" },
-  { id: '2', name: 'Grisha' },
-  { id: '3', name: 'Katya' }
-  
-  ]
-  let message = [
-    { id: '1', message: "Hello Wrold!!" },
-    { id: '2', message: "I wanna die" }
-  ]
-
-axios.get("http://localhost:3000/ms")
+axios.get("http://localhost:3000")
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App dialogs={dialogs} message={message}/>
+      <App state={state}/>
     </BrowserRouter>
   </React.StrictMode>
 );
