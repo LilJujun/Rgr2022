@@ -23,23 +23,24 @@ public class UserService {
     UserRepository userRepository;
 
     @Autowired
-    UserRepository userService;
-
-    @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
 
 
     public List<User> getList() {
         List<User> users = new ArrayList<>();
-        userService.findAll().forEach(users::add);
+        userRepository.findAll().forEach(users::add);
         return users;
     }
 
-    public boolean isUserEmailExist(String email){return userService.countByEmail(email) != 0;}
+    public boolean isUserEmailExist(String email){return userRepository.countByEmail(email) != 0;}
 
     public Optional<User>  findByEmail(String email){
-        return userService.findByEmail(email);
+        return userRepository.findByEmail(email);
+    }
+
+    public Optional<User> findByNickname(String nickname){
+        return userRepository.findByNickname(nickname);
     }
 
     public User findById(Long ID){return userRepository.findById(ID).get();}

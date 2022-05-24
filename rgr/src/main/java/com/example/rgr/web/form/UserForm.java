@@ -24,7 +24,7 @@ public class UserForm { //for reg/auth
     private String name;
 
     @NotBlank
-    private Date birthDate;
+    private String birthDate;
 
     @NotBlank
     @Size(min = 3)

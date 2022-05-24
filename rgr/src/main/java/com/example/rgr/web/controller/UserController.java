@@ -1,9 +1,11 @@
 package com.example.rgr.web.controller;
 
+import com.example.rgr.repo.UserRepository;
 import com.example.rgr.service.UserService;
 import com.example.rgr.web.form.UserForm;
 import com.example.rgr.web.form.UserFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
 public class UserController {
     @Autowired
     UserService userService;
@@ -40,5 +42,10 @@ public class UserController {
             System.out.println("Saved");
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/user/{nickname}")
+    public ResponseEntity<?> findUserByNickName (@PathVariable String nickname){
+        return ResponseEntity.ok(userService.findByNickname(nickname));
     }
 }

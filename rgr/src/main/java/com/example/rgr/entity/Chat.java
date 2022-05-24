@@ -14,8 +14,6 @@ import java.util.List;
 @Setter
 public class Chat  {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "chat_id", nullable = false)
@@ -39,7 +37,7 @@ public class Chat  {
     @Column(name = "chatPhoto", nullable = false)
     private String photoPath;
 
-    @OneToMany(mappedBy = "chat")
+    @OneToMany
     private List<Message> messages;
 
     @ManyToMany

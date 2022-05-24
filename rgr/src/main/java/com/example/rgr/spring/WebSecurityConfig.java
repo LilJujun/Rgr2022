@@ -45,17 +45,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/","/login/**", "/css/**", "/user/registartion/**", "/js/**", "/test/**")
-                .permitAll()
-                .anyRequest().authenticated()
-                .and().exceptionHandling().accessDeniedPage("/access-denied")
-                .and().formLogin().loginPage("/login").permitAll()
-                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").invalidateHttpSession(true).and()
-                .rememberMe()
-                .alwaysRemember(false)
-                .rememberMeParameter("remember-me")
-                .rememberMeCookieName("auth")
-                .tokenRepository(tokenRepository());
+                    .antMatchers("/","/login/**", "/css/**", "/user/registration/**", "/js/**", "/test/**")
+                    .permitAll()
+                    .anyRequest().authenticated()
+                .and()
+                    .exceptionHandling().accessDeniedPage("/access-denied")
+                .and()
+                    .formLogin().loginPage("/login").permitAll()
+                .and().
+                    logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/").invalidateHttpSession(true).and()
+                    .rememberMe()
+                    .alwaysRemember(false)
+                    .rememberMeParameter("remember-me")
+                    .rememberMeCookieName("auth")
+                    .tokenRepository(tokenRepository());
     }
 }
