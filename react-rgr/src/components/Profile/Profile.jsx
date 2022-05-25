@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import s from './Profile.module.css';
+
 
 const Profile = () => {
 
@@ -9,17 +9,20 @@ const Profile = () => {
             <div>
                 <label>Профиль</label>
                 </div>
+            <div>
+            <img src="sanya.jpg"/>
             <div className={s.textField}>
-            <img />
-            <div>
-                <label>Имя</label>
+                <label className={s.textField__label}>Имя</label>
+                <input className={s.textField__input} type="text" name="username" id="username" placeholder="Username"></input>
             </div>
-            <div>
-                <label>@mail</label>
+            <div className={s.textField}>
+                <label className={s.textField__label}>@mail</label>
+                <input className={s.textField__input} type="text" name="email" id="email" placeholder="Email" readOnly></input>
             </div>
 
-            <div>
-                <label>Статус</label>
+            <div className={s.textField}>
+                <label className={s.textField__label}>Статус</label>
+                <input className={s.textField__input} type="text" name="status" id="status" placeholder="status"></input>
             </div>
 
             </div>
