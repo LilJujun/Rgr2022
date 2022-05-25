@@ -30,7 +30,7 @@ const submitChecking = event => {
         alert("Неправильная почта")
     }  else {
         axios.post("http://localhost:8080/login/", {
-            username: login.email,
+            email: login.email,
             password: login.password
         }).then(res => {
             if (res.data === true) {
