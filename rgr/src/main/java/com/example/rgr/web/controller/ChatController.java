@@ -8,11 +8,13 @@ import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.service.ChatService;
 import com.example.rgr.service.MessageService;
 import com.example.rgr.web.form.ChatForm;
+import com.example.rgr.web.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -68,6 +70,8 @@ public class ChatController {
 
         return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
     }
+
+
 
 
 

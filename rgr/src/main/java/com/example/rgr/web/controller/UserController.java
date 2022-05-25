@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class UserController {
     @Autowired
     UserService userService;
@@ -45,4 +45,17 @@ public class UserController {
     public ResponseEntity<?> findUserByNickName (@PathVariable String nickname){
         return ResponseEntity.ok(userService.findByNickname(nickname));
     }
+
+    @PostMapping("/test")///////////////DELETE
+    public ResponseEntity<?> test(@Valid @RequestBody UserForm userForm){
+//        UserForm userForm= new UserForm(name,password,email,birthDate);
+        return ResponseEntity.ok(userService.save(userForm).getId());
+    }
+    @GetMapping("/test")///////////////DELETE
+    public ResponseEntity<?> gettest(){
+//        UserForm userForm= new UserForm(name,password,email,birthDate);
+        return ResponseEntity.ok("userFormgert");
+    }
+
+
 }
