@@ -36,14 +36,8 @@ public class UserController {
     }
 
     @PostMapping("/user/registration")
-    public String userRegistrationSubmit(@ModelAttribute @Valid UserForm userForm, BindingResult result){
-        if (result.hasErrors()){
-            return"/user/registration";
-        } else {
-            userService.save(userForm);
-            System.out.println("Saved");
-        }
-        return "redirect:/";
+    public ResponseEntity<?> userRegistrationSubmit(@ModelAttribute @Valid UserForm userForm, BindingResult result){
+            return ResponseEntity.ok(userService.save(userForm));
     }
 
 

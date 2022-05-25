@@ -1,4 +1,5 @@
 package com.example.rgr.web.form;
+import com.example.rgr.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,5 @@ public class UserForm { //for reg/auth
     @NotBlank
     @Size(min = 3)
     private String password;
+
 }
