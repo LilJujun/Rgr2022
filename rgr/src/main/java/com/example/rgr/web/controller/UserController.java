@@ -30,6 +30,7 @@ public class UserController {
 
     @GetMapping("/user/registration")
     public String userRegistration(Model model){
+
         model.addAttribute(new UserForm());
         return "user/registration";
     }
@@ -44,6 +45,7 @@ public class UserController {
         }
         return "redirect:/";
     }
+
 
     @GetMapping("/user/{nickname}")
     public ResponseEntity<?> findUserByNickName (@PathVariable String nickname){

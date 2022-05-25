@@ -2,6 +2,7 @@ package com.example.rgr.service;
 
 import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.User;
+import com.example.rgr.exception.UserExistsException;
 import com.example.rgr.repo.UserRepository;
 import com.example.rgr.web.form.ChatForm;
 import com.example.rgr.web.form.UserForm;
@@ -55,6 +56,9 @@ public class UserService {
     }
 
     public User save(@Valid UserForm form) { //changing chat params
+        if (isUserEmailExist(form.getEmail())){
+            throw new UserExistsException("User with email" + form.getEmail() + "already exists");
+        }
         User u = new User();
         BeanUtils.copyProperties(form, u);
         return userRepository.save(u);
