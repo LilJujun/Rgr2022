@@ -35,20 +35,17 @@ export default function Registration() {
         } else if (!validator.isStrongPassword(registration.password, { minSymbols: 0 })) {
             alert("Password must consist of one lowercase, uppercase letter and number, at least 8 characters")
         } else {
-            axios.post("http://localhost:8080/user/registration/", {
+            axios.post("http://localhost:8080/user/registration", {
                 name: registration.nickname,
-                email: registration.email,
                 password: registration.password,
+                email: registration.email,
                 birthDate: registration.birthday
-            }).then(res => {
-                if (res.data === true) {
-                    window.location.href = "http://localhost:8080/user/"
-                } else {
-                    alert("There is already a user with this email")
-                }
-            }).catch(() => {
-                alert("An error occurred on the server")
-            })
+            }).then((res) => {
+                alert("asd");
+                alert(res.data);
+            }).catch(function (error){
+                alert(error);});
+
         }
     }
     return (
