@@ -1,10 +1,15 @@
 import React from 'react';
 import s from './HeaderCss.module.css';
+import log from './kotik.png'
 
 const Header = () =>{
+let logo = (
+<img src={log} />
+)
+
     return(
         <header className={s.header}>
-        {/* <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Vanamo_Logo.svg/1200px-Vanamo_Logo.svg.png' /> */}
+        {logo}
         {/* Лого нашей ргр */}
       </header >
     );
