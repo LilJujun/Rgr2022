@@ -26,7 +26,7 @@ public class ChatController {
     private ChatService chatService;
 
     @PostMapping("/chat/{chat_id}") //sending message
-    public ResponseEntity<?> processMessage(@RequestBody Message message, @PathVariable String chat_id ){
+    public ResponseEntity<?> processMessage(@RequestBody Message message, @PathVariable Long chat_id ){
         MessageDto messageDto = new MessageDto();
         if( chatService.findById(chat_id).isPresent()){
             message.setChat(chatService.findById(chat_id).orElse(new Chat()));
@@ -41,18 +41,19 @@ public class ChatController {
     }
 
     @GetMapping("/chat/{chat_id}")
-    public ResponseEntity<?> findChatMessages (@PathVariable String chat_id){
+    public ResponseEntity<?> findChatMessages (@PathVariable Long chat_id){
         return ResponseEntity.ok(MessageDto.buildList(messageService.findAllByChatId(chat_id)));
     }
     @GetMapping("/chat/{chat_id}/info")
-    public ResponseEntity<?> findChatInfo(@PathVariable String chat_id){
-        return ResponseEntity.ok(ChatDto.build(chatService.findById(chat_id).orElse(new Chat())));
+    public ResponseEntity<?> findChat(@PathVariable Long chat_id){
+        return ResponseEntity.ok(chatService.findById(chat_id).orElse(new Chat()));
     }
     @PutMapping("/chat/{chat_id}/info")
     public ResponseEntity<?> updateChat (@RequestBody ChatForm chatForm){
 
         return ResponseEntity.ok(ChatDto.build(chatService.update(chatForm)));
     }
+
 
     @GetMapping("/chat")
     public ResponseEntity<?> findChats (@RequestParam Long user_id){
@@ -62,6 +63,7 @@ public class ChatController {
 
     @PostMapping("/chat")
     public ResponseEntity<?> createChat ( @RequestBody ChatForm chatForm ){
+
         return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
     }
 

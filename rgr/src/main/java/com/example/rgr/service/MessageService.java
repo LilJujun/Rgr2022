@@ -23,7 +23,7 @@ public class MessageService {
         return message;
     }
 
-    public List<Message> findAllByChatId(String chatID){
+    public List<Message> findAllByChatId(Long chatID){
         var chatID1=chatService.getChatID(chatID);
         var messages=chatID1.map(cID -> messageRepository.findAllByChat_id(cID)).orElse(new ArrayList<>());
 

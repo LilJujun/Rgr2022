@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Getter
 public class ChatDto { //to display chats on main page
-    private String id;
+    private Long id;
     private String type;
     private String name;
     private String isAdmin;

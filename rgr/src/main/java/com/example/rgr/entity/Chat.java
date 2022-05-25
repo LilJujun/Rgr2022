@@ -17,7 +17,7 @@ public class Chat  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "chat_id", nullable = false)
-    private String id;
+    private Long id;
 
     @Column(name = "type", nullable = false)
     private String type;

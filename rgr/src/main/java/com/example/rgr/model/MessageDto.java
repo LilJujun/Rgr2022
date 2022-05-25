@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MessageDto { //to display messages in chat
     String text;
-    String chat_id;
+    Long chat_id;
     Long user_id;
     String path;
 

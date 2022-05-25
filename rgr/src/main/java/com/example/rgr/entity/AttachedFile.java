@@ -18,7 +18,7 @@ public class AttachedFile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private String id;
+    private Long id;
 
     @Column(nullable = false)
     private String path;

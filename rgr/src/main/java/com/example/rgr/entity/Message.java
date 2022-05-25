@@ -17,7 +17,7 @@ import java.util.List;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private Date date;
     private String content;

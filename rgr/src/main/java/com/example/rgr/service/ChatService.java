@@ -20,11 +20,11 @@ public class ChatService {
     @Autowired private ChatRepository chatRepository;
 
 
-    public Optional<String> getChatID(String chatID){
+    public Optional<Long> getChatID(Long chatID){
         return chatRepository.findById(chatID).map(Chat::getId);
     }
 
-    public Optional<Chat> findById(String chatID){return chatRepository.findById(chatID);}
+    public Optional<Chat> findById(Long chatID){return chatRepository.findById(chatID);}
 
     public List<Chat> findAll(){ return  chatRepository.findAll();}
 
