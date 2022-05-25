@@ -27,7 +27,7 @@ public class ChatController {
 
     @PostMapping("/chat/{chat_id}") //sending message
     public ResponseEntity<?> processMessage(@RequestBody Message message, @PathVariable Long chat_id ){
-        MessageDto messageDto = new MessageDto();
+        MessageDto messageDto;
         if( chatService.findById(chat_id).isPresent()){
             message.setChat(chatService.findById(chat_id).orElse(new Chat()));
             Message saved = messageService.save(message);
@@ -38,6 +38,12 @@ public class ChatController {
             System.err.println("Chat not found with this id");
             return ResponseEntity.notFound().build();
         }
+    }
+
+    // DELETE TEST!!!!!!!!!!!!!!!!!!!
+    @GetMapping("/test/{numb}")
+    public ResponseEntity<?> test(@PathVariable int numb){
+        return ResponseEntity.ok(numb+"GRISHA HUESOS");
     }
 
     @GetMapping("/chat/{chat_id}")

@@ -7,7 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 import state from './State'
 
-axios.get("http://localhost:3000")
+axios.get("http://localhost:8080/test/1337").then((resp) => {
+    alert(resp.data);
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
