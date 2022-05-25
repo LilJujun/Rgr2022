@@ -7,6 +7,7 @@ import com.example.rgr.model.MessageDto;
 import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.service.ChatService;
 import com.example.rgr.service.MessageService;
+import com.example.rgr.service.UserService;
 import com.example.rgr.web.form.ChatForm;
 import com.example.rgr.web.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,14 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@RequestMapping("/ms")
 public class ChatController {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     private ChatService chatService;
@@ -41,6 +46,12 @@ public class ChatController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/user/{nickname}")
+    public ResponseEntity<?> findUserByNickName (@PathVariable String nickname){
+        return ResponseEntity.ok(userService.findByNickname(nickname));
+    }
+
 
 
 

@@ -30,7 +30,7 @@ const submitChecking = event => {
         alert("Неправильная почта")
     }  else {
         axios.post("http://localhost:8080/login/", {
-            email: login.email,
+            username: login.email,
             password: login.password
         }).then(res => {
             if (res.data === true) {
@@ -38,9 +38,8 @@ const submitChecking = event => {
             } else {
                 alert("There is already a user with this email")
             }
-        }).catch(() => {
-            alert("An error occurred on the server")
-        })
+        }).catch(function (error){
+            alert(error);});
     }
 }
   

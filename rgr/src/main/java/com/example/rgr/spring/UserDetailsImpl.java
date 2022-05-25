@@ -1,36 +1,69 @@
 package com.example.rgr.spring;
 
-import com.example.rgr.entity.User;
-import lombok.AllArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
-@AllArgsConstructor
+import com.example.rgr.entity.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UserDetailsImpl implements UserDetails {
-    private static final long serialVersionUID = 7660176098938580296L;
+    private static final long serialVersionUID = 1L;
 
-     private final User user;
+    private Long id;
 
-    private final List<GrantedAuthority> roles = new ArrayList<>();
+
+    private String email;
+
+    @JsonIgnore
+    private String password;
+
+    private Collection<? extends GrantedAuthority> authorities;
+
+    public UserDetailsImpl(Long id,  String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
+
+    public static UserDetailsImpl build(User user) {
+
+
+        return new UserDetailsImpl(
+                user.getId(),
+                user.getEmail(),
+                user.getPassword()
+               );
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return authorities;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
     public String getPassword() {
-        return this.user.getPassword();
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return this.user.getEmail();
+        return null;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -49,11 +82,16 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.isEnabled();
+        return true;
     }
 
-    public Long getId() {
-        return user.getId();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        UserDetailsImpl user = (UserDetailsImpl) o;
+        return Objects.equals(id, user.id);
     }
-
 }

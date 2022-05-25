@@ -23,7 +23,7 @@ public class UserForm { //for reg/auth
     @Size(min = 3)
     private String password;
 
-
+    @NotBlank
 //    @Email(message = "Email is not correct")
     private String email;
 

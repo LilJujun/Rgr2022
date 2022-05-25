@@ -3,7 +3,6 @@ package com.example.rgr.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,6 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     private String nickname;
     private String email;
