@@ -1,7 +1,9 @@
 package com.example.rgr.service;
 
+import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.User;
 import com.example.rgr.repo.UserRepository;
+import com.example.rgr.web.form.ChatForm;
 import com.example.rgr.web.form.UserForm;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -50,5 +52,11 @@ public class UserService {
         BeanUtils.copyProperties(form, u,"password");
         u.setPassword(passwordEncoder.encode(form.getPassword()));
         userRepository.save(u);
+    }
+
+    public User save(@Valid UserForm form) { //changing chat params
+        User u = new User();
+        BeanUtils.copyProperties(form, u);
+        return userRepository.save(u);
     }
 }

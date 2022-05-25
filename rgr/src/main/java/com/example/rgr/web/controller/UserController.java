@@ -39,6 +39,7 @@ public class UserController {
         if (result.hasErrors()){
             return"/user/registration";
         } else {
+            userService.save(userForm);
             System.out.println("Saved");
         }
         return "redirect:/";
