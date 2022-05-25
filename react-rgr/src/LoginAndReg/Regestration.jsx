@@ -36,7 +36,7 @@ export default function Registration() {
             alert("Password must consist of one lowercase, uppercase letter and number, at least 8 characters")
         } else {
             axios.post("http://localhost:8080/user/registration", {
-                name: registration.nickname,
+                nickname: registration.nickname,
                 password: registration.password,
                 email: registration.email,
                 birthDate: registration.birthday

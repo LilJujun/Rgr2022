@@ -16,7 +16,8 @@ public class UserForm { //for reg/auth
 
     @NotBlank
     @Size(min = 3)
-    private String name;
+    private String nickname;
+
 
     @NotBlank
     @Size(min = 3)
