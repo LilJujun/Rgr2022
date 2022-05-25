@@ -40,11 +40,7 @@ public class ChatController {
         }
     }
 
-    // DELETE TEST!!!!!!!!!!!!!!!!!!!
-    @GetMapping("/test/{numb}")
-    public ResponseEntity<?> test(@PathVariable int numb){
-        return ResponseEntity.ok(numb+"GRISHA HUESOS");
-    }
+
 
     @GetMapping("/chat/{chat_id}")
     public ResponseEntity<?> findChatMessages (@PathVariable Long chat_id){
