@@ -1,38 +1,73 @@
 import axios from "axios";
-import React from "react";
+import React,{useState}  from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Login.module.css";
+import validator from "validator";
 
-class Login extends React.Component {
+export default function Login() {
 
-  constructor(props) {
-    super(props);
-    this.state = { value: '' };
+  const [login, setLogin] = useState(() => {
+    return {
+        email: "",
+        password: ""
+    }
+})
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const changeInputLogin = event => {
+    event.persist()
+    setLogin(prev => {
+        return {
+            ...prev,
+            [event.target.name]: event.target.value,
+        }
+    })
+}
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
 
-  handleSubmit(event) {
-    alert('Отправленное имя: ' + this.state.value);
+const submitChecking = event => {
     event.preventDefault();
-  }
-  render() {
+    if (!validator.isEmail(login.email)) {
+        alert("Неправильная почта")
+    }  else {
+        axios.post("http://localhost:8080/login/", {
+            email: login.email,
+            password: login.password
+        }).then(res => {
+            if (res.data === true) {
+                window.location.href = "http://localhost:8080/login/"
+            } else {
+                alert("There is already a user with this email")
+            }
+        }).catch(() => {
+            alert("An error occurred on the server")
+        })
+    }
+}
+  
     return (
       <div className={s.back} >
 
         <div className={s.loginPage}>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Логин" id="log"  onChange={this.handleChange}></input>
-            <input type="password" placeholder="Пароль" id="par" value={this.state.value} onChange={this.handleChange}></input>
-          <input type="submit" value="Отправить" />
-          </form>
-          <NavLink to='/ms' > Войти</NavLink>
-          <NavLink to='/reg'>Зарегистрироваться</NavLink>
+        <form onSubmit={submitChecking}>
+                <p>Email: <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={login.email}
+                    onChange={changeInputLogin}
+                  
+                /></p>
+                <p>Password: <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={login.password}
+                    onChange={changeInputLogin}
+                /></p>
+                <input type="submit" />
+            </form>
+          <NavLink to='/ms' type="submit"> Войти</NavLink>
+          <NavLink to='/user/registration'>Зарегистрироваться</NavLink>
 
         </div>
 
@@ -42,5 +77,6 @@ class Login extends React.Component {
 
 
 
-}
-export default Login;
+
+
+

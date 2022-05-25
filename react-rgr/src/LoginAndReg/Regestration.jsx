@@ -1,26 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Regestration.module.css";
+import axios from "axios";
+import validator from "validator";
 
-const Regestration = () => {
-    function createUser(event){
-        const email = event.target.parentElement.children[1].value;
-        const name = event.target.parentElement.childre
+export default function Registration() {
+    const [registration, setRegistration] = useState(() => {
+        return {
+            nickname: "",
+            email: "",
+            password: "",
+            password2: "",
+            birthday: ""
+        }
+    })
+
+    const changeInputRegister = event => {
+        event.persist()
+        setRegistration(prev => {
+            return {
+                ...prev,
+                [event.target.name]: event.target.value,
+            }
+        })
+    }
+
+
+    const submitChecking = event => {
+        event.preventDefault();
+        if (!validator.isEmail(registration.email)) {
+            alert("You did not enter email")
+        } else if (registration.password !== registration.password2) {
+            alert("Repeated password incorrectly")
+        } else if (!validator.isStrongPassword(registration.password, { minSymbols: 0 })) {
+            alert("Password must consist of one lowercase, uppercase letter and number, at least 8 characters")
+        } else {
+            axios.post("http://localhost:8080/user/registration/", {
+                name: registration.nickname,
+                email: registration.email,
+                password: registration.password,
+                birthDate: registration.birthday
+            }).then(res => {
+                if (res.data === true) {
+                    window.location.href = "http://localhost:8080/user/"
+                } else {
+                    alert("There is already a user with this email")
+                }
+            }).catch(() => {
+                alert("An error occurred on the server")
+            })
+        }
     }
     return (
-        <div className={s.reg}>
-            <a>Регистрация</a>
-            <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="@mail"></input>
-            <input type="text" placeholder="Имя"></input>
-            <input type="password" placeholder="Пароль"></input>
-            <input type="password" placeholder="Повторите пароль"></input>
-            <input type="button" placeholder="Зарегестрироваться" onClick></input>
-            </form>
-            <NavLink to='/'>У меня уже есть аккаунт</NavLink>
-            
+        <div className={s.back} >
+            <div className={s.regPage}>
+                <form onSubmit={submitChecking}>
+                    <p>Name: <input
+                        type="nickname"
+                        id="nickname"
+                        name="nickname"
+                        value={registration.nickname}
+                        onChange={changeInputRegister}
+                    /></p>
+                    <p>Email: <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={registration.email}
+                        onChange={changeInputRegister}
+                        formnovalidate
+                    /></p>
+                    <p>Password: <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={registration.password}
+                        onChange={changeInputRegister}
+                    /></p>
+                    <p>Repeat password: <input
+                        type="password"
+                        id="password2"
+                        name="password2"
+                        value={registration.password2}
+                        onChange={changeInputRegister}
+                    /></p>
+                    <p>Date birthday: <input
+                        type="date" id="birthday" name="birthday"
+
+                        min="1900-01-01" max="2018-12-31"
+                        value={registration.birthday}
+                        onChange={changeInputRegister}
+                    /></p>
+                    <input type="submit" />
+                </form>
+                <NavLink to='/login'>У меня уже есть аккаунт</NavLink>
+
+            </div>
         </div>
     )
 
 }
-export default Regestration;

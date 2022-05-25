@@ -6,10 +6,25 @@ const Profile = () => {
 
     return (
         <div className={s.content}>
-                <a>Profile</a>
-                
-                
-                
+            <div>
+                <label>Профиль</label>
+                </div>
+            <div className={s.textField}>
+            <img />
+            <div>
+                <label>Имя</label>
+            </div>
+            <div>
+                <label>@mail</label>
+            </div>
+
+            <div>
+                <label>Статус</label>
+            </div>
+
+            </div>
+
+
         </div>
 
     );
