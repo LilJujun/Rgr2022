@@ -95,7 +95,7 @@ public class ChatController {
     }
 
     @PostMapping("/{user_id}/chat")
-    public ResponseEntity<?> createChat (@Valid @RequestBody ChatForm chatForm, @PathVariable Long user_id ){
+    public ResponseEntity<?> createChat (@RequestBody ChatForm chatForm, @PathVariable Long user_id ){
         User user = userService.findById(user_id);
         chatForm.setIsAdmin(user_id);
         Chat ch = chatService.save(chatForm);
