@@ -9,6 +9,7 @@ import com.example.rgr.model.MessageDto;
 import com.example.rgr.model.UserModel;
 import com.example.rgr.repo.AttachedFileRepository;
 import com.example.rgr.repo.ChatRepository;
+import com.example.rgr.repo.UserRepository;
 import com.example.rgr.service.AttachedFileService;
 import com.example.rgr.service.ChatService;
 import com.example.rgr.service.MessageService;
@@ -34,6 +35,9 @@ public class ChatController {
 
     @Autowired
     private AttachedFileRepository attachedFileRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
@@ -100,8 +104,10 @@ public class ChatController {
 
         User user = userService.findById(user_id);
         chatForm.setIsAdmin(user_id);
-        chatForm.addUser(user);
-        return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
+        Chat ch=chatService.save(chatForm);
+        user.getChats().add(ch);
+        userRepository.save(user);
+        return ResponseEntity.ok(ChatDto.build(ch));
     }
 
     @GetMapping("/test")

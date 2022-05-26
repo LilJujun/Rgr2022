@@ -61,11 +61,6 @@ public class ChatService {
         return chatRepository.save(ch);
     }
 
-    public Chat addUser(Chat chat, User user){
-        List <User> users = chat.getUsers();
-        users.add(user);
-        chat.setUsers(users);
-        return chatRepository.save(chat);
-    }
+
 
 }
