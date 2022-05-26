@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
@@ -96,7 +97,7 @@ public class ChatController {
 
     @GetMapping("/{user_id}/chats")
     public ResponseEntity<?> findChats (@PathVariable Long user_id){
-        List<Chat> chats = chatService.findByUserId(user_id);
+        Set<Chat> chats = chatService.findByUserId(user_id);
         return ResponseEntity.ok(ChatDto.buildList(chats));
     }
 

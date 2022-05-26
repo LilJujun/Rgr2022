@@ -23,12 +23,12 @@ public class ChatService {
 
     public Optional<Chat> findById(Long chatID){return chatRepository.findById(chatID);}
 
-    public List<Chat> findAll(){ return  chatRepository.findAll();}
+    public Set<Chat> findAll(){ return  new HashSet<>(chatRepository.findAll());}
 
-    public List<Chat> findByUserId(Long id){
+    public Set<Chat> findByUserId(Long id){
 
-        List<Chat> chats = chatRepository.findAll();
-        List<Chat> userchats = new ArrayList<Chat>();
+        Set<Chat> chats = new HashSet<>(chatRepository.findAll());
+        Set<Chat> userchats = new HashSet<>();
         for(Chat chat : chats){
             Set<User> users=chat.getUsers();
             boolean flag=false;
