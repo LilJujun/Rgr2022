@@ -41,9 +41,6 @@ public class ChatController {
     private UserRepository userRepository;
 
     @Autowired
-    private ChatRepository chatRepository;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
@@ -108,12 +105,21 @@ public class ChatController {
 
         User user = userService.findById(user_id);
         chatForm.setIsAdmin(user_id);
-        Chat ch = new Chat();
-        BeanUtils.copyProperties(chatForm, ch);;
-        ch.getUsers().add(user);
 
-        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
+
+        Chat ch=chatService.save(chatForm);
+        user.getChats().add(ch);
+        userRepository.save(user);
+        return ResponseEntity.ok(ChatDto.build(ch));
     }
+
+//    User user = userService.findById(user_id);
+//        chatForm.setIsAdmin(user_id);
+//    Chat ch = new Chat();
+//        BeanUtils.copyProperties(chatForm, ch);;
+//        ch.getUsers().add(user);
+//
+//        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
 
     @GetMapping("/test")
     public ResponseEntity<?> test(){
