@@ -27,15 +27,17 @@ const changeInputLogin = event => {
 const submitChecking = event => {
     event.preventDefault();
         axios.post("http://localhost:8080/auth/login", {
-            email: login.email,
+            username: login.email,
             password: login.password
         }).then(res => {
             if (res.data.accessToken) {
-                // window.location.href = "http://localhost:8080/login/"
+                alert(JSON.stringify(res.data))
                 localStorage.setItem("user", JSON.stringify(res.data))
+                window.location.href = "http://localhost:3000/ms/"
             }
             return res.data;
-        })
+        }).catch(function (error){
+            alert(error);});
     }
 
   
@@ -60,9 +62,9 @@ const submitChecking = event => {
                     onChange={changeInputLogin}
                 /></p>
 
-                <NavLink to='/ms' ><input type="submit" value="Войти"/></NavLink>
+               <input type="submit" value="Войти"/>
             </form>
-          <NavLink to='/ms' type="submit"> Войти</NavLink>
+          
           <NavLink to='/registration'>Зарегистрироваться</NavLink>
 
         </div>

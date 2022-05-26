@@ -4,7 +4,7 @@ import s from './../MessageCss.module.css';
 
 
 const MessageItem = (props) => {
-  let path = "/ms/*";
+  let path = "/ms";
   return (
     <div className={s.item}>
       <NavLink to={path} >{props.name}</NavLink>

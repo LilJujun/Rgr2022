@@ -35,14 +35,13 @@ export default function Registration() {
         } else if (!validator.isStrongPassword(registration.password, { minSymbols: 0 })) {
             alert("Пароль должен состоять из одной строчной, прописной буквы,цифры, не менее 8 символов")
         } else {
-            axios.post("http://localhost:8080/auth/registration/", {
+            axios.post("http://localhost:8080/auth/registration", {
                 nickname: registration.nickname,
                 email: registration.email,
                 password: registration.password,
                 birthDate: registration.birthday
             }).then((res) => {
-                
-                    window.location.href = "http://localhost:3000/accept/"
+                    window.location.href = "http://localhost:3000/accept"
             }).catch(function (error){
                 alert(error);});
         }
@@ -87,7 +86,7 @@ export default function Registration() {
                         value={registration.birthday}
                         onChange={changeInputRegister}
                     /></p>
-                    <NavLink to="/accept"></NavLink><input type="submit" />
+                    <input type="submit"  value="Зарегистрироваться"/>
                 </form>
                 <NavLink to='/'>У меня уже есть аккаунт</NavLink>
 

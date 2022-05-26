@@ -6,9 +6,8 @@ import Accept from './LoginAndReg/Accept';
 import Mess from './components/Mess';
 import Prof from './components/Prof';
 
-// getCurrentUser (){
-//   return JSON.stringify(localStorage.getItem('user'))
-// }
+
+
 
 const App = (props) => (
 
@@ -17,20 +16,15 @@ const App = (props) => (
    
     <Routes>
       <Route path='/' element={<Login />} />
-    </Routes>
-    <div>
-      
-      <Routes>
-        
-        <Route path='ms/*' element={<Mess dialogs={props.state.dialogs} message={props.state.message}/>}/>
-        
+       <Route path='ms/' element={<Mess dialogs={props.state.dialogs} message={props.state.message}/>}/>
         <Route path='/profile' element={<Prof />}/>
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/accept' element={<Accept />}/>
+        {/* <Route path='/profile/update' element={<ProfileUpdate />}/> */}
           
         
       </Routes>
-    </div>
+    
   </div>
 
 
