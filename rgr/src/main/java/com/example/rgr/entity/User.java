@@ -40,7 +40,7 @@ public class User {
                     @JoinColumn(name = "user_id", referencedColumnName = "id",
                             nullable = false, updatable = false)},
             inverseJoinColumns = {
-                    @JoinColumn(name = "chat_id", referencedColumnName = "id",
+                    @JoinColumn(name = "chat_id", referencedColumnName = "chat_id",
                             nullable = false, updatable = false)})
 
     private List<Chat> chats = new ArrayList<>();
