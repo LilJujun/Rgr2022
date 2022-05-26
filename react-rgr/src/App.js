@@ -16,11 +16,11 @@ const App = (props) => (
    
     <Routes>
       <Route path='/' element={<Login />} />
-       <Route path='ms/' element={<Mess dialogs={props.state.dialogs} message={props.state.message}/>}/>
+       <Route path='ms/' element={<Mess/>}/>
         <Route path='/profile' element={<Prof />}/>
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/accept' element={<Accept />}/>
-        {/* <Route path='/profile/update' element={<ProfileUpdate />}/> */}
+        
           
         
       </Routes>

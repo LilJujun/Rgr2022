@@ -1,43 +1,42 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
 import s from './MessageCss.module.css';
 import './MessageCss.module.css';
-import MessageItem from './MessageItem/MessageItem'
-import Messsage from './MessageMess/MessageMess'
-import { render } from '@testing-library/react';
+import axios from 'axios';
 
 
-const changeInputLogin = event => {
-  event.persist()
-  setLogin(prev => {
-      return {
-          ...prev,
-          [event.target.name]: event.target.value,
-      }
-  })
-}
-const user = JSON.parse(localStorage.getItem("user"))
-const Chat = () =>{
+
+
+class Messages extends Component {
+
+  renderMessage(message) {
+    const { member, text } = message;
+    const { currentMember } = this.props;
+    const messageFromMe = member.id === currentMember.id;
+    const className = messageFromMe ?
+      "Messages-message currentMember" : "Messages-message";
+    return (
+      <li className={className}>
+        <span
+          className="avatar"
+          style={{ backgroundColor: member.clientData.color }}
+        />
+        <div className="Message-content">
+          <div className="username">
+            {member.clientData.username}
+          </div>
+          <div className="text">{text}</div>
+        </div>
+      </li>
+    );
+  }
+
  
-  return(
-      
-        console.log('Aoa')
-      
-  )
-}
 
-
-class Message extends React.Component {
-
-state ={
-        id:user.id,
-        chat_id:user.chat_id
-    }
-
-   
 
 
 
   render() {
+    const { messages } = this.props
     return (
       <div className={s.messeng}>
 
@@ -45,20 +44,18 @@ state ={
           <div className={s.dialogsItem}>
             Жопа
             Хуй
-            
+            Член
+            Пизда
           </div>
 
         </div>
-        <div className={s.inputButton}>
-          <textarea type="text" placeholder="Помурчи в дискорде" id="textarea" className={s.inputPage} onChange={changeInputLogin}/>
-          <button type="button" placeholder="Мяукнуть" onClick={() =>
-            console.log("Aoa")
-           
-          }>Нажми</button>
-        </div>
+          <div className={s.inputButton}>
+          <textarea type="text" placeholder="Помурчи в дискорде" id="textarea" className={s.inputPage} />
+          <button type="button" placeholder="Мяукнуть" >Нажми</button>
+          </div>
       </div>
-
     );
   }
+
 }
-export default Message;
+export default Messages;

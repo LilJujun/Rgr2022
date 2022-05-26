@@ -15,6 +15,7 @@ class Profile extends Component {
 
     render() {
         return (
+            
             <div className={s.content}>
                 <div>
                     <label>Профиль</label>
