@@ -3,6 +3,7 @@ package com.example.rgr.web.controller;
 import com.example.rgr.entity.AttachedFile;
 import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.Message;
+import com.example.rgr.entity.User;
 import com.example.rgr.model.ChatDto;
 import com.example.rgr.model.MessageDto;
 import com.example.rgr.model.UserModel;
@@ -94,9 +95,11 @@ public class ChatController {
     }
 
     @PostMapping("/{user_id}/chat")
-    public ResponseEntity<?> createChat ( @RequestBody ChatForm chatForm ){
-
-        return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
+    public ResponseEntity<?> createChat (@Valid @RequestBody ChatForm chatForm, @PathVariable Long user_id ){
+        User user = userService.findById(user_id);
+        chatForm.setIsAdmin(user_id);
+        Chat ch = chatService.save(chatForm);
+        return ResponseEntity.ok(ChatDto.build(chatService.addUser(ch,user)));
     }
 
     @GetMapping("/test")

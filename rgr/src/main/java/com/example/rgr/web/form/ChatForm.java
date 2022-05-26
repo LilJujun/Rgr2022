@@ -25,7 +25,7 @@ public class ChatForm {
     private String type;
 
     @NotBlank
-    private String isAdmin;
+    private Long isAdmin;
 
     @NotBlank /////make im service!!!!!!!1
     private MultipartFile[] chatPhoto;
