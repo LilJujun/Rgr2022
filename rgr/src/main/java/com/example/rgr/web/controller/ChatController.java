@@ -87,8 +87,8 @@ public class ChatController {
 
 
 
-    @PostMapping("/chats")
-    public ResponseEntity<?> findChats (@Valid @RequestParam Long user_id){
+    @GetMapping("/{user_id}/chats")
+    public ResponseEntity<?> findChats (@PathVariable Long user_id){
         List<Chat> chats = chatService.findByUserId(user_id);
         return ResponseEntity.ok(ChatDto.buildList(chats));
     }
