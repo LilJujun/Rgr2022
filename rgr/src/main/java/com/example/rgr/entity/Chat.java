@@ -40,12 +40,7 @@ public class Chat  {
     @OneToMany
     private List<Message> messages;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_chat",
-            joinColumns = @JoinColumn(name = "chat_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+    @ManyToMany(mappedBy = "chats")
     List<User> users;
 
 
