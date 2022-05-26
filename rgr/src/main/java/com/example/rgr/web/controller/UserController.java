@@ -9,7 +9,7 @@ import com.example.rgr.spring.JwtResponse;
 import com.example.rgr.spring.JwtUtils;
 import com.example.rgr.spring.UserDetailsImpl;
 import com.example.rgr.web.form.UserForm;
-import com.example.rgr.web.form.UserFormValidator;
+//import com.example.rgr.web.form.UserFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,16 +35,11 @@ public class UserController {
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserFormValidator validator;
 
     @Autowired
     JwtUtils jwtUtils;
 
-    @InitBinder
-    private void initBinder(WebDataBinder binder){
-        binder.addValidators(validator);
-    }
+
 
     private static UserForm userFormSt;
     private static String confirmCodeSt;
