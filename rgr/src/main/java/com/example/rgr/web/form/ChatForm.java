@@ -9,7 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,14 +31,12 @@ public class ChatForm {
 
     private Long isAdmin;
 
-    private List<User> users;
+    private Set<User> users=new HashSet<>();
 
      /////make im service!!!!!!!1
     private MultipartFile[] chatPhoto;
 
     public void addUser(User user){
-        List<User> userss = new ArrayList<>();
-        userss.add(user);
-        this.users=userss;
+        users.add(user);
     }
 }

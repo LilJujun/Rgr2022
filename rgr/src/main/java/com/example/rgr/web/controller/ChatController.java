@@ -16,6 +16,7 @@ import com.example.rgr.service.MessageService;
 import com.example.rgr.service.UserService;
 import com.example.rgr.web.form.ChatForm;
 import com.example.rgr.web.form.UserForm;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,9 @@ public class ChatController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ChatRepository chatRepository;
 
     @Autowired
     private UserService userService;
@@ -104,10 +108,11 @@ public class ChatController {
 
         User user = userService.findById(user_id);
         chatForm.setIsAdmin(user_id);
-        Chat ch=chatService.save(chatForm);
-        user.getChats().add(ch);
-        userRepository.save(user);
-        return ResponseEntity.ok(ChatDto.build(ch));
+        Chat ch = new Chat();
+        BeanUtils.copyProperties(chatForm, ch);;
+        ch.getUsers().add(user);
+
+        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
     }
 
     @GetMapping("/test")
