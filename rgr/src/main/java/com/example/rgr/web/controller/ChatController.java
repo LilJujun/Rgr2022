@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -99,8 +100,8 @@ public class ChatController {
 
         User user = userService.findById(user_id);
         chatForm.setIsAdmin(user_id);
-        Chat ch = chatService.save(chatForm);
-        return ResponseEntity.ok(ChatDto.build(chatService.addUser(ch,user)));
+        chatForm.addUser(user);
+        return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
     }
 
     @GetMapping("/test")
