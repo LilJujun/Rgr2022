@@ -3,6 +3,7 @@ package com.example.rgr.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,11 +34,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Message> messages;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_chat",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "chat_id")
-    )
-    private List<Chat> chats;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_chat",
+            joinColumns = {
+                    @JoinColumn(name = "user_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "chat_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)})
+
+    private List<Chat> chats = new ArrayList<>();
 }

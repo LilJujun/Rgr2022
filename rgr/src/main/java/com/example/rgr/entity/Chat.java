@@ -3,6 +3,7 @@ package com.example.rgr.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -40,8 +41,8 @@ public class Chat  {
     @OneToMany
     private List<Message> messages;
 
-    @ManyToMany(mappedBy = "chats")
-    List<User> users;
+    @ManyToMany(mappedBy = "chats", fetch = FetchType.LAZY)
+    List<User> users = new ArrayList<>();
 
 
 }
