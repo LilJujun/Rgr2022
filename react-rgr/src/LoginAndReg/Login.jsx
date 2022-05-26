@@ -11,9 +11,9 @@ export default function Login() {
         email: "",
         password: ""
     }
-})
+ })
 
-const changeInputLogin = event => {
+ const changeInputLogin = event => {
     event.persist()
     setLogin(prev => {
         return {
@@ -21,19 +21,21 @@ const changeInputLogin = event => {
             [event.target.name]: event.target.value,
         }
     })
-}
+ }
 
 
-const submitChecking = event => {
+ const submitChecking = event => {
     event.preventDefault();
+    
         axios.post("http://localhost:8080/auth/login", {
+          
             username: login.email,
             password: login.password
         }).then(res => {
             if (res.data.accessToken) {
-                alert(JSON.stringify(res.data))
-                localStorage.setItem("user", JSON.stringify(res.data))
-                window.location.href = "http://localhost:3000/ms/"
+              
+              localStorage.setItem("user", JSON.stringify(res.data))
+                window.location.href = "http://localhost:3000/profile/"
             }
             return res.data;
         }).catch(function (error){
