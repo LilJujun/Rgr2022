@@ -63,7 +63,8 @@ public class UserController {
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
-                userDetails.getUsername()
+                userDetails.getUsername(),
+                userDetails.getEmail()
         ));
     }
 
