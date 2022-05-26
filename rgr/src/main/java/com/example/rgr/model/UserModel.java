@@ -13,9 +13,13 @@ import lombok.Setter;
 public class UserModel {
     private Long id;
     private String nickname;
+    private String email;
+    private String birthDate;
+    private String photo;
+    private String status;
 
     public static UserModel toModel(User user){
 
-        return new UserModel(user.getId(), user.getNickname());
+        return new UserModel(user.getId(), user.getNickname(), user.getEmail(), user.getBirthDate(), user.getPhoto(), user.getStatus());
     }
 }

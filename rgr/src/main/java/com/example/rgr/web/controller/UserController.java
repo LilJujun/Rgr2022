@@ -1,7 +1,9 @@
 package com.example.rgr.web.controller;
 
+import com.example.rgr.entity.User;
 import com.example.rgr.mail.MailClient;
 import com.example.rgr.model.LoginRequest;
+import com.example.rgr.model.UserModel;
 import com.example.rgr.service.UserService;
 import com.example.rgr.spring.JwtResponse;
 import com.example.rgr.spring.JwtUtils;
@@ -44,6 +46,9 @@ public class UserController {
         binder.addValidators(validator);
     }
 
+    private static UserForm userFormSt;
+    private static String confirmCodeSt;
+
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -65,10 +70,28 @@ public class UserController {
 
     @PostMapping("/registration")
     public ResponseEntity<?> userRegistrationSubmit(@Valid @RequestBody UserForm userForm){
-      String confirmCode = UUID.randomUUID().toString();
-      mailClient.sendMail( userForm.getEmail(),"Email confirm", confirmCode);
-      return ResponseEntity.ok(userService.save(userForm).getId());
+        confirmCodeSt = UUID.randomUUID().toString();
+        userFormSt=userForm;
+      mailClient.sendMail( userForm.getEmail(),"Email confirm", confirmCodeSt);
+      return ResponseEntity.ok("true");
     }
+
+
+    @PostMapping("/accept")
+    public ResponseEntity<?> userRegistrationAccept(){
+
+            return ResponseEntity.ok(UserModel.toModel(userService.save(userFormSt)));
+
+
+    }
+
+    @GetMapping("/accept")
+    public ResponseEntity<?> userRegistrationGetCode(){
+
+        return ResponseEntity.ok(confirmCodeSt);
+
+    }
+
 
 
 
