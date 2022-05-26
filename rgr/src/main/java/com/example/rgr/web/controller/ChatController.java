@@ -97,9 +97,5 @@ public class ChatController {
         return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<?> findChatMessages (){
-        return ResponseEntity.ok(chatService.findAll());
-    }
 
 }
