@@ -48,11 +48,11 @@ public class UserService {
 
     public User findById(Long ID){return userRepository.findById(ID).get();}
 
-    public void update(@Valid UserForm form){ //changing password
+    public User update(@Valid UserForm form){ //changing password
         User u = new User();
         BeanUtils.copyProperties(form, u,"password");
         u.setPassword(passwordEncoder.encode(form.getPassword()));
-        userRepository.save(u);
+        return userRepository.save(u);
     }
 
     public User save(@Valid UserForm form) { //changing chat params
