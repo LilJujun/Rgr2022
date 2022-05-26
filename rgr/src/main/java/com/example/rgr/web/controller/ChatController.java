@@ -86,6 +86,7 @@ public class ChatController {
     }
 
 
+
     @PostMapping("/chats")
     public ResponseEntity<?> findChats (@RequestParam Long user_id){
         List<Chat> chats = chatService.findByUserId(user_id);
@@ -95,6 +96,11 @@ public class ChatController {
     @PostMapping("/chat")
     public ResponseEntity<?> createChat ( @RequestBody ChatForm chatForm ){
         return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<?> test(){
+        return ResponseEntity.ok(chatService.findAll());
     }
 
 
