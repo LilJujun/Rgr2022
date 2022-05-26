@@ -18,15 +18,14 @@ public class ChatForm {
     @NotBlank
     private String name;
 
-    @NotBlank
     private  String description;
 
     @NotBlank
     private String type;
 
-    @NotBlank
+
     private Long isAdmin;
 
-    @NotBlank /////make im service!!!!!!!1
+     /////make im service!!!!!!!1
     private MultipartFile[] chatPhoto;
 }
