@@ -61,6 +61,7 @@ public class UserService {
         }
         User u = new User();
         BeanUtils.copyProperties(form, u);
+        u.setPassword(passwordEncoder.encode(form.getPassword()));
         return userRepository.save(u);
     }
 
