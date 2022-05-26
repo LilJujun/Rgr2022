@@ -1,4 +1,7 @@
 .messeng {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     grid-area: c;
     background-color: yellowgreen;
 }
@@ -6,7 +9,19 @@
     size: 100px;
 }
 .dialogs{
-    display: grid;
+     display:flex;
 
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 2fr 10fr; 
+    size: 12px;
+}
+.inputPage {
+    width: 89%;
+    height:50px;
+    resize: none;
+    display: flex;
+    
+}
+.inputButton{
+    display: flex;
+    flex-direction: row;
 }

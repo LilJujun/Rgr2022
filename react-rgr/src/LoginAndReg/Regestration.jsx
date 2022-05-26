@@ -29,23 +29,22 @@ export default function Registration() {
     const submitChecking = event => {
         event.preventDefault();
         if (!validator.isEmail(registration.email)) {
-            alert("You did not enter email")
+            alert("Вы не ввели адрес электронной почты")
         } else if (registration.password !== registration.password2) {
-            alert("Repeated password incorrectly")
+            alert("Неверно введен повторный пароль")
         } else if (!validator.isStrongPassword(registration.password, { minSymbols: 0 })) {
-            alert("Password must consist of one lowercase, uppercase letter and number, at least 8 characters")
+            alert("Пароль должен состоять из одной строчной, прописной буквы,цифры, не менее 8 символов")
         } else {
-            axios.post("http://localhost:8080/user/registration", {
+            axios.post("http://localhost:8080/auth/registration/", {
                 nickname: registration.nickname,
-                password: registration.password,
                 email: registration.email,
+                password: registration.password,
                 birthDate: registration.birthday
             }).then((res) => {
-                alert("asd");
-                alert(res.data);
+                
+                    window.location.href = "http://localhost:3000/accept/"
             }).catch(function (error){
                 alert(error);});
-
         }
     }
     return (
@@ -84,13 +83,13 @@ export default function Registration() {
                     <p>Date birthday: <input
                         type="date" id="birthday" name="birthday"
 
-                        min="1900-01-01" max="2018-12-31"
+                        min="1900-01-01" max="2022-01-01"
                         value={registration.birthday}
                         onChange={changeInputRegister}
                     /></p>
-                    <input type="submit" />
+                    <NavLink to="/accept"></NavLink><input type="submit" />
                 </form>
-                <NavLink to='/login'>У меня уже есть аккаунт</NavLink>
+                <NavLink to='/'>У меня уже есть аккаунт</NavLink>
 
             </div>
         </div>

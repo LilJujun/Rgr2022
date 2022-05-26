@@ -2,8 +2,13 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Login from './LoginAndReg/Login';
 import Registration from './LoginAndReg/Regestration';
+import Accept from './LoginAndReg/Accept';
 import Mess from './components/Mess';
 import Prof from './components/Prof';
+
+// getCurrentUser (){
+//   return JSON.stringify(localStorage.getItem('user'))
+// }
 
 const App = (props) => (
 
@@ -11,7 +16,7 @@ const App = (props) => (
   <div >
    
     <Routes>
-      <Route path='/login' element={<Login />} />
+      <Route path='/' element={<Login />} />
     </Routes>
     <div>
       
@@ -20,7 +25,8 @@ const App = (props) => (
         <Route path='ms/*' element={<Mess dialogs={props.state.dialogs} message={props.state.message}/>}/>
         
         <Route path='/profile' element={<Prof />}/>
-        <Route path='/user/registration' element={<Registration/>}/>
+        <Route path='/registration' element={<Registration/>}/>
+        <Route path='/accept' element={<Accept />}/>
           
         
       </Routes>

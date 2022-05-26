@@ -2,7 +2,7 @@ import axios from "axios";
 import React,{useState}  from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Login.module.css";
-import validator from "validator";
+
 
 export default function Login() {
 
@@ -26,22 +26,18 @@ const changeInputLogin = event => {
 
 const submitChecking = event => {
     event.preventDefault();
-    if (!validator.isEmail(login.email)) {
-        alert("Неправильная почта")
-    }  else {
-        axios.post("http://localhost:8080/login/", {
+        axios.post("http://localhost:8080/auth/login", {
             email: login.email,
             password: login.password
         }).then(res => {
-            if (res.data === true) {
-                window.location.href = "http://localhost:8080/login/"
-            } else {
-                alert("There is already a user with this email")
+            if (res.data.accessToken) {
+                // window.location.href = "http://localhost:8080/login/"
+                localStorage.setItem("user", JSON.stringify(res.data))
             }
-        }).catch(function (error){
-            alert(error);});
+            return res.data;
+        })
     }
-}
+
   
     return (
       <div className={s.back} >
@@ -63,10 +59,11 @@ const submitChecking = event => {
                     value={login.password}
                     onChange={changeInputLogin}
                 /></p>
-                <input type="submit" />
+
+                <NavLink to='/ms' ><input type="submit" value="Войти"/></NavLink>
             </form>
           <NavLink to='/ms' type="submit"> Войти</NavLink>
-          <NavLink to='/user/registration'>Зарегистрироваться</NavLink>
+          <NavLink to='/registration'>Зарегистрироваться</NavLink>
 
         </div>
 

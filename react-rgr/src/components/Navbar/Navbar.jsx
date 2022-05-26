@@ -13,7 +13,7 @@ const Navbar = () => {
         <NavLink to='/ms' >Message</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to='/login' >Exit</NavLink>
+        <NavLink to='/' >Exit</NavLink>
       </div>
 
     </nav>

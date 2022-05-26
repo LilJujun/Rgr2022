@@ -8,14 +8,14 @@ import './Prof.module.css';
 
 const Prof = () => {
     return (
-        
+        <div className={s.back}>
             <div className={s.messenger}>
                 <Header />
                 <Navbar />
                 <Profile />
             </div>
+        </div>
 
-        
     )
 
 
