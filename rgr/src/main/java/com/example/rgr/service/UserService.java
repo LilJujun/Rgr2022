@@ -49,7 +49,7 @@ public class UserService {
     public User findById(Long ID){return userRepository.findById(ID).get();}
 
     public User update(@Valid UserForm form){ //changing password
-        User u = new User();
+        User u = userRepository.findByEmail(form.getEmail()).orElseThrow();
         BeanUtils.copyProperties(form, u,"password");
         u.setPassword(passwordEncoder.encode(form.getPassword()));
         return userRepository.save(u);

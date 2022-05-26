@@ -5,6 +5,7 @@ import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.Message;
 import com.example.rgr.model.ChatDto;
 import com.example.rgr.model.MessageDto;
+import com.example.rgr.model.UserModel;
 import com.example.rgr.repo.AttachedFileRepository;
 import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.service.AttachedFileService;
@@ -58,6 +59,10 @@ public class ChatController {
     }
 
 
+    @PostMapping("/profile/update")
+    public ResponseEntity<?> profileUpdate(@Valid @RequestBody UserForm userForm){
+        return ResponseEntity.ok(UserModel.toModel(userService.update(userForm)));
+    }
 
 
     @GetMapping("/chat/{chat_id}")
@@ -92,8 +97,6 @@ public class ChatController {
 
         return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
     }
-
-
 
 
 

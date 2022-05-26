@@ -31,6 +31,10 @@ public class UserForm { //for reg/auth
     @NotBlank
     private String birthDate;
 
+    private String status;
+
+    private String photo;
+
 
 
 }

@@ -88,10 +88,6 @@ public class UserController {
 
     }
 
-    @PostMapping("/profile/update")
-    public ResponseEntity<?> profileUpdate(@Valid @RequestBody UserForm userForm){
-        return ResponseEntity.ok(UserModel.toModel(userService.update(userForm)));
-    }
 
 
 
