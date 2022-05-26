@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ChatService {
@@ -33,7 +30,7 @@ public class ChatService {
         List<Chat> chats = chatRepository.findAll();
         List<Chat> userchats = new ArrayList<Chat>();
         for(Chat chat : chats){
-            List<User> users=chat.getUsers();
+            Set<User> users=chat.getUsers();
             boolean flag=false;
             for(User user: users){
                 if (Objects.equals(user.getId(), id)) {

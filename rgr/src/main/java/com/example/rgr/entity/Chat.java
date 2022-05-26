@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -42,7 +44,7 @@ public class Chat  {
     private List<Message> messages;
 
     @ManyToMany(mappedBy = "chats", fetch = FetchType.LAZY)
-    List<User> users = new ArrayList<>();
+    Set<User> users = new HashSet<>();
 
 
 }

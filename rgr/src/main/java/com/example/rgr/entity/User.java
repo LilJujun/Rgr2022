@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @ToString
@@ -43,5 +45,5 @@ public class User {
                     @JoinColumn(name = "chat_id", referencedColumnName = "chat_id",
                             nullable = false, updatable = false)})
 
-    private List<Chat> chats = new ArrayList<>();
+    private Set<Chat> chats = new HashSet<>();
 }

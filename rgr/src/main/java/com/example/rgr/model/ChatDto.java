@@ -5,6 +5,7 @@ import com.example.rgr.entity.User;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -17,7 +18,7 @@ public class ChatDto { //to display chats on main page
     private String type;
     private String name;
     private Long isAdmin;
-    private List<User> users;
+    private Set<User> users;
     private String description;
     private String photoPath;
 
