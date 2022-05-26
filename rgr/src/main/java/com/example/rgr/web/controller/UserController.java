@@ -62,7 +62,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/user/registration")
+    @PostMapping("/registration")
     public ResponseEntity<?> userRegistrationSubmit(@Valid @RequestBody UserForm userForm){
 //        UserForm userForm= new UserForm(name,password,email,birthDate);
         return ResponseEntity.ok(userService.save(userForm).getId());

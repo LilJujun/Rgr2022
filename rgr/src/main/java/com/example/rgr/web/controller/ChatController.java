@@ -1,10 +1,13 @@
 package com.example.rgr.web.controller;
 
+import com.example.rgr.entity.AttachedFile;
 import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.Message;
 import com.example.rgr.model.ChatDto;
 import com.example.rgr.model.MessageDto;
+import com.example.rgr.repo.AttachedFileRepository;
 import com.example.rgr.repo.ChatRepository;
+import com.example.rgr.service.AttachedFileService;
 import com.example.rgr.service.ChatService;
 import com.example.rgr.service.MessageService;
 import com.example.rgr.service.UserService;
@@ -27,20 +30,22 @@ public class ChatController {
     private MessageService messageService;
 
     @Autowired
-    UserService userService;
+    private AttachedFileRepository attachedFileRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ChatService chatService;
 
     @PostMapping("/chat/{chat_id}") //sending message
-    public ResponseEntity<?> processMessage(@RequestBody Message message, @PathVariable Long chat_id ){
-        MessageDto messageDto;
+    public ResponseEntity<?> sendingMessage(@Valid @RequestBody MessageDto messageDto, @PathVariable Long chat_id ){
+
         if( chatService.findById(chat_id).isPresent()){
-            message.setChat(chatService.findById(chat_id).orElse(new Chat()));
-            Message saved = messageService.save(message);
-            messageDto = MessageDto.build(saved);
+            MessageDto saved = MessageDto.build(messageService.save(messageDto, chat_id));
+
             //        return ResponseEntity.ok().build(messageDto);
-            return ResponseEntity.ok(messageDto);
+            return ResponseEntity.ok(saved);
         }else{
             System.err.println("Chat not found with this id");
             return ResponseEntity.notFound().build();
@@ -63,9 +68,15 @@ public class ChatController {
     public ResponseEntity<?> findChat(@PathVariable Long chat_id){
         return ResponseEntity.ok(chatService.findById(chat_id).orElse(new Chat()));
     }
+    @DeleteMapping("/chat/{chat_id}/info")
+    ResponseEntity<?> deleteChat (@PathVariable Long chat_id){
+        chatService.deleteById(chat_id);
+        return ResponseEntity.ok("chat deleted");
+
+    }
+
     @PutMapping("/chat/{chat_id}/info")
     public ResponseEntity<?> updateChat (@RequestBody ChatForm chatForm){
-
         return ResponseEntity.ok(ChatDto.build(chatService.update(chatForm)));
     }
 
