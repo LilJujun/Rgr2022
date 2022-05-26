@@ -46,6 +46,9 @@ public class ChatService {
         }
         return userchats;
     }
+    public void deleteById(Long id){
+        chatRepository.deleteById(id);
+    }
 
     public Chat update(@Valid ChatForm form) { //changing chat params
         Chat ch = new Chat();
