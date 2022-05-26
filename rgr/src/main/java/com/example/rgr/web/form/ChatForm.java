@@ -16,10 +16,13 @@ public class ChatForm {
     private String id;
 
     @NotBlank
-    private String chatName;
+    private String name;
 
     @NotBlank
     private  String description;
+
+    @NotBlank
+    private String type;
 
     @NotBlank
     private String isAdmin;

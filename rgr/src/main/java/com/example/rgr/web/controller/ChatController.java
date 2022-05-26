@@ -93,8 +93,9 @@ public class ChatController {
         return ResponseEntity.ok(ChatDto.buildList(chats));
     }
 
-    @PostMapping("/chat")
+    @PostMapping("/{user_id}/chat")
     public ResponseEntity<?> createChat ( @RequestBody ChatForm chatForm ){
+
         return ResponseEntity.ok(ChatDto.build(chatService.save(chatForm)));
     }
 
