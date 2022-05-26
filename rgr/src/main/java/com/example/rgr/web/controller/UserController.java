@@ -1,7 +1,7 @@
 package com.example.rgr.web.controller;
 
+import com.example.rgr.mail.MailClient;
 import com.example.rgr.model.LoginRequest;
-import com.example.rgr.repo.UserRepository;
 import com.example.rgr.service.UserService;
 import com.example.rgr.spring.JwtResponse;
 import com.example.rgr.spring.JwtUtils;
@@ -14,11 +14,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -28,6 +26,9 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    MailClient mailClient;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -64,9 +65,13 @@ public class UserController {
 
     @PostMapping("/registration")
     public ResponseEntity<?> userRegistrationSubmit(@Valid @RequestBody UserForm userForm){
-//        UserForm userForm= new UserForm(name,password,email,birthDate);
-        return ResponseEntity.ok(userService.save(userForm).getId());
+      String confirmCode = UUID.randomUUID().toString();
+      mailClient.sendMail( userForm.getEmail(),"Email confirm", confirmCode);
+      return ResponseEntity.ok(userService.save(userForm).getId());
     }
+
+
+
 
 
 

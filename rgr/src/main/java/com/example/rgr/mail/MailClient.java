@@ -27,13 +27,13 @@ public class MailClient {
         return templateEngine.process(template, context);
     }
 
-    public void sendMail(String from, String to, String subject, String msg) {
+    public void sendMail(String to, String subject, String msg) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
             helper.setSubject(subject);
-            helper.setFrom(from);
+            helper.setFrom(MAIL_FROM_DEFAULT);
             helper.setTo(to);
             helper.setText(msg, true);
             mailSender.send(message);
