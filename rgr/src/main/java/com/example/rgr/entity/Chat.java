@@ -29,7 +29,7 @@ public class Chat  {
     private List<AttachedFile> attachedFiles;
 
     @Column(name = "isAdmin", nullable = false)
-    private String isAdmin;
+    private Long isAdmin;
 
     @Column(name = "description")
     private String description;

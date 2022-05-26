@@ -16,7 +16,7 @@ public class ChatDto { //to display chats on main page
     private Long id;
     private String type;
     private String name;
-    private String isAdmin;
+    private Long isAdmin;
     private List<User> users;
     private String description;
     private String photoPath;
