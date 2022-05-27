@@ -3,7 +3,6 @@ import Header from './Header/Header';
 import Navbar from './Navbar/Navbar';
 import s from "./Prof.module.css"
 import Profile from './Profile/Profile';
-import './Prof.module.css';
 
 
 const Prof = () => {

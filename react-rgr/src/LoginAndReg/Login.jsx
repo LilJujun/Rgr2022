@@ -35,7 +35,7 @@ export default function Login() {
             if (res.data.accessToken) {
               
               localStorage.setItem("user", JSON.stringify(res.data))
-                window.location.href = "http://localhost:3000/profile/"
+                window.location.href = "http://localhost:3000/emptytitle"
             }
             return res.data;
         }).catch(function (error){

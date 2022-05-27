@@ -23,7 +23,7 @@ import { NavLink } from "react-router-dom";
 
         function ChatsList(props) {
             const chats = props.chat;
-            const listChats = chats.map((ch) =>
+            const listChats = chats.sort((a, b) => a.id > b.id ? 1 : -1).map((ch) =>
 
                 <li key={ch.id}><NavLink to='/ms' state={ch}> {ch.name} </NavLink></li>
             );
