@@ -7,15 +7,18 @@ import authHeader from '../../auth';
 
 
 const user = JSON.parse(localStorage.getItem("user"))
-const Messages = () => {
+
+const Messages = (props) => {
 
   let chat = useLocation();
-
+  
   const [messeges, setMesseges] = useState([]);
   const [text, setText] = useState();
+  
 
   useEffect(() => {
-
+    
+    console.log(chat.state.id)
     axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
 
 
@@ -25,9 +28,14 @@ const Messages = () => {
     }).catch(function (error) {
       alert(error)
     })
+  
+  return function cleanup(){
+    
+  }
   }, [setMesseges]);
 
   function MessageList(props) {
+    
     const messages = props.messeges;
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
 
@@ -42,6 +50,7 @@ const Messages = () => {
   }
 
   function outputMessage() {
+   
 
     console.log(user.id)
     console.log(text)
@@ -69,6 +78,7 @@ const Messages = () => {
 
 return (
   <div className={s.messeng}>
+    
 
     <div className={s.nameDialog}>
       Сообщения c {chat.state.name}
@@ -76,6 +86,7 @@ return (
     </div>
     <div className={s.messages}>
       Сообщения
+      <MessageList   messeges={messeges} />
 
 
     </div>

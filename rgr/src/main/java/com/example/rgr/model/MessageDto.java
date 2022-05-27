@@ -17,6 +17,13 @@ import java.util.List;
 public class MessageDto { //to display messages in chat
 
 
+    public MessageDto(Long id, String text, Long chat_id, Long user_id, Date date) {
+        this.id = id;
+        this.text = text;
+        this.chat_id = chat_id;
+        this.user_id = user_id;
+        this.date = date;
+    }
 
     private Long id;
     private String text;
@@ -27,7 +34,10 @@ public class MessageDto { //to display messages in chat
 
 
     public static MessageDto build(Message message){
-        return new MessageDto(message.getId(), message.getContent(),message.getChat().getId(),message.getUser().getId(), message.getAttachedFile().getPath(), message.getDate());
+        if(message.getAttachedFile()!=null){
+            return new MessageDto(message.getId(), message.getContent(),message.getChat().getId(),message.getUser().getId(), message.getAttachedFile().getPath(), message.getDate());
+        }
+        return new MessageDto(message.getId(), message.getContent(),message.getChat().getId(),message.getUser().getId(), message.getDate());
     }
 
     public static Message toMessage(MessageDto messageDto){

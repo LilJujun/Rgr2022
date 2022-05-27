@@ -5,15 +5,23 @@ import Messages from './Messege/Message';
 import s from "./Mess.module.css"
 
 class Mess extends React.Component {
-   
-render(){
-    return (
+    constructor(props){
+        super(props)
+        
+        console.log(this.props.location);
+        this.state={chat:this.props.location}  
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({chat:this.props.location})
+    }
+    render(){
+        return (
         <div className={s.back}>
             <div className={s.messenger}>
 
                 <Header />
                 <Navbar />
-                <Messages />
+                <Messages chat={this.state.chat}/>
             </div>
         </div>
     )

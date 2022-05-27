@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import authHeader from "../../auth";
 import { NavLink } from "react-router-dom";
+import { render } from "@testing-library/react";
 
     const ChatList = () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -25,8 +26,9 @@ import { NavLink } from "react-router-dom";
             const chats = props.chat;
             const listChats = chats.sort((a, b) => a.id > b.id ? 1 : -1).map((ch) =>
 
-                <li key={ch.id}><NavLink to='/ms' state={ch}> {ch.name} </NavLink></li>
+                <li key={ch.id}><NavLink to={`/ms/${ch.id}`} state={ch}> {ch.name} </NavLink></li>
             );
+            
             return (
                 <ul>{listChats}</ul>
             )

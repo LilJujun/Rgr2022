@@ -21,7 +21,7 @@ import java.util.List;
         property = "id")
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Date date;
@@ -40,6 +40,8 @@ public class Message {
     @OneToOne
     @JoinColumn(name = "attachedFile_id")
     private AttachedFile attachedFile;
+
+
 
 
 }
