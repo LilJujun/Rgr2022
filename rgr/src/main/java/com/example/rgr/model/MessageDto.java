@@ -22,7 +22,7 @@ public class MessageDto { //to display messages in chat
     private String text;
     private Long chat_id;
     private Long user_id;
-    private String path;
+    private String path="";
     private Date date;
 
 
