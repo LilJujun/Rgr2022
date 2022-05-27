@@ -111,9 +111,9 @@ public class ChatController {
         chatForm.setIsAdmin(user_id);
         Chat ch=chatService.save(chatForm);
           user.getChats().add(ch);
-        User us=userRepository.save(user);
-          ch.getUsers().add(us);
-          chatRepository.save(ch);
+        userRepository.save(user);
+
+
         return ResponseEntity.ok("ok");
     }
 
