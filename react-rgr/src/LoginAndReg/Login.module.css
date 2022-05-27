@@ -1,15 +1,18 @@
 .loginPage{
 
-    padding-top: 10%;
+    padding-top: 5%;
     width: 500px;
     margin: auto;
     margin-top: 15%;
+    font-size: x-large;
     text-align: center;
-    background-color: white;
-    border-radius: 10px;
-    color: black;
+    background-color: rgb(4, 51, 82);
+    opacity: 0,75;
+    border-radius: 40px;
+    color: rgb(213, 255, 253);
     
 }
+
 
 .back{
     width: 100%;
@@ -20,4 +23,34 @@
     left: 0;
     background: rgb(64,111,113);
     background: linear-gradient(0deg, rgba(64,111,113,1) 0%, rgba(158,232,241,1) 94%);
+}
+input{
+    border: 0;
+    border-bottom: solid 1px;
+    height: 20px;
+    /* box-shadow:0 10px 15px 4px rgba(64, 111, 113, 0.462); */
+    background-color: rgb(4, 51, 82);
+    opacity: 0,8;
+    color:rgb(213, 255, 253);
+}
+textarea:focus, input:focus{
+    background-color: rgb(3, 45, 70);
+    outline: none;
+}
+
+.btn{
+    font-size: large;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(3, 45, 70);
+    box-shadow:0 10px 15px 4px rgba(64, 111, 113, 0.462);
+}
+
+.link a{
+    font-size: small;
+    color: rgb(213, 255, 253);
+}
+.logo {
+    margin-top: -30px;
+    font: italic small-caps bold 33px cursive;
 }

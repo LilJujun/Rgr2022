@@ -4,6 +4,7 @@ import s from "./Regestration.module.css";
 import axios from "axios";
 import validator from "validator";
 
+
 export default function Registration() {
     const [registration, setRegistration] = useState(() => {
         return {
@@ -49,6 +50,7 @@ export default function Registration() {
     return (
         <div className={s.back} >
             <div className={s.regPage}>
+            <p className={s.logo}>Kotogramm</p>
                 <form onSubmit={submitChecking}>
                     <p>Name: <input
                         type="nickname"
@@ -86,10 +88,11 @@ export default function Registration() {
                         value={registration.birthday}
                         onChange={changeInputRegister}
                     /></p>
-                    <input type="submit"  value="Зарегистрироваться"/>
+                    <input className={s.btn} type="submit"  value="Зарегистрироваться"/>
                 </form>
+                <div className={s.link}>
                 <NavLink to='/'>У меня уже есть аккаунт</NavLink>
-
+                </div>
             </div>
         </div>
     )
