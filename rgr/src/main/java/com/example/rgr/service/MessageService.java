@@ -44,12 +44,14 @@ public class MessageService {
         message.setChat(chat);
         message.setDate(date);
         Message saved=messageRepository.save(message);
-
+        if(!Objects.equals(messageDto.getPath(), "")){
             AttachedFile attachedFile = new AttachedFile();
             attachedFile.setPath(messageDto.getPath());
             attachedFile.setChat(chat);
             attachedFile.setMessage(saved);
             saved.setAttachedFile(attachedFileRepository.save(attachedFile));
+        }
+
 
 
 
