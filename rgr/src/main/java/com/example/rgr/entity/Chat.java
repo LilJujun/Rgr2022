@@ -1,9 +1,14 @@
 package com.example.rgr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -16,7 +21,7 @@ public class Chat  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "chat_id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "type", nullable = false)
@@ -29,24 +34,29 @@ public class Chat  {
     private List<AttachedFile> attachedFiles;
 
     @Column(name = "isAdmin", nullable = false)
-    private String isAdmin;
+    private Long isAdmin;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "chatPhoto", nullable = false)
+    @Column(name = "chatPhoto")
     private String photoPath;
 
     @OneToMany
     private List<Message> messages;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_chat",
-            joinColumns = @JoinColumn(name = "chat_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    List<User> users;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_chat",
+            joinColumns = {
+            @JoinColumn(name = "chat_id", referencedColumnName = "id",
+                    nullable = false, updatable = false)}
+                    ,
+            inverseJoinColumns = {
+            @JoinColumn(name = "user_id", referencedColumnName = "id",
+                    nullable = false, updatable = false)}
+                    )
+    Set<User> users = new HashSet<>();
 
 
 }

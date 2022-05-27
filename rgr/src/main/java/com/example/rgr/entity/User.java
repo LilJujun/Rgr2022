@@ -1,9 +1,14 @@
 package com.example.rgr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @ToString
@@ -12,7 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="user")
-public class User {
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,11 +39,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Message> messages;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_chat",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "chat_id")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_chat",
+            joinColumns = {
+            @JoinColumn(name = "user_id", referencedColumnName = "id",
+                    nullable = false, updatable = false)}
+            ,
+            inverseJoinColumns = {
+            @JoinColumn(name = "chat_id", referencedColumnName = "id",
+                    nullable = false, updatable = false)}
+
     )
-    private List<Chat> chats;
+    private Set<Chat> chats = new HashSet<>();
 }

@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ChatService {
@@ -26,14 +23,14 @@ public class ChatService {
 
     public Optional<Chat> findById(Long chatID){return chatRepository.findById(chatID);}
 
-    public List<Chat> findAll(){ return  chatRepository.findAll();}
+    public Set<Chat> findAll(){ return  new HashSet<>(chatRepository.findAll());}
 
-    public List<Chat> findByUserId(Long id){
+    public Set<Chat> findByUserId(Long id){
 
-        List<Chat> chats = chatRepository.findAll();
-        List<Chat> userchats = new ArrayList<Chat>();
+        Set<Chat> chats = new HashSet<>(chatRepository.findAll());
+        Set<Chat> userchats = new HashSet<>();
         for(Chat chat : chats){
-            List<User> users=chat.getUsers();
+            Set<User> users=chat.getUsers();
             boolean flag=false;
             for(User user: users){
                 if (Objects.equals(user.getId(), id)) {
@@ -51,21 +48,16 @@ public class ChatService {
     }
 
     public Chat update(@Valid ChatForm form) { //changing chat params
-        Chat ch = new Chat();
-        BeanUtils.copyProperties(form, ch);
+        Chat ch = ChatForm.build(form);
+
         return chatRepository.save(ch);
     }
     public Chat save(@Valid ChatForm form) { //changing chat params
-        Chat ch = new Chat();
-        BeanUtils.copyProperties(form, ch);
+        Chat ch = ChatForm.build(form);
+
         return chatRepository.save(ch);
     }
 
-    public Chat addUser(Chat chat, User user){
-        List <User> users = chat.getUsers();
-        users.add(user);
-        chat.setUsers(users);
-        return chatRepository.save(chat);
-    }
+
 
 }

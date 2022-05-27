@@ -4,7 +4,9 @@ import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.User;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -16,8 +18,8 @@ public class ChatDto { //to display chats on main page
     private Long id;
     private String type;
     private String name;
-    private String isAdmin;
-    private List<User> users;
+    private Long isAdmin;
+    private Set<User> users;
     private String description;
     private String photoPath;
 
@@ -26,8 +28,8 @@ public class ChatDto { //to display chats on main page
         return new ChatDto(chat.getId(), chat.getType(), chat.getName(), chat.getIsAdmin(), chat.getUsers(), chat.getDescription(), chat.getPhotoPath());
     }
 
-    public static List<ChatDto> buildList(List<Chat> chats){
+    public static Set<ChatDto> buildList(Set<Chat> chats){
 
-        return chats.stream().map(ChatDto::build).toList();
+        return new HashSet<>(chats.stream().map(ChatDto::build).toList());
     }
 }

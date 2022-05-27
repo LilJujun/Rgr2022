@@ -9,19 +9,23 @@ import com.example.rgr.model.MessageDto;
 import com.example.rgr.model.UserModel;
 import com.example.rgr.repo.AttachedFileRepository;
 import com.example.rgr.repo.ChatRepository;
+import com.example.rgr.repo.UserRepository;
 import com.example.rgr.service.AttachedFileService;
 import com.example.rgr.service.ChatService;
 import com.example.rgr.service.MessageService;
 import com.example.rgr.service.UserService;
 import com.example.rgr.web.form.ChatForm;
 import com.example.rgr.web.form.UserForm;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
@@ -33,6 +37,9 @@ public class ChatController {
 
     @Autowired
     private AttachedFileRepository attachedFileRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
@@ -90,18 +97,28 @@ public class ChatController {
 
     @GetMapping("/{user_id}/chats")
     public ResponseEntity<?> findChats (@PathVariable Long user_id){
-        List<Chat> chats = chatService.findByUserId(user_id);
+        Set<Chat> chats = chatService.findByUserId(user_id);
         return ResponseEntity.ok(ChatDto.buildList(chats));
     }
 
     @PostMapping("/{user_id}/chat")
     public ResponseEntity<?> createChat (@Valid @RequestBody ChatForm chatForm, @PathVariable Long user_id ){
-        System.out.println(user_id+"   "+ chatForm );
+
         User user = userService.findById(user_id);
         chatForm.setIsAdmin(user_id);
-        Chat ch = chatService.save(chatForm);
-        return ResponseEntity.ok(ChatDto.build(chatService.addUser(ch,user)));
+        Chat ch=chatService.save(chatForm);
+          user.getChats().add(ch);
+          userRepository.save(user);
+        return ResponseEntity.ok("ok");
     }
+
+//    User user = userService.findById(user_id);
+//        chatForm.setIsAdmin(user_id);
+//    Chat ch = new Chat();
+//        BeanUtils.copyProperties(chatForm, ch);;
+//        ch.getUsers().add(user);
+//
+//        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
 
     @GetMapping("/test")
     public ResponseEntity<?> test(){
