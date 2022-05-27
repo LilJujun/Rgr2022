@@ -10,21 +10,17 @@ import MadeChat from './components/Navbar/MadeChat';
 
 
 
-const App = (props) => (
-
+const App = () => (
 
   <div >
    
     <Routes>
       <Route path='/' element={<Login />} />
-       <Route path='ms/' element={<Mess/>}/>
+       <Route path='/ms' element={<Mess/>}/>
         <Route path='/profile' element={<Prof />}/>
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/accept' element={<Accept />}/>
         <Route path='/madechat' element={<MadeChat/>} />
-        
-          
-        
       </Routes>
     
   </div>

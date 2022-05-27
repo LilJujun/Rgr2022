@@ -35,7 +35,7 @@ const submitChecking = event =>{
                 description: chat.description,
                 type: chat.type
             },{headers:authHeader()}).then((res) => {
-                    console.log(res.data)
+                    
                     window.location.href = "http://localhost:3000/ms"
             }).catch(function (error){
                 alert(error);});
@@ -51,7 +51,7 @@ const submitChecking = event =>{
                     <p> Описание чата<input type='text' name="description" id="description" value={chat.description} className={s.inputPage}  onChange={changeInputAddChat}/></p>
 
                     <p>
-                        <select name="type"  className={s.inputPage} onChange={changeInputAddChat}>
+                        <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
                             <option>Open</option>
                             <option>Closed</option>
                         </select>

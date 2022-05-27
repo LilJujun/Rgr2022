@@ -12,13 +12,11 @@ class Navbar extends React.Component {
         <div className={s.item}>
           <NavLink to='/profile' >Profile</NavLink>
         </div>
-        <div className={s.item}>
-          <NavLink to='/ms' >Message</NavLink>
-        </div>
+        
         <div className={s.item}>
           <NavLink to="/madechat">Создать чат</NavLink>
         </div>
-        <div className={s.item}>
+        <div >
           <ChatList/>
         </div>
         <div className={s.item}>
