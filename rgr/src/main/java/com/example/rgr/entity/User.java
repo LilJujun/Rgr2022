@@ -1,5 +1,6 @@
 package com.example.rgr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="user")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
