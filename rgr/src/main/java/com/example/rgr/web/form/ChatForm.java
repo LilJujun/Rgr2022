@@ -41,7 +41,7 @@ public class ChatForm {
         Chat chat = new Chat();
         chat.setIsAdmin(chatForm.getIsAdmin());
         chat.setName(chatForm.getName());
-        chat.setDescription(chat.getDescription());
+        chat.setDescription(chatForm.getDescription());
         chat.setType(chatForm.getType());
         return chat;
     }
