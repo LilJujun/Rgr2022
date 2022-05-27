@@ -17,8 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
-public class Chat  implements Serializable {
+public class Chat  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
