@@ -41,7 +41,7 @@ const submitChecking = event =>{
     return (
         <div className={s.messeng}>
             <div >
-                Создание чата
+                <p className={s.h}>Создание чата</p>
                 <form className={s.dialogsItem} onSubmit={submitChecking}>
                     <p> Имя чата<input type='text' name="name" id="name" value={chat.name} className={s.inputPage} onChange={changeInputAddChat}/> </p>
 

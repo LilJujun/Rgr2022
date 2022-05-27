@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './HeaderCss.module.css';
-import log from './kotik.png'
+import log from './profileIcon.png'
 
 const Header = () =>{
 let logo = (
@@ -9,8 +9,8 @@ let logo = (
 
     return(
         <header className={s.header}>
-        {logo}
-        {/* Лого нашей ргр */}
+          <div className={s.img} >{logo}</div>
+          <div><p className={s.logo}>Kotogramm</p></div>
       </header >
     );
 }

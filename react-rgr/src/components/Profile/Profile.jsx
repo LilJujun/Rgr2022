@@ -17,7 +17,7 @@ class Profile extends Component {
         return (
             
             <div className={s.content}>
-                <div>
+                <div className={s.profile}>
                     <label>Профиль</label>
 
                 </div>

@@ -1,13 +1,30 @@
 .nav {
   grid-area: n;
-  background-color: blueviolet;
-  padding: 20px;
+  background-color: rgb(3, 45, 70);
+  /* padding: 20px; */
+}
+.item{
+  display: block;
+  margin:0;
+  padding:0;
+  border: 0;
+  border-bottom: solid 1px;
+  border-color: rgba(213, 255, 253, 0.427);
+  height: 45px;
+  padding-top: 15px;
+}
+.item:hover{
+  background-color: rgb(3, 57, 88);
+  box-shadow:0 10px 15px 4px rgba(64, 111, 113, 0.462);
 }
 .item a{
-  color: white;
+  display: block;
+  font: italic 20px cursive;
+  text-decoration: none;
+  color: rgb(213, 255, 253);
 }
 .item :active{
-  color: springgreen;
+  color: rgb(0, 255, 191);
 }
 .activeLink{
   color:(--var-acrive);
