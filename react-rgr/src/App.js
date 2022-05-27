@@ -5,6 +5,7 @@ import Registration from './LoginAndReg/Regestration';
 import Accept from './LoginAndReg/Accept';
 import Mess from './components/Mess';
 import Prof from './components/Prof';
+import MadeChat from './components/Navbar/MadeChat';
 
 
 
@@ -20,6 +21,7 @@ const App = (props) => (
         <Route path='/profile' element={<Prof />}/>
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/accept' element={<Accept />}/>
+        <Route path='/madechat' element={<MadeChat/>} />
         
           
         

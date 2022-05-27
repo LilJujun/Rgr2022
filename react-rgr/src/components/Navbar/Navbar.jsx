@@ -15,8 +15,8 @@ class Navbar extends React.Component {
         <div className={s.item}>
           <NavLink to='/ms' >Message</NavLink>
         </div>
-        <div>
-          <ChatList/>
+        <div className={s.item}>
+          <NavLink to="/madechat">Создать чат</NavLink>
         </div>
         <div className={s.item}>
           <NavLink to='/' >Exit</NavLink>

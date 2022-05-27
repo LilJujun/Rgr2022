@@ -1,0 +1,30 @@
+.messeng {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-area: c;
+    background-color: rgb(5, 255, 172);
+}
+.item{
+    size: 100px;
+}
+.dialogs{
+     display:flex;
+
+    grid-template-columns: 2fr 10fr; 
+    size: 12px;
+}
+.inputPage {
+    width: 20%;
+    height:40px;
+    resize: none;
+    display: flex;
+    
+}
+.inputStyle{
+    display: flex;
+    flex-direction: row;
+}
+.dialogsItem{
+    margin: 0 auto;
+}
