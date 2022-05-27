@@ -18,6 +18,7 @@ public class MessageDto { //to display messages in chat
 
     @Autowired
     private static UserService userService;
+    private Long id;
     private String text;
     private Long chat_id;
     private Long user_id;
@@ -26,7 +27,7 @@ public class MessageDto { //to display messages in chat
 
 
     public static MessageDto build(Message message){
-        return new MessageDto(message.getContent(),message.getChat().getId(),message.getUser().getId(), message.getAttachedFile().getPath(), message.getDate());
+        return new MessageDto(message.getId(), message.getContent(),message.getChat().getId(),message.getUser().getId(), message.getAttachedFile().getPath(), message.getDate());
     }
 
     public static Message toMessage(MessageDto messageDto){
