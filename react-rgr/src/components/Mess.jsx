@@ -3,17 +3,17 @@ import Header from './Header/Header';
 import Navbar from './Navbar/Navbar';
 import Messages from './Messege/Message';
 import s from "./Mess.module.css"
+import ChatList from './Navbar/ChatList';
+import { useLocation } from 'react-router-dom';
+
 
 class Mess extends React.Component {
-    constructor(props){
-        super(props)
+    
+    
+    // componentWillMount(){
+    //     // let chat = useLocation();
         
-        console.log(this.props.location);
-        this.state={chat:this.props.location}  
-    }
-    componentWillReceiveProps(nextProps){
-        this.setState({chat:this.props.location})
-    }
+    // }
     render(){
         return (
         <div className={s.back}>
@@ -21,7 +21,7 @@ class Mess extends React.Component {
 
                 <Header />
                 <Navbar />
-                <Messages chat={this.state.chat}/>
+                <Messages />
             </div>
         </div>
     )

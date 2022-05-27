@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
 import s from './MessageCss.module.css';
 import './MessageCss.module.css';
 import { useLocation } from 'react-router-dom';
@@ -16,6 +16,8 @@ const Messages = (props) => {
   const [text, setText] = useState();
   
 
+
+  
   useEffect(() => {
     
     console.log(chat.state.id)
@@ -29,13 +31,30 @@ const Messages = (props) => {
       alert(error)
     })
   
-  return function cleanup(){
-    
-  }
+  
   }, [setMesseges]);
+  
 
   function MessageList(props) {
+    // const [messeges, setMesseges] = useState([]);
+
+    // useEffect(() => {
     
+    //   console.log(chat.state.id)
+    //   axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
+  
+  
+    //     const messeges = resp.data;
+    //     setMesseges(messeges)
+  
+    //   }).catch(function (error) {
+    //     alert(error)
+    //   })
+    
+    
+    // }, [setMesseges]);
+
+
     const messages = props.messeges;
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
 
@@ -52,8 +71,7 @@ const Messages = (props) => {
   function outputMessage() {
    
 
-    console.log(user.id)
-    console.log(text)
+    
     axios.post(`http://localhost:8080/ms/chat/${chat.state.id}`, {
           text:text,
           user_id:user.id 
@@ -80,12 +98,13 @@ return (
   <div className={s.messeng}>
     
 
-    <div className={s.nameDialog}>
+    <div className={s.nameDialog} onChange>
       Сообщения c {chat.state.name}
 
     </div>
     <div className={s.messages}>
       Сообщения
+      {console.log(chat.state.id)}
       <MessageList   messeges={messeges} />
 
 
