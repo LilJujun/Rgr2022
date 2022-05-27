@@ -27,9 +27,6 @@ function Make() {
     }
 const submitChecking = event =>{
     event.preventDefault();
-    console.log(user.id)
-    console.log(chat.name)
-    console.log(chat.type)
     axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
                 name: chat.name,
                 description: chat.description,
