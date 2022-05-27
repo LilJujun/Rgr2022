@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './NavbarCss.module.css';
 import './NavbarCss.module.css';
-import ChatList from './ChatList';
 
 class Navbar extends React.Component {
 
