@@ -16,8 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 public class MessageDto { //to display messages in chat
 
-    @Autowired
-    private static UserService userService;
+
+
     private Long id;
     private String text;
     private Long chat_id;
@@ -33,7 +33,7 @@ public class MessageDto { //to display messages in chat
     public static Message toMessage(MessageDto messageDto){
         Message message= new Message();
         message.setContent(messageDto.getText());
-        message.setUser(userService.findById(messageDto.getUser_id()));
+
         return message;
     }
 

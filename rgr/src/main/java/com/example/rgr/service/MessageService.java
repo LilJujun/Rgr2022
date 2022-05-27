@@ -19,6 +19,9 @@ public class MessageService {
     private MessageRepository messageRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private ChatService chatService;
 
     public Message save(Message message){
@@ -31,6 +34,7 @@ public class MessageService {
         Date date = new Date();
 
         Message message=MessageDto.toMessage(messageDto);
+        message.setUser(userService.findById(messageDto.getUser_id()));
         Chat chat = chatService.findById(chat_id).orElseThrow();
         message.setChat(chat);
         message.setDate(date);
