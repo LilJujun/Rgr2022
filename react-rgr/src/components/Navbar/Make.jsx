@@ -36,7 +36,7 @@ const submitChecking = event =>{
                 type: chat.type
             },{headers:authHeader()}).then((res) => {
                     
-                    window.location.href = "http://localhost:3000/ms"
+                    window.location.href = "http://localhost:3000/emptytitle"
             }).catch(function (error){
                 alert(error);});
 }
