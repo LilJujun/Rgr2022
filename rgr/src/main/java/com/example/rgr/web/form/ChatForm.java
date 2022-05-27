@@ -1,5 +1,6 @@
 package com.example.rgr.web.form;
 
+import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,6 +36,15 @@ public class ChatForm {
 
      /////make im service!!!!!!!1
     private MultipartFile[] chatPhoto;
+
+    public static Chat build(ChatForm chatForm){
+        Chat chat = new Chat();
+        chat.setIsAdmin(chatForm.getIsAdmin());
+        chat.setName(chatForm.getName());
+        chat.setDescription(chat.getDescription());
+        chat.setType(chat.getType());
+        return chat;
+    }
 
     public void addUser(User user){
         users.add(user);
