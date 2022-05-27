@@ -36,6 +36,7 @@ public class Chat  {
     private String name;
 
     @OneToMany(mappedBy = "chat")
+
     private List<AttachedFile> attachedFiles;
 
     @Column(name = "isAdmin", nullable = false)

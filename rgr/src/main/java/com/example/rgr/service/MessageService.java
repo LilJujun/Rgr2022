@@ -38,10 +38,14 @@ public class MessageService {
         Chat chat = chatService.findById(chat_id).orElseThrow();
         message.setChat(chat);
         message.setDate(date);
-        AttachedFile attachedFile = new AttachedFile();
-        attachedFile.setPath(messageDto.getPath());
-        attachedFile.setChat(chat);
-        message.setAttachedFile(attachedFile);
+        if(messageDto.getPath()!=null){
+            AttachedFile attachedFile = new AttachedFile();
+            attachedFile.setPath(messageDto.getPath());
+            attachedFile.setChat(chat);
+            message.setAttachedFile(attachedFile);
+        }
+
+
         return messageRepository.save(message);
 
 

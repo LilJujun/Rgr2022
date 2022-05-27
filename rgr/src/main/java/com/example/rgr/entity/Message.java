@@ -37,7 +37,8 @@ public class Message {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "message")
+    @OneToOne
+    @JoinColumn(name = "attachedFile_id")
     private AttachedFile attachedFile;
 
 
