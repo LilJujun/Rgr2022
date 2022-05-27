@@ -1,6 +1,12 @@
 .content{
     grid-area: c;
-    background-color: tomato;
+    background-color: white;
+}
+.profile{
+  margin-left: 40%;
+  font-size: 26px;
+  color: rgb(4, 51, 82);
+
 }
 .textField {
     margin-top: 1rem;
@@ -21,9 +27,15 @@
     color: #212529;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #bdbdbd;
-    border-radius: 0.25rem;
+    border: 0;
+    border-bottom: solid 1px;
+    /* box-shadow:0 10px 15px 4px rgba(64, 111, 113, 0.462); */
+    border-color: rgb(4, 51, 82);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  input:focus{
+    background-color: white;
+    outline: none;
   }
   .textField__input::placeholder {
     color: #212529;

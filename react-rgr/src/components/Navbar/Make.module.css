@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     grid-area: c;
-    background-color: rgb(5, 255, 172);
+    background-color: white;
 }
 .item{
     size: 100px;
