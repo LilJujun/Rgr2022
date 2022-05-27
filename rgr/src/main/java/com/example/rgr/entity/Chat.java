@@ -19,7 +19,7 @@ public class Chat  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "chat_id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "type", nullable = false)
@@ -43,7 +43,17 @@ public class Chat  {
     @OneToMany
     private List<Message> messages;
 
-    @ManyToMany(mappedBy = "chats", fetch = FetchType.LAZY)
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_chat",
+            joinColumns = {
+            @JoinColumn(name = "chat_id", referencedColumnName = "id",
+                    nullable = false, updatable = false)}
+                    ,
+            inverseJoinColumns = {
+            @JoinColumn(name = "user_id", referencedColumnName = "id",
+                    nullable = false, updatable = false)}
+                    )
     Set<User> users = new HashSet<>();
 
 
