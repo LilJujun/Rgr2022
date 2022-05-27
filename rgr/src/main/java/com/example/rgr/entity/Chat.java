@@ -47,7 +47,7 @@ public class Chat  {
     @Column(name = "chatPhoto")
     private String photoPath;
 
-    @OneToMany
+    @OneToMany(mappedBy = "chat")
     private List<Message> messages;
 
 
