@@ -53,17 +53,18 @@ export default function Accept() {
     return (
         <div className={s.back}>
             <div className={s.acceptPage} >
-                  
+            <p className={s.logo}>Kotogramm</p>
                 <form className={s.onCentre} onSubmit={submitChecking} >
                     <p>Код подтверждения</p>
                     <input
                         type="text"
+                        placeholder="Введите код,отправленный на email"
                         id="code"
                         name="code"
                         value={accept.code}
                         onChange={changeInputAccept}
                     />
-                    <p><input type="submit" value="Отправить"  onclick="this.style.display='none"/> </p>
+                    <p><input className={s.btn} type="submit" value="Отправить"  onclick="this.style.display='none"/> </p>
                 </form>
 
             </div>
