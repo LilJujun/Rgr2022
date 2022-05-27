@@ -3,15 +3,12 @@ import React from "react";
 const ChatForm = (props) => {
 
     return (
-        <div>
-            <div>
+        
+            <li>
                 {props.name}
-            </div>
-            <div>
-                {props.id}
-
-            </div>
-        </div>
+            </li>
+            
+        
 
     )
 }
