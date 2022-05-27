@@ -23,12 +23,11 @@ public class AttachedFile {
     @Column(nullable = false)
     private String path;
 
-    @OneToOne
-    @JoinColumn(name = "message_id")
+    @OneToOne(mappedBy = "attachedFile")
     private Message message;
 
     @ManyToOne
-    @JoinColumn(name = "chat_id")
+    @JoinColumn(name = "attachedFiles")
     private Chat chat;
 
 

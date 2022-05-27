@@ -12,11 +12,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ChatService chatService;
@@ -31,14 +35,28 @@ public class MessageService {
         Date date = new Date();
 
         Message message=MessageDto.toMessage(messageDto);
+        message.setUser(userService.findById(messageDto.getUser_id()));
         Chat chat = chatService.findById(chat_id).orElseThrow();
         message.setChat(chat);
         message.setDate(date);
-        AttachedFile attachedFile = new AttachedFile();
-        attachedFile.setPath(messageDto.getPath());
-        attachedFile.setChat(chat);
-        message.setAttachedFile(attachedFile);
-        return messageRepository.save(message);
+        Message saved=messageRepository.save(message);
+        if(!Objects.equals(messageDto.getPath(), "")){
+            AttachedFile attachedFile = new AttachedFile();
+            attachedFile.setPath(messageDto.getPath());
+            attachedFile.setChat(chat);
+            saved.setAttachedFile(attachedFile);
+        }
+
+        try{
+
+            AttachedFile attachedFile = new AttachedFile();
+            attachedFile.setPath(messageDto.getPath());
+
+        }catch (Exception e){
+            throw e;
+        }
+
+        return messageRepository.save(saved);
 
 
     }
