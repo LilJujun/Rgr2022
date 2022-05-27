@@ -1,6 +1,8 @@
 package com.example.rgr.entity;
 
 import com.example.rgr.model.MessageStatus;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,6 +16,9 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name ="message")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
