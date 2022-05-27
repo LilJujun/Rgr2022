@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MessageService {
@@ -38,13 +39,21 @@ public class MessageService {
         Chat chat = chatService.findById(chat_id).orElseThrow();
         message.setChat(chat);
         message.setDate(date);
-        if(messageDto.getPath()!=null){
+        if(!Objects.equals(messageDto.getPath(), "")){
             AttachedFile attachedFile = new AttachedFile();
             attachedFile.setPath(messageDto.getPath());
             attachedFile.setChat(chat);
             message.setAttachedFile(attachedFile);
         }
-
+//        try{
+//
+//            AttachedFile attachedFile = new AttachedFile();
+//            attachedFile.setPath(messageDto.getPath());
+//            attachedFile.setChat(chat);
+//            message.setAttachedFile(attachedFile);
+//        }catch (Exception e){
+//            throw e;
+//        }
 
         return messageRepository.save(message);
 
