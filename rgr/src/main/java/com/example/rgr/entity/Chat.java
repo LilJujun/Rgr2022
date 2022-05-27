@@ -47,7 +47,6 @@ public class Chat  {
 
 
     @ManyToMany(mappedBy = "chats")
-
     Set<User> users = new HashSet<>();
 
 

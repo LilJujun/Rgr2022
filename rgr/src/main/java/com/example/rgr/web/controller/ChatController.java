@@ -47,6 +47,9 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
+    @Autowired
+    private ChatRepository chatRepository;
+
     @PostMapping("/chat/{chat_id}") //sending message
     public ResponseEntity<?> sendingMessage(@Valid @RequestBody MessageDto messageDto, @PathVariable Long chat_id ){
 
@@ -108,7 +111,9 @@ public class ChatController {
         chatForm.setIsAdmin(user_id);
         Chat ch=chatService.save(chatForm);
           user.getChats().add(ch);
-          userRepository.save(user);
+        User us=userRepository.save(user);
+          ch.getUsers().add(us);
+          chatRepository.save(ch);
         return ResponseEntity.ok("ok");
     }
 
