@@ -106,12 +106,12 @@ public class ChatController {
 
         User user = userService.findById(user_id);
         chatForm.setIsAdmin(user_id);
-
+        chatForm.getUsers().add(user);
 
         Chat ch=chatService.save(chatForm);
-        user.getChats().add(ch);
-        userRepository.save(user);
-        return ResponseEntity.ok(ChatDto.build(ch));
+//        user.getChats().add(ch);
+//        userRepository.save(user);
+        return ResponseEntity.ok("ok");
     }
 
 //    User user = userService.findById(user_id);
