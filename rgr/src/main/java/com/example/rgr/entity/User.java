@@ -39,7 +39,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Message> messages;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany( cascade = CascadeType.ALL)
     @JoinTable(name = "user_chat",
             joinColumns = {
             @JoinColumn(name = "user_id", referencedColumnName = "id",

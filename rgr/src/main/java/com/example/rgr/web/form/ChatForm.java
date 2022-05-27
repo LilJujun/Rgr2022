@@ -24,7 +24,7 @@ public class ChatForm {
 
     private String name;
 
-    private  String description;
+    private String description;
 
 
     private String type;
@@ -42,7 +42,7 @@ public class ChatForm {
         chat.setIsAdmin(chatForm.getIsAdmin());
         chat.setName(chatForm.getName());
         chat.setDescription(chat.getDescription());
-        chat.setType(chat.getType());
+        chat.setType(chatForm.getType());
         return chat;
     }
 

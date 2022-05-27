@@ -46,16 +46,8 @@ public class Chat  {
     private List<Message> messages;
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_chat",
-            joinColumns = {
-            @JoinColumn(name = "chat_id", referencedColumnName = "id",
-                    nullable = false, updatable = false)}
-                    ,
-            inverseJoinColumns = {
-            @JoinColumn(name = "user_id", referencedColumnName = "id",
-                    nullable = false, updatable = false)}
-                    )
+    @ManyToMany(mappedBy = "chats")
+
     Set<User> users = new HashSet<>();
 
 
