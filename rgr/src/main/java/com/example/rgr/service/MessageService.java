@@ -39,23 +39,24 @@ public class MessageService {
         Chat chat = chatService.findById(chat_id).orElseThrow();
         message.setChat(chat);
         message.setDate(date);
+        Message saved=messageRepository.save(message);
         if(!Objects.equals(messageDto.getPath(), "")){
             AttachedFile attachedFile = new AttachedFile();
             attachedFile.setPath(messageDto.getPath());
             attachedFile.setChat(chat);
-            message.setAttachedFile(attachedFile);
+            saved.setAttachedFile(attachedFile);
         }
-//        try{
-//
-//            AttachedFile attachedFile = new AttachedFile();
-//            attachedFile.setPath(messageDto.getPath());
-//            attachedFile.setChat(chat);
-//            message.setAttachedFile(attachedFile);
-//        }catch (Exception e){
-//            throw e;
-//        }
 
-        return messageRepository.save(message);
+        try{
+
+            AttachedFile attachedFile = new AttachedFile();
+            attachedFile.setPath(messageDto.getPath());
+
+        }catch (Exception e){
+            throw e;
+        }
+
+        return messageRepository.save(saved);
 
 
     }
