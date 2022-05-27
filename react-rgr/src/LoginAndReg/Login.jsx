@@ -49,7 +49,7 @@ export default function Login() {
         <div className={s.loginPage}>
         <form onSubmit={submitChecking}>
                 <p>Email: <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     value={login.email}

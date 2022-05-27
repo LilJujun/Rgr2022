@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import authHeader from "../../auth";
 import ChatForm from "./ChatForm";
-import s from "../"
+import s from "./ChatList.module.css"
 
 
 
@@ -44,13 +44,13 @@ const ChatList = () => {
 
 
     return (
-        <div className={s.messeng}>
+        <div >
             <a>Chats</a>
             {/* {chat.map(ch =>
                 <ChatForm props={ch}  />
 
             )} */}
-            <button>Rerol</button>
+            
 
         </div>
     )
