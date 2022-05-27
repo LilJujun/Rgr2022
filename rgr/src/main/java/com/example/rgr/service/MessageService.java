@@ -5,6 +5,7 @@ import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.Message;
 import com.example.rgr.model.MessageDto;
 import com.example.rgr.model.MessageStatus;
+import com.example.rgr.repo.AttachedFileRepository;
 import com.example.rgr.repo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class MessageService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AttachedFileRepository attachedFileRepository;
 
     @Autowired
     private ChatService chatService;
@@ -40,21 +44,15 @@ public class MessageService {
         message.setChat(chat);
         message.setDate(date);
         Message saved=messageRepository.save(message);
-        if(!Objects.equals(messageDto.getPath(), "")){
+
             AttachedFile attachedFile = new AttachedFile();
             attachedFile.setPath(messageDto.getPath());
             attachedFile.setChat(chat);
-            saved.setAttachedFile(attachedFile);
-        }
+            attachedFile.setMessage(saved);
+            saved.setAttachedFile(attachedFileRepository.save(attachedFile));
 
-        try{
 
-            AttachedFile attachedFile = new AttachedFile();
-            attachedFile.setPath(messageDto.getPath());
 
-        }catch (Exception e){
-            throw e;
-        }
 
         return messageRepository.save(saved);
 
