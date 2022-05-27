@@ -47,8 +47,9 @@ export default function Login() {
       <div className={s.back} >
 
         <div className={s.loginPage}>
+        <p className={s.logo}>Kotogramm</p>
         <form onSubmit={submitChecking}>
-                <p>Email: <input
+                <p>Name: <input
                     type="text"
                     id="email"
                     name="email"
@@ -64,11 +65,11 @@ export default function Login() {
                     onChange={changeInputLogin}
                 /></p>
 
-               <input type="submit" value="Войти"/>
+               <input className={s.btn} type="submit" value="Войти"/>
             </form>
-          
-          <NavLink to='/registration'>Зарегистрироваться</NavLink>
-
+            <div className={s.link}>
+             <NavLink to='/registration'>Зарегистрироваться</NavLink>
+            </div>
         </div>
 
       </div>
