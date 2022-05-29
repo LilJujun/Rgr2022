@@ -11,10 +11,7 @@ import NavbarChats from './Navbar/NavbarChats';
 class Mess extends React.Component {
     
     
-    // componentWillMount(){
-    //     // let chat = useLocation();
-        
-    // }
+
     render(){
         return (
         <div className={s.back}>

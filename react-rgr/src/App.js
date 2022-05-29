@@ -7,6 +7,8 @@ import Mess from './components/Mess';
 import Prof from './components/Prof';
 import MadeChat from './components/Navbar/MadeChat';
 import EmptyTitle from './components/EmptyTitle/EmptyTitle';
+import Find from './components/FindUsers/Find';
+import FindCh from './components/FindChat/FindCh';
 
 
 
@@ -23,7 +25,8 @@ const App = () => (
       <Route path='/registration' element={<Registration />} />
       <Route path='/accept' element={<Accept />} />
       <Route path='/madechat' element={<MadeChat />} />
-      
+      <Route path='/friends' element={<Find />} />
+      <Route path='/findchats' element={<FindCh />} />
     </Routes>
 
   </div>

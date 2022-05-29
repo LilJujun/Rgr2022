@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './HeaderCss.module.css';
-import log from './profileIcon.png'
+import log from './kotik.png'
 
 const Header = () =>{
 let logo = (
