@@ -10,10 +10,7 @@ import { useLocation } from 'react-router-dom';
 class Mess extends React.Component {
     
     
-    // componentWillMount(){
-    //     // let chat = useLocation();
-        
-    // }
+
     render(){
         return (
         <div className={s.back}>

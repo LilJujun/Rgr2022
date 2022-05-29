@@ -23,6 +23,7 @@ class Profile extends Component {
                 </div>
 
                 <div>
+                    <form>
                     <div className={s.textField}>
                         <label className={s.textField__label} for="username">Имя</label>
                         <input className={s.textField__input} type="text" name="username" id="username"  value={this.state.nickname} ></input>
@@ -41,6 +42,7 @@ class Profile extends Component {
                         <label className={s.textField__label}>Статус</label>
                         <input className={s.textField__input} type="text" name="status" id="status" value={this.state.status}></input>
                     </div>
+                    </form>
 
                 </div>
 

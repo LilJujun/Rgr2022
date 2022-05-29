@@ -23,37 +23,15 @@ const Messages = (props) => {
     console.log(chat.state.id)
     axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
 
-
       const messeges = resp.data;
       setMesseges(messeges)
-
     }).catch(function (error) {
       alert(error)
     })
-  
-  
   }, [setMesseges]);
   
 
   function MessageList(props) {
-    // const [messeges, setMesseges] = useState([]);
-
-    // useEffect(() => {
-    
-    //   console.log(chat.state.id)
-    //   axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
-  
-  
-    //     const messeges = resp.data;
-    //     setMesseges(messeges)
-  
-    //   }).catch(function (error) {
-    //     alert(error)
-    //   })
-    
-    
-    // }, [setMesseges]);
-
 
     const messages = props.messeges;
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
@@ -69,15 +47,12 @@ const Messages = (props) => {
   }
 
   function outputMessage() {
-   
 
-    
     axios.post(`http://localhost:8080/ms/chat/${chat.state.id}`, {
           text:text,
           user_id:user.id 
     }, { headers: authHeader() }).then(function () {
       axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
-
 
         const messeges = resp.data;
         setMesseges(messeges)
@@ -89,23 +64,25 @@ const Messages = (props) => {
   }
 
 
-
-
-
-
-
 return (
   <div className={s.messeng}>
     
 
-    <div className={s.nameDialog} onChange>
+    <div className={s.nameDialog} >
       Сообщения c {chat.state.name}
 
     </div>
     <div className={s.messages}>
       Сообщения
-      {console.log(chat.state.id)}
+
+      <div>
       <MessageList   messeges={messeges} />
+      </div>
+
+      <div>
+
+      </div>
+     
 
 
     </div>
