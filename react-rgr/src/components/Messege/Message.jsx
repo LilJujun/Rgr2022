@@ -11,25 +11,41 @@ const user = JSON.parse(localStorage.getItem("user"))
 const Messages = (props) => {
 
   let chat = useLocation();
-  
+
   const [messeges, setMesseges] = useState([]);
   const [text, setText] = useState();
-  
+
+  const changeInputText = event => {
+    event.persist()
+    setText(prev => {
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      }
+    })
+  }
 
 
-  
   useEffect(() => {
-    
-    console.log(chat.state.id)
+
     axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
 
-      const messeges = resp.data;
-      setMesseges(messeges)
+      setMesseges(resp.data)
     }).catch(function (error) {
       alert(error)
     })
   }, [setMesseges]);
-  
+
+  function interval (){
+    console.log("Хуй")
+    axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
+
+      setMesseges(resp.data)
+    }).catch(function (error) {
+      alert(error)
+    })
+  }
+  setInterval(()=>{interval()},2500)
 
   function MessageList(props) {
 
@@ -43,17 +59,19 @@ const Messages = (props) => {
     );
     return (
       <ul>{listMessages}</ul>
+      
     )
   }
 
   function outputMessage() {
-   
-
     
+
+
     axios.post(`http://localhost:8080/ms/chat/${chat.state.id}`, {
-          text:text,
-          user_id:user.id 
+      text: document.getElementById('mess').value,
+      user_id: user.id
     }, { headers: authHeader() }).then(function () {
+      document.getElementById('mess').value = '';
       axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
 
 
@@ -67,37 +85,42 @@ const Messages = (props) => {
   }
 
 
-return (
-  <div className={s.messeng}>
-    
+  return (
+    <div className={s.messeng}>
 
-    <div className={s.nameDialog} >
-      Сообщения c {chat.state.name}
 
-    </div>
-    <div className={s.messages}>
-      Сообщения
-
-      <div>
-      <MessageList   messeges={messeges} />
-      </div>
-
-      <div>
+      <div className={s.nameDialog} >
+        Сообщения c {chat.state.name}
 
       </div>
+      <div className={s.messages}>
+        Сообщения
+
+        <div>
+          <MessageList messeges={messeges} />
+        </div>
+
+        <div>
+
+        </div>
 
 
 
+      </div>
+
+      <div className={s.inputButtonAndText}>
+
+        <textarea type="text" placeholder="Помурчи в дискорде" id="mess" className={s.inputPage} />
+        <button type='submit' onClick={() => { outputMessage(); }}>
+          Мяукнуть
+        </button>
+
+
+
+      </div>
     </div>
+  );
 
-    <div className={s.inputButtonAndText}>
-      <textarea type="text" placeholder="Помурчи в дискорде" id="mess" className={s.inputPage} />
-      <button placeholder="Мяукнуть" onClick={() => {setText(document.getElementById("mess").value);outputMessage(); }  }>Нажми</button>
-
-    </div>
-  </div>
-);
-  
 
 }
 export default Messages;

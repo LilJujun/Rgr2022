@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 import FindUsers from './FindUsers.jsx';
 import s from "./Find.module.css";
+import NavbarChats from '../Navbar/NavbarChats';
 
 
 class Find extends React.Component {
@@ -15,7 +16,7 @@ class Find extends React.Component {
             <div className={s.messenger}>
 
                 <Header />
-                <Navbar />
+                <NavbarChats />
                 <FindUsers />
             </div>
         </div>

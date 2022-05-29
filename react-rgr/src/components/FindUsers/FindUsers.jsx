@@ -4,8 +4,17 @@ import axios from 'axios';
 import authHeader from '../../auth';
 
 
-
+const user = JSON.parse(localStorage.getItem('user'));
 const FindUsers = (props) => {
+
+const [friend, setFriend] = useState([]);
+
+
+// axios.get(`http://localhost:8080/ms/friends/${user.id}`){
+//   friend:user.id
+//   setFriend(friend);
+// }
+
 
 
   return (

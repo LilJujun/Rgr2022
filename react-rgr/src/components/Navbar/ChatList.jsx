@@ -13,8 +13,7 @@ import { render } from "@testing-library/react";
             axios.get(`http://localhost:8080/ms/${user.id}/chats`, { headers: authHeader() }).then((resp) => {
 
 
-                const chat = resp.data;
-                setChat(chat)
+                setChat(resp.data)
 
             }).catch(function (error) {
                 alert(error)

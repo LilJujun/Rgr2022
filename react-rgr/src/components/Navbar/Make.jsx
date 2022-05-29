@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import s from './Make.module.css';
 import './Make.module.css';
 import axios from 'axios';
@@ -11,9 +11,9 @@ function Make() {
 
     const [chat, setChat] = useState(() => {
         return {
-            name:'',
-            description:'',
-            type:''
+            name: '',
+            description: '',
+            type: ''
         }
     })
     const changeInputAddChat = event => {
@@ -25,41 +25,52 @@ function Make() {
             }
         })
     }
-const submitChecking = event =>{
-    event.preventDefault();
-    console.log(user.id)
-    console.log(chat.name)
-    console.log(chat.type)
-    axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
-                name: chat.name,
-                description: chat.description,
-                type: chat.type
-            },{headers:authHeader()}).then((res) => {
-                    
-                    window.location.href = "http://localhost:3000/emptytitle"
-            }).catch(function (error){
-                alert(error);});
-}
+    const submitChecking = event => {
+        event.preventDefault();
+        console.log(user.id)
+        console.log(chat.name)
+        console.log(chat.type)
+        axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
+            name: chat.name,
+            description: chat.description,
+            type: chat.type
+        }, { headers: authHeader() }).then((res) => {
+            if (chat.name === '') {
+                alert("Введите название чата")
+            } else {
+
+                window.location.href = "http://localhost:3000/emptytitle"
+            }
+
+        }).catch(function (error) {
+            alert(error);
+        });
+    }
 
     return (
         <div className={s.messeng}>
+            {console.log(chat.name)}
             <div >
                 <p className={s.h}>Создание чата</p>
                 <form className={s.dialogsItem} onSubmit={submitChecking}>
-                    <p> Имя чата<input type='text' name="name" id="name" value={chat.name} className={s.inputPage} onChange={changeInputAddChat}/> </p>
+                    <p> Имя чата<input type='text' name="name" id="name" value={chat.name} className={s.inputPage} onChange={changeInputAddChat} /> </p>
 
-                    <p> Описание чата<input type='text' name="description" id="description" value={chat.description} className={s.inputPage}  onChange={changeInputAddChat}/></p>
+                    <p> Описание чата<input type='text' name="description" id="description" value={chat.description} className={s.inputPage} onChange={changeInputAddChat} /></p>
 
-                    <p> Тип чата
-                        <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
+                    <p> Тип чата</p>
+                    <div value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
+                    <label><input type="radio" name="type" checked /> Open</label>
+                    <label><input type="radio" name="type" /> Closed</label>
+                    </div>
+                    {/* <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
                             <option>Open</option>
                             <option>Closed</option>
-                        </select>
-                    </p>
-                    <p><input className={s.btn} type="submit"  value="Создать чат" />  </p>
+                        </select> */}
+
+                    <p><input className={s.btn} type="submit" value="Создать чат" />  </p>
                 </form>
             </div>
-            
+
             <div className={s.inputButton}>
 
             </div>

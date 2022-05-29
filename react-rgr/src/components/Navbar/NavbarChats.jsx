@@ -17,8 +17,15 @@ class NavbarChats extends React.Component {
           <NavLink to="/madechat">Создать чат</NavLink>
         </div>
         <div className={s.item}>
+          <NavLink to="/friends">Друзья</NavLink>
+        </div>
+        <div className={s.item}>
+          <NavLink to="/findchats">Поиск чатов</NavLink>
+        </div>
+        <div className={s.item}>
           <NavLink to='/emptytitle'>Chats</NavLink>
         </div>
+        
         <div className={s.item}>
           <NavLink to='/' >Exit</NavLink>
         </div>
