@@ -57,4 +57,17 @@ public class User {
 
     )
     private Set<Chat> chats = new HashSet<>();
+
+    @ManyToMany( cascade = CascadeType.ALL)
+    @JoinTable(name = "user_friend",
+            joinColumns = {
+                    @JoinColumn(name = "user_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)}
+            ,
+            inverseJoinColumns = {
+                    @JoinColumn(name = "friend_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)}
+
+    )
+    private Set<User> users = new HashSet<>();
 }
