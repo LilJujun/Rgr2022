@@ -27,6 +27,9 @@ function Make() {
     }
 const submitChecking = event =>{
     event.preventDefault();
+    console.log(user.id)
+    console.log(chat.name)
+    console.log(chat.type)
     axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
                 name: chat.name,
                 description: chat.description,
@@ -47,13 +50,13 @@ const submitChecking = event =>{
 
                     <p> Описание чата<input type='text' name="description" id="description" value={chat.description} className={s.inputPage}  onChange={changeInputAddChat}/></p>
 
-                    <p>
+                    <p> Тип чата
                         <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
                             <option>Open</option>
                             <option>Closed</option>
                         </select>
                     </p>
-                    <p><input type="submit"  value="Создать чат" />  </p>
+                    <p><input className={s.btn} type="submit"  value="Создать чат" />  </p>
                 </form>
             </div>
             

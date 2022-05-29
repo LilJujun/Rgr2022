@@ -5,7 +5,14 @@
     grid-area: c;
     background-color: white;
 }
-.item{
+.h{
+    margin-left: 40%;
+    font-size: 26px;
+    color: rgb(4, 51, 82);
+}
+
+.dialogsItem{
+    margin: 20px;
     size: 100px;
 }
 .dialogs{
@@ -19,12 +26,20 @@
     height:40px;
     resize: none;
     display: flex;
-    
+    background-color: rgba(203, 230, 239, 0.429);
+    border-bottom: solid 1px;
+    color: rgb(4, 51, 82);
+    border-color: rgb(4, 51, 82);
+    font-size: 20px;
 }
-.inputStyle{
-    display: flex;
-    flex-direction: row;
+.inputPage:focus{
+    background-color: rgba(203, 230, 239, 0.429);
+    outline: none;
 }
-.dialogsItem{
-    margin: 0 auto;
+.btn{
+    font-size: large;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(3, 45, 70);
+    color:white;
 }

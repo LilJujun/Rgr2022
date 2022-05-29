@@ -47,12 +47,15 @@ const Messages = (props) => {
   }
 
   function outputMessage() {
+   
 
+    
     axios.post(`http://localhost:8080/ms/chat/${chat.state.id}`, {
           text:text,
           user_id:user.id 
     }, { headers: authHeader() }).then(function () {
       axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
+
 
         const messeges = resp.data;
         setMesseges(messeges)
@@ -82,7 +85,7 @@ return (
       <div>
 
       </div>
-     
+
 
 
     </div>

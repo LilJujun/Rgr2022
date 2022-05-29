@@ -1,6 +1,8 @@
 .content{
     grid-area: c;
     background-color: white;
+    border:solid 0;
+    border-radius:0px 0px 15px 0px ;
 }
 .profile{
   margin-left: 40%;
@@ -18,22 +20,18 @@
   .textField__input {
     display: block;
     width: 30%;
-    height: calc(2.25rem + 2px);
-    padding: 0.375rem 0.75rem;
+    height:40px;
+    resize: none;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 0;
+    background-color: rgba(203, 230, 239, 0.429);
     border-bottom: solid 1px;
-    /* box-shadow:0 10px 15px 4px rgba(64, 111, 113, 0.462); */
+    color: rgb(4, 51, 82);
     border-color: rgb(4, 51, 82);
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-size: 20px;
   }
-  input:focus{
+  .textField__input:focus{
     background-color: white;
     outline: none;
   }

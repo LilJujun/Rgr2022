@@ -5,6 +5,7 @@ import Messages from './Messege/Message';
 import s from "./Mess.module.css"
 import ChatList from './Navbar/ChatList';
 import { useLocation } from 'react-router-dom';
+import NavbarChats from './Navbar/NavbarChats';
 
 
 class Mess extends React.Component {
@@ -17,7 +18,7 @@ class Mess extends React.Component {
             <div className={s.messenger}>
 
                 <Header />
-                <Navbar />
+                <NavbarChats />
                 <Messages />
             </div>
         </div>

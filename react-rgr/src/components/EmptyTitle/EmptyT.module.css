@@ -1,9 +1,11 @@
 .content{
     grid-area: c;
-    background-color: tomato;
+    background-color: white;
     max-height: 740px;
     overflow-y: auto;
+    border-radius:0px 0px 15px 0px ;
 }
+
 .symbolSize{
     width: 100px;
     height: 100px;

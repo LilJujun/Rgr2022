@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Navbar from './Navbar';
 import Make from './Make';
 import s from "./MadeChat.module.css"
+import NavbarChats from './NavbarChats';
 
 
 
@@ -14,7 +15,7 @@ render(){
             <div className={s.messenger}>
 
                 <Header />
-                <Navbar />
+                <NavbarChats />
                 <Make />
             </div>
         </div>
