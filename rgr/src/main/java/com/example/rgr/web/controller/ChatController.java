@@ -141,7 +141,7 @@ public class ChatController {
 //
 //        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
 
-    @PostMapping("/searchChat")
+    @PostMapping("/search")
     public ResponseEntity<?> findChat(@RequestParam String chatName){
         List<Chat> chats=chatRepository.findAll();
         for(Chat chat : chats){
@@ -151,7 +151,7 @@ public class ChatController {
         }
         return ResponseEntity.ok("Нет такого чата");
     }
-//    @PostMapping("/add/")
+//    @PostMapping("/join/{chat_id}")
 
 
 }
