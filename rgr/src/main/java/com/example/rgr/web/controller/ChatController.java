@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @RestController
@@ -142,10 +143,10 @@ public class ChatController {
 //        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
 
     @PostMapping("/search")
-    public ResponseEntity<?> findChat(@Valid @RequestParam String chatName){
+    public ResponseEntity<?> findChat(@Valid @RequestBody ChatForm chatForm){
         List<Chat> chats=chatRepository.findAll();
         for(Chat chat : chats){
-            if(chat.getName()==chatName){
+            if(Objects.equals(chat.getName(), chatForm.getName())){
                 return ResponseEntity.ok(ChatDto.build(chat));
             }
         }
