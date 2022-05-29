@@ -150,7 +150,7 @@ public class ChatController {
             return ResponseEntity.ok("Чат закрытый");
         }
         Chat chat = chatService.findByName(name).get();
-        chatService.addUserInChat(chat, user_id);
+        userService.addUserInChat(chat, user_id);
         return ResponseEntity.ok("Вы вошли");
     }
 

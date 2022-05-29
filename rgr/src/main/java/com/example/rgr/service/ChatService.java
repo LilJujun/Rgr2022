@@ -88,11 +88,7 @@ public class ChatService {
         return false;
     }
 
-    public void addUserInChat(Chat chat, Long id){
-        User user = userService.findById(id);
-        chat.getUsers().add(user);
-        chatRepository.save(chat);
-    }
+
 
 
 

@@ -90,5 +90,10 @@ public class UserService {
         return userRepository.save(u);
     }
 
+    public void addUserInChat(Chat chat, Long id){
+        User user = userRepository.findById(id).get();
+        user.getChats().add(chat);
+        userRepository.save(user);
+    }
 
 }
