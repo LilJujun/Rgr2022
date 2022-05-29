@@ -142,7 +142,7 @@ public class ChatController {
 //        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
 
     @PostMapping("/search")
-    public ResponseEntity<?> findChat(@RequestParam String chatName){
+    public ResponseEntity<?> findChat(@Valid @RequestParam String chatName){
         List<Chat> chats=chatRepository.findAll();
         for(Chat chat : chats){
             if(chat.getName()==chatName){
