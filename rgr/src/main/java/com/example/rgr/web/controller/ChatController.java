@@ -134,25 +134,26 @@ public class ChatController {
         return ResponseEntity.ok("ok");
     }
 
-//    User user = userService.findById(user_id);
-//        chatForm.setIsAdmin(user_id);
-//    Chat ch = new Chat();
-//        BeanUtils.copyProperties(chatForm, ch);;
-//        ch.getUsers().add(user);
-//
-//        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
 
-    @PostMapping("/search")
-    public ResponseEntity<?> findChat(@Valid @RequestBody ChatForm chatForm){
-        List<Chat> chats=chatRepository.findAll();
-        for(Chat chat : chats){
-            if(Objects.equals(chat.getName(), chatForm.getName())){
-                return ResponseEntity.ok(ChatDto.build(chat));
-            }
+    @PostMapping("/join/{user_id}")
+    public ResponseEntity<?> JoinChat(@Valid @RequestBody ChatForm chatForm, @PathVariable Long user_id){
+        String name=chatForm.getName();
+
+        if(chatService.isUserInChat(name,user_id)){
+            return ResponseEntity.ok("Вы уже состоите в этом чате");
         }
-        return ResponseEntity.ok("Нет такого чата");
+
+        if(chatService.findByName(name).isEmpty()){
+            return ResponseEntity.ok("Нет такого чата");
+        }
+        if(Objects.equals(chatService.findByName(name).get().getType(), "Closed")){
+            return ResponseEntity.ok("Чат закрытый");
+        }
+        Chat chat = chatService.findByName(name).get();
+        chatService.addUserInChat(chat, user_id);
+        return ResponseEntity.ok("Вы вошли");
     }
-//    @PostMapping("/join/{chat_id}")
+
 
 
 }
