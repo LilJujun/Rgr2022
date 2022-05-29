@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
-import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,6 +37,31 @@ public class UserService {
     }
 
     public boolean isUserEmailExist(String email){return userRepository.countByEmail(email) != 0;}
+
+    public String addFriend(Long id, String frName){
+        if(userRepository.findByNickname(frName).isEmpty())
+            return "Нет такого пользователя";
+        User user = userRepository.findById(id).get();
+        User friend = userRepository.findByNickname(frName).get();
+        for(User usr: user.getUsers()){
+            if(Objects.equals(usr.getId(), friend.getId())){
+                return "Пользователь уже у вас в друзьях";
+            }
+        }
+
+        user.getUsers().add(friend);
+        userRepository.save(user);
+        return "Добавлен в друзья";
+
+
+    }
+
+    public Set<User> findFriends(Long id){
+        User user = userRepository.findById(id).get();
+        return user.getUsers();
+
+
+    }
 
     public Optional<User>  findByEmail(String email){
         return userRepository.findByEmail(email);

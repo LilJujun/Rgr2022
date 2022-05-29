@@ -81,8 +81,8 @@ public class ChatController {
         return ResponseEntity.ok(MessageDto.buildList(messageService.findAllByChatId(chat_id)));
     }
     @GetMapping("/chat/{chat_id}/info")
-    public ResponseEntity<?> findChat(@PathVariable Long chat_id){
-        return ResponseEntity.ok(chatService.findById(chat_id).orElse(new Chat()));
+    public ResponseEntity<?> findChatInfo(@PathVariable Long chat_id){
+        return ResponseEntity.ok(chatService.findById(chat_id).get());
     }
     @DeleteMapping("/chat/{chat_id}/info")
     ResponseEntity<?> deleteChat (@PathVariable Long chat_id){
@@ -102,6 +102,22 @@ public class ChatController {
     public ResponseEntity<?> findChats (@PathVariable Long user_id){
         Set<Chat> chats = chatService.findByUserId(user_id);
         return ResponseEntity.ok(ChatDto.buildList(chats));
+    }
+
+    @PostMapping("/addFriend/{user_id}")
+    public ResponseEntity<?> addFriend(@PathVariable Long user_id, @RequestParam String frName){
+
+
+        return ResponseEntity.ok(userService.addFriend(user_id, frName));
+
+
+    }
+
+    @GetMapping("/friends/{user_id}")
+    public ResponseEntity<?> findFriends(@PathVariable Long user_id){
+        return ResponseEntity.ok(userService.findFriends(user_id));
+
+
     }
 
     @PostMapping("/{user_id}/chat")
@@ -125,10 +141,17 @@ public class ChatController {
 //
 //        return ResponseEntity.ok(ChatDto.build(chatRepository.save(ch)));
 
-    @GetMapping("/test")
-    public ResponseEntity<?> test(){
-        return ResponseEntity.ok(chatService.findAll());
+    @PostMapping("/searchChat")
+    public ResponseEntity<?> findChat(@RequestParam String chatName){
+        List<Chat> chats=chatRepository.findAll();
+        for(Chat chat : chats){
+            if(chat.getName()==chatName){
+                return ResponseEntity.ok(ChatDto.build(chat));
+            }
+        }
+        return ResponseEntity.ok("Нет такого чата");
     }
+//    @PostMapping("/add/")
 
 
 }

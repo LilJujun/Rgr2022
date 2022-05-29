@@ -16,6 +16,7 @@ import java.util.Set;
 @ToString
 @Getter
 @Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="user")

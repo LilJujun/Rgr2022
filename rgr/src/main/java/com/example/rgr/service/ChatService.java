@@ -47,6 +47,18 @@ public class ChatService {
         chatRepository.deleteById(id);
     }
 
+    public Chat findByName(String name){
+        List<Chat> chats=chatRepository.findAll();
+        for(Chat chat : chats){
+            if(chat.getName()==name){
+                return chat;
+            }
+        }
+
+
+        return new Chat();
+    }
+
     public Chat update(@Valid ChatForm form) { //changing chat params
         Chat ch = ChatForm.build(form);
 
