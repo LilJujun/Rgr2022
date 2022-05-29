@@ -14,18 +14,21 @@ const Messages = (props) => {
   
   const [messeges, setMesseges] = useState([]);
   const [text, setText] = useState();
-  
+  const [chatname, setChatname] = useState();
+
+
 
 
   
   useEffect(() => {
-    
-    console.log(chat.state.id)
+    console.log(chatname)
     axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
 
 
-      const messeges = resp.data;
-      setMesseges(messeges)
+      
+      setMesseges(resp.data)
+      console.log("messeges")
+      
 
     }).catch(function (error) {
       alert(error)
@@ -33,27 +36,11 @@ const Messages = (props) => {
   
   
   }, [setMesseges]);
+
   
 
   function MessageList(props) {
-    // const [messeges, setMesseges] = useState([]);
-
-    // useEffect(() => {
-    
-    //   console.log(chat.state.id)
-    //   axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
-  
-  
-    //     const messeges = resp.data;
-    //     setMesseges(messeges)
-  
-    //   }).catch(function (error) {
-    //     alert(error)
-    //   })
-    
-    
-    // }, [setMesseges]);
-
+   
 
     const messages = props.messeges;
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
@@ -80,7 +67,7 @@ const Messages = (props) => {
 
 
         const messeges = resp.data;
-        setMesseges(messeges)
+        setMesseges(messeges);
 
       })
     }).catch(function (error) {
@@ -96,7 +83,8 @@ const Messages = (props) => {
 
 return (
   <div className={s.messeng}>
-    
+      
+
 
     <div className={s.nameDialog} onChange>
       Сообщения c {chat.state.name}
@@ -104,7 +92,7 @@ return (
     </div>
     <div className={s.messages}>
       Сообщения
-      {console.log(chat.state.id)}
+      {console.log(messeges)}
       <MessageList   messeges={messeges} />
 
 
@@ -113,7 +101,6 @@ return (
     <div className={s.inputButtonAndText}>
       <textarea type="text" placeholder="Помурчи в дискорде" id="mess" className={s.inputPage} />
       <button placeholder="Мяукнуть" onClick={() => {setText(document.getElementById("mess").value);outputMessage(); }  }>Нажми</button>
-
     </div>
   </div>
 );
