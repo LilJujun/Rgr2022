@@ -119,7 +119,8 @@ public class ChatController {
 
     @GetMapping("/friends/{user_id}")
     public ResponseEntity<?> findFriends(@PathVariable Long user_id){
-        return ResponseEntity.ok(userService.findFriends(user_id));
+        List<UserModel> userModels =userService.findFriends(user_id).stream().map(UserModel::toModel).toList();
+        return ResponseEntity.ok(userModels);
 
 
     }
