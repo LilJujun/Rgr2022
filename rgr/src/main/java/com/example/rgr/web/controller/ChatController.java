@@ -4,10 +4,7 @@ import com.example.rgr.entity.AttachedFile;
 import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.Message;
 import com.example.rgr.entity.User;
-import com.example.rgr.model.ChatDto;
-import com.example.rgr.model.MessageDto;
-import com.example.rgr.model.MessageRequest;
-import com.example.rgr.model.UserModel;
+import com.example.rgr.model.*;
 import com.example.rgr.repo.AttachedFileRepository;
 import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.repo.UserRepository;
@@ -111,11 +108,11 @@ public class ChatController {
         return ResponseEntity.ok(ChatDto.buildList(chats));
     }
 
-    @PostMapping("/addFriend/{user_id}")
-    public ResponseEntity<?> addFriend(@PathVariable Long user_id, @RequestParam String frName){
+    @PostMapping("/addfriend/{user_id}")
+    public ResponseEntity<?> addFriend(@PathVariable Long user_id, @Valid @RequestBody LoginRequest loginRequest){
 
 
-        return ResponseEntity.ok(userService.addFriend(user_id, frName));
+        return ResponseEntity.ok(userService.addFriend(user_id, loginRequest.getUsername()));
 
 
     }
