@@ -109,10 +109,10 @@ public class ChatController {
     }
 
     @PostMapping("/addfriend/{user_id}")
-    public ResponseEntity<?> addFriend(@PathVariable Long user_id, @Valid @RequestBody LoginRequest loginRequest){
+    public ResponseEntity<?> addFriend(@PathVariable Long user_id, @Valid @RequestBody UserModel userModel){
 
 
-        return ResponseEntity.ok(userService.addFriend(user_id, loginRequest.getUsername()));
+        return ResponseEntity.ok(userService.addFriend(user_id, userModel.getNickname()));
 
 
     }

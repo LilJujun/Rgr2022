@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
 import s from './MessageCss.module.css';
 import './MessageCss.module.css';
+import '../../App.css';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import authHeader from '../../auth';
@@ -34,22 +35,9 @@ const Messages = (props) => {
       setMesseges(resp.data)
     }).catch(function (error) {
       alert(error)
-    })},2500)
+    })},25000000)
     return () => {clearInterval(timer);}
   }, [setMesseges]);
-
-  // function interval (){
-  //   console.log("Хуй")
-  //   axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
-  //     if(messeges.length === resp.data.length){
-  //       console.log("ZALUPA")
-  //       setMesseges(resp.data)
-  //     }
-  //   }).catch(function (error) {
-  //     alert(error)
-  //   })
-  // }
-  
 
   function MessageList(props) {
 
@@ -58,9 +46,9 @@ const Messages = (props) => {
      
 
       if(props == user.id){
-        return "s.right";
+        return 'right';
       }else{
-        return "s.left";
+        return 'left';
       }
     }
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
@@ -102,24 +90,16 @@ const Messages = (props) => {
 
   return (
     <div className={s.messeng}>
-
-
       <div className={s.nameDialog} >
         Сообщения c {chat.state.name}
-
       </div>
+
       <div className={s.messages}>
         Сообщения
 
-        <div>
-          <MessageList messeges={messeges} />
+        <div >
+          <MessageList  messeges={messeges} />
         </div>
-
-        <div>
-
-        </div>
-
-
 
       </div>
 
@@ -129,9 +109,6 @@ const Messages = (props) => {
         <button type='submit' onClick={() => { outputMessage(); }}>
           Мяукнуть
         </button>
-
-
-
       </div>
     </div>
   );
