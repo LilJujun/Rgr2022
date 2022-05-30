@@ -17,15 +17,7 @@ const Messages = (props) => {
   const [messeges, setMesseges] = useState([]);
   const [text, setText] = useState();
 
-  const changeInputText = event => {
-    event.persist()
-    setText(prev => {
-      return {
-        ...prev,
-        [event.target.name]: event.target.value,
-      }
-    })
-  }
+  
 
 
   
@@ -78,8 +70,7 @@ const Messages = (props) => {
       axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
 
 
-        const messeges = resp.data;
-        setMesseges(messeges)
+        setMesseges(resp.data)
 
       })
     }).catch(function (error) {

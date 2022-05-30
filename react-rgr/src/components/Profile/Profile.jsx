@@ -26,7 +26,7 @@ class Profile extends Component {
                     <form>
                     <div className={s.textField}>
                         <label className={s.textField__label} for="username">Имя</label>
-                        <input className={s.textField__input} type="text" name="username" id="username"  value={this.state.nickname} ></input>
+                        <input className={s.textField__input} type="text" name="username" id="username"  placeholder={this.state.nickname} ></input>
                         <button type="button"  onClick={()=> {
                             <input type="text" name="username" id="username"></input>
 

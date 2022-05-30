@@ -44,6 +44,7 @@ import { render } from "@testing-library/react";
                 <a>Chats</a>
                 <div>
                     <ChatsList chat={chat} />
+                    
 
                 </div>
                 <div>

@@ -20,12 +20,6 @@ const chekingChats = () =>{
     
   },{headers:authHeader()}).then((res) =>{
     alert(res.data)
-    if(res.data instanceof String){
-      alert(res.data)
-    }else{
-      setChat(res.data)
-    }
-
   }).catch(function(error){
     alert(error)
   })
@@ -37,11 +31,20 @@ const chekingChats = () =>{
 
 return (
   <div className={s.messeng}>
+    
+
+   
       Поиск чатов
+
+    
     <div className={s.messages}>
       
-    <input className={s.inputChats} type='text' name='find' id='find' placeholder="Введите название чата"></input>
-    <button className={s.btnChats} onClick={chekingChats}>Присоединиться</button>
+    <input type='text' name='find' id='find' playcholder="Введите имя пользователя"></input>
+    <button onClick={chekingChats}>Присоединиться</button>
+    
+     
+
+
     </div>
 
     
