@@ -6,6 +6,7 @@ import com.example.rgr.entity.Message;
 import com.example.rgr.entity.User;
 import com.example.rgr.model.ChatDto;
 import com.example.rgr.model.MessageDto;
+import com.example.rgr.model.MessageRequest;
 import com.example.rgr.model.UserModel;
 import com.example.rgr.repo.AttachedFileRepository;
 import com.example.rgr.repo.ChatRepository;
@@ -79,7 +80,12 @@ public class ChatController {
 
     @GetMapping("/chat/{chat_id}")
     public ResponseEntity<?> findChatMessages (@PathVariable Long chat_id){
-        return ResponseEntity.ok(MessageDto.buildList(messageService.findAllByChatId(chat_id)));
+
+        List<MessageRequest> messageRequests = MessageRequest.buildList(messageService.findAllByChatId(chat_id));
+        for(MessageRequest ms: messageRequests){
+            ms.setUsername(userService.findById(ms.getUser_id()).getNickname());
+        }
+        return ResponseEntity.ok(messageRequests);
     }
     @GetMapping("/chat/{chat_id}/info")
     public ResponseEntity<?> findChatInfo(@PathVariable Long chat_id){

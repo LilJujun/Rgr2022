@@ -25,8 +25,8 @@ const [friend, setFriend] = useState([]);
         Поиск пользователей
 
         <div >
-          <input type='text' name='find' id='find' playcholder="Введите имя пользователя"></input>
-          <button>Поиск</button>
+          <input class={s.inputUsers} type='text' name='find' id='find' placeholder="Введите имя пользователя"></input>
+          <button class={s.btnUsers}>Поиск</button>
         </div>
         <div>
         Друзья

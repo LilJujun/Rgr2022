@@ -53,6 +53,7 @@ export default function Registration() {
             <p className={s.logo}>Kotogramm</p>
                 <form onSubmit={submitChecking}>
                     <p>Name: <input
+                        className={s.regInput}
                         type="nickname"
                         id="nickname"
                         name="nickname"
@@ -60,6 +61,7 @@ export default function Registration() {
                         onChange={changeInputRegister}
                     /></p>
                     <p>Email: <input
+                        className={s.regInput}
                         type="email"
                         id="email"
                         name="email"
@@ -68,6 +70,7 @@ export default function Registration() {
                         formnovalidate
                     /></p>
                     <p>Password: <input
+                        className={s.regInput}
                         type="password"
                         id="password"
                         name="password"
@@ -75,6 +78,7 @@ export default function Registration() {
                         onChange={changeInputRegister}
                     /></p>
                     <p>Repeat password: <input
+                        className={s.regInput}
                         type="password"
                         id="password2"
                         name="password2"
@@ -82,6 +86,7 @@ export default function Registration() {
                         onChange={changeInputRegister}
                     /></p>
                     <p>Date birthday: <input
+                        className={s.regInput}
                         type="date" id="birthday" name="birthday"
 
                         min="1900-01-01" max="2022-01-01"

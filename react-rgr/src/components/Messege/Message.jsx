@@ -4,10 +4,11 @@ import './MessageCss.module.css';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import authHeader from '../../auth';
+import { toBeChecked } from '@testing-library/jest-dom/dist/matchers';
 
 
 const user = JSON.parse(localStorage.getItem("user"))
-
+let timer = null;
 const Messages = (props) => {
 
   let chat = useLocation();
@@ -26,45 +27,59 @@ const Messages = (props) => {
   }
 
 
+  
   useEffect(() => {
-
-    axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
-
+    timer = setInterval(()=>{axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
+      console.log("Zalupa")
       setMesseges(resp.data)
     }).catch(function (error) {
       alert(error)
-    })
+    })},2500)
+    return () => {clearInterval(timer);}
   }, [setMesseges]);
 
-  function interval (){
-    console.log("Хуй")
-    axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
-
-      setMesseges(resp.data)
-    }).catch(function (error) {
-      alert(error)
-    })
-  }
-  setInterval(()=>{interval()},2500)
+  // function interval (){
+  //   console.log("Хуй")
+  //   axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
+  //     if(messeges.length === resp.data.length){
+  //       console.log("ZALUPA")
+  //       setMesseges(resp.data)
+  //     }
+  //   }).catch(function (error) {
+  //     alert(error)
+  //   })
+  // }
+  
 
   function MessageList(props) {
 
     const messages = props.messeges;
+    function checkSender(props){
+     
+
+      if(props == user.id){
+        return "s.right";
+      }else{
+        return "s.left";
+      }
+    }
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
 
-      <li key={ms.id}>
+      <li className={checkSender(ms.user_id)} key={ms.id}>
+        
+        <div>{ms.username}</div>
         {ms.text}
 
       </li>
     );
     return (
       <ul>{listMessages}</ul>
-      
+
     )
   }
 
   function outputMessage() {
-    
+
 
 
     axios.post(`http://localhost:8080/ms/chat/${chat.state.id}`, {

@@ -53,26 +53,22 @@ function Make() {
             <div >
                 <p className={s.h}>Создание чата</p>
                 <form className={s.dialogsItem} onSubmit={submitChecking}>
-                    <p> Имя чата<input type='text' name="name" id="name" value={chat.name} className={s.inputPage} onChange={changeInputAddChat} /> </p>
+                    <p> Имя чата<input className={s.inputMakeChat} type='text' name="name" id="name" value={chat.name} onChange={changeInputAddChat} /> </p>
 
-                    <p> Описание чата<input type='text' name="description" id="description" value={chat.description} className={s.inputPage} onChange={changeInputAddChat} /></p>
+                    <p> Описание чата<input className={s.inputMakeChat} type='text' name="description" id="description" value={chat.description} onChange={changeInputAddChat} /></p>
 
                     <p> Тип чата</p>
-                    <div value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
-                    <label><input type="radio" name="type" checked /> Open</label>
-                    <label><input type="radio" name="type" /> Closed</label>
+                    <div value={chat.type} className={s.inputRadio} onChange={changeInputAddChat}>
+                    <label htmlFor='rad1'> Open</label><input id='rad1' type="radio" name="type" checked />
+                    <label htmlFor='rad2'>Closed</label><input id='rad2' type="radio" name="type"/>
                     </div>
                     {/* <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
                             <option>Open</option>
                             <option>Closed</option>
                         </select> */}
 
-                    <p><input className={s.btn} type="submit" value="Создать чат" />  </p>
+                    <p><input className={s.btnMakeChat} type="submit" value="Создать чат" />  </p>
                 </form>
-            </div>
-
-            <div className={s.inputButton}>
-
             </div>
         </div>
     );

@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     grid-area: c;
-    background-color: yellowgreen;
+    background-color: rgb(218, 243, 244);
 }
 .item{
     size: 100px;
@@ -30,9 +30,12 @@
 
 }
 .inputButton{
-    
     height: 40px;
     margin-top:10px ;
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(3, 45, 70);
+    color:rgb(213, 255, 253);
 
 }
 .messages{

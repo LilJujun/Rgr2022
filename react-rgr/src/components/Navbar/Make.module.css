@@ -11,7 +11,7 @@
     color: rgb(4, 51, 82);
 }
 
-.dialogsItem{
+/* .dialogsItem{
     margin: 20px;
     size: 100px;
 }
@@ -20,9 +20,9 @@
 
     grid-template-columns: 2fr 10fr; 
     size: 12px;
-}
-.inputPage {
-    width: 20%;
+} */
+.inputMakeChat {
+    width: 30%;
     height:40px;
     resize: none;
     display: flex;
@@ -32,11 +32,18 @@
     border-color: rgb(4, 51, 82);
     font-size: 20px;
 }
-.inputPage:focus{
+.inputMakeChat:focus{
     background-color: rgba(203, 230, 239, 0.429);
     outline: none;
 }
-.btn{
+.inputRadio{
+    display: flex;
+    font-size: 25px;
+}
+/* #rad1, #rad2{
+    width: 200px; 
+} */
+.btnMakeChat{
     font-size: large;
     height: 40px;
     border-radius: 10px;

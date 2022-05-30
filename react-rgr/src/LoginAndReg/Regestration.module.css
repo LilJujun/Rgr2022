@@ -18,7 +18,7 @@
     color: rgb(213, 255, 253);
     
 }
-input{
+.regInput{
     border: 0;
     border-bottom: solid 1px;
     height: 20px;
@@ -27,7 +27,7 @@ input{
     opacity: 0,8;
     color:rgb(213, 255, 253);
 }
-textarea:focus, input:focus{
+textarea:focus, .regInput:focus{
     background-color: rgb(3, 45, 70);
     outline: none;
 }

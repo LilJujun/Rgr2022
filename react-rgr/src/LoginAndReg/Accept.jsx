@@ -57,6 +57,7 @@ export default function Accept() {
                 <form className={s.onCentre} onSubmit={submitChecking} >
                     <p>Код подтверждения</p>
                     <input
+                        className={s.accInput}
                         type="text"
                         placeholder="Введите код,отправленный на email"
                         id="code"
