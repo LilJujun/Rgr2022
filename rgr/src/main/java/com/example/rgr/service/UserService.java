@@ -43,16 +43,15 @@ public class UserService {
             return "Нет такого пользователя";
         User user = userRepository.findById(id).get();
         User friend = userRepository.findByNickname(frName).get();
-        for(User usr: user.getUsers()){
+        for(User usr: user.getFriends()){
             if(Objects.equals(usr.getId(), friend.getId())){
                 return "Пользователь уже у вас в друзьях";
             }
         }
 
-        user.getUsers().add(friend);
-        User saved=userRepository.save(user);
-        friend.getUsers().add(saved);
-        userRepository.save(friend);
+        user.getFriends().add(friend);
+        userRepository.save(user);
+
         return "Добавлен в друзья";
 
 
@@ -60,7 +59,7 @@ public class UserService {
 
     public Set<User> findFriends(Long id){
         User user = userRepository.findById(id).get();
-        return user.getUsers();
+        return user.getFriends();
 
 
     }
