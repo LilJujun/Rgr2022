@@ -1,6 +1,26 @@
 .right{
+    list-style-type: none;
+    font: italic 20px cursive;
     color: rgb(3, 45, 70);
-    border: solid 2px;
-    background-color: yellow;
+    border: solid 0px;
+    background-color: rgb(187, 217, 234);
     border-radius: 15px;
+    margin: 10px;
+    margin-left: 70%;
+    padding: 2px;
+    font-size: 18px;
+    box-shadow:0 5px 7px 2px rgba(64, 111, 113, 0.462);
+}
+.left{
+    list-style-type: none;
+    font: italic 20px cursive;
+    color: rgb(3, 45, 70);
+    border: solid 0px;
+    background-color: rgb(187, 217, 234);
+    border-radius: 15px;
+    margin: 10px;
+    margin-right: 70%;
+    padding: 2px;
+    font-size: 18px;
+    box-shadow:0 5px 7px 2px rgba(64, 111, 113, 0.462);
 }
