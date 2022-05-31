@@ -52,7 +52,6 @@ public class UserService {
         friend.getFriends().add(user);
         user.getFriends().add(friend);
         userRepository.save(friend);
-        userRepository.save(user);
 
         return "Добавлен в друзья";
 
