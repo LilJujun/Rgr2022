@@ -16,19 +16,19 @@ public class AttachedFileService {
     @Autowired
     ImageService imageService;
 
-    public byte[] getImage(String path) {
+    public byte[] getImage(String path) throws IOException {
         Optional<AttachedFile> attachedFile = attachedFileRepository.findByPath(path);
-        if(attachedFile.isPresent()){
-            try{
-                File file = new File(String.format("src/main/resources/images/%s",path));
-                try(InputStream stream = new FileInputStream(file)){
+        if(attachedFile.isPresent()) {
+            try {
+                File file = new File(String.format("src/main/resources/images/%s", path));
+                try (InputStream stream = new FileInputStream(file)) {
                     return stream.readAllBytes();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
                 }
+            } catch (IOException e){
+                throw new IOException(e);
             }
+        } else {
+            throw new IOException("not found");
         }
     }
 
