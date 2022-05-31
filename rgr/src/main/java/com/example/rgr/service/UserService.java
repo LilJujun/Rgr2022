@@ -50,7 +50,9 @@ public class UserService {
         }
 
         user.getUsers().add(friend);
-        userRepository.save(user);
+        User saved=userRepository.save(user);
+        friend.getUsers().add(saved);
+        userRepository.save(friend);
         return "Добавлен в друзья";
 
 
