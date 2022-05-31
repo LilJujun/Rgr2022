@@ -4,6 +4,7 @@ import com.example.rgr.entity.AttachedFile;
 import com.example.rgr.repo.AttachedFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.Optional;
@@ -31,6 +32,9 @@ public class AttachedFileService {
             throw new IOException("not found");
         }
     }
+//     public AttachedFile saveImage(MultipartFile multipartFile){
+//
+//     }
 
 
 

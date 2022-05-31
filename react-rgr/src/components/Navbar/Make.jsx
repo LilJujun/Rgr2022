@@ -66,8 +66,10 @@ function Make() {
                     </p>
                     <p> Тип чата</p>
                     <div value={chat.type} className={s.inputRadio} onChange={changeInputAddChat}>
-                    <label htmlFor='rad1'> Open</label><input id='rad1' type="radio" name="type" checked />
-                    <label htmlFor='rad2'>Closed</label><input id='rad2' type="radio" name="type"/>
+                    <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
+                            <option>Open</option>
+                            <option>Closed</option>
+                        </select>
                     </div>
                     {/* <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
                             <option>Open</option>
