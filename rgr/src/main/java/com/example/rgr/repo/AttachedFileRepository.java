@@ -10,4 +10,6 @@ public interface AttachedFileRepository extends JpaRepository<AttachedFile, Long
 
     @Override
     Optional<AttachedFile> findById(Long aLong);
+
+    Optional<AttachedFile> findByPath(String path);
 }

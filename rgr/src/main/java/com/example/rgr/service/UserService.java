@@ -60,8 +60,6 @@ public class UserService {
     public Set<User> findFriends(Long id){
         User user = userRepository.findById(id).get();
         return user.getFriends();
-
-
     }
 
     public Optional<User>  findByEmail(String email){

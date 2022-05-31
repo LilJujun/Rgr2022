@@ -6,9 +6,44 @@
     background-color: rgb(5, 255, 172);
 }
 .item{
-    size: 100px;
+    display: block;
+    margin:0;
+    padding:0;
+    border: 0;
+    height: 45px;
+    padding-top: 15px;
+    font: italic 20px cursive;
+    text-decoration: none;
+    color: rgb(213, 255, 253);
+    border-bottom: solid 1px;
+    border-color: rgba(213, 255, 253, 0.427);    
+  }
+  .ulChat{
+      margin: 0;
+  }
+  .liChat{
+    list-style-type: none;
+  }
+
+.liChat a{
+    display: block;
+    margin:0;
+    padding:0;
+    border: 0;
+    border-bottom: solid 1px;
+    border-color: rgba(213, 255, 253, 0.427);
+    padding-bottom: 5px;
+    height: 20px;
+    display: block;
+    font: italic 20px cursive;
+    text-decoration: none;
+    color: rgb(213, 255, 253);
 }
-.dialogs{
+.liChat:hover{
+    background-color: rgb(3, 57, 88);
+    box-shadow:0 10px 15px 4px rgba(64, 111, 113, 0.462);
+  }
+/* .dialogs{
      display:flex;
 
     grid-template-columns: 2fr 10fr; 
@@ -27,4 +62,4 @@
 }
 .dialogsItem{
     margin: 0 auto;
-}
+} */

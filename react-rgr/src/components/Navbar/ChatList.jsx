@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import authHeader from "../../auth";
 import { NavLink } from "react-router-dom";
-import { render } from "@testing-library/react";
+import s from './ChatList.module.css';
+import './ChatList.module.css';
 
     const ChatList = () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -28,24 +29,22 @@ import { render } from "@testing-library/react";
             
             
                 
-                <li key={ch.id}><NavLink to={`/ms`} state={ch}       > {ch.name} </NavLink>
+                <li className={s.liChat} key={ch.id}><NavLink to={`/ms`} state={ch}       > {ch.name} </NavLink>
                 </li>
             
             );
             
             return (
-                <ul>{listChats}</ul>
+                <ul className={s.ulChat}>{listChats}</ul>
             )
         }
 
         return (
 
             <div >
-                <a>Chats</a>
+                <a className={s.item}>Chats</a>
                 <div>
                     <ChatsList chat={chat} />
-                    
-
                 </div>
                 <div>
 
