@@ -17,10 +17,12 @@ import com.example.rgr.web.form.UserForm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +37,7 @@ public class ChatController {
     private MessageService messageService;
 
     @Autowired
-    private AttachedFileRepository attachedFileRepository;
+    private AttachedFileService attachedFileService;
 
     @Autowired
     private UserRepository userRepository;
@@ -162,6 +164,14 @@ public class ChatController {
         Chat chat = chatService.findByName(name).get();
         userService.addUserInChat(chat, user_id);
         return ResponseEntity.ok("Вы вошли");
+    }
+
+    @GetMapping(value = "get/photo/{path}", produces = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> getImage (@PathVariable("path") String path) throws IOException {
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.parseMediaType(MediaType.IMAGE_PNG_VALUE))
+                .body(attachedFileService.getImage(path));
     }
 
 
