@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
 import s from './MessageCss.module.css';
 import './MessageCss.module.css';
+import '../../App.css';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import authHeader from '../../auth';
@@ -40,23 +41,23 @@ const Messages = (props) => {
      
 
       if(props == user.id){
-        return "s.right";
+        return 'right';
       }else{
-        return "s.left";
+        return 'left';
       }
     }
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
 
       <li className={checkSender(ms.user_id)} key={ms.id}>
         
-        <div>{ms.username}</div>
+        <div className={s.messUser}>{ms.username}</div>
         {ms.text}
         
 
       </li>
     );
     return (
-      <ul>{listMessages}</ul>
+      <ul className={s.messList}>{listMessages}</ul>
 
     )
   }
@@ -86,29 +87,22 @@ const Messages = (props) => {
 
 
       <div className={s.nameDialog} >
+      <p className={s.nameDialogText}>
         Сообщения c {chat.state.name}
-
+        </p>
       </div>
       <div className={s.messages}>
-        Сообщения
+
 
         <div>
           <MessageList messeges={messeges} />
         </div>
-
-        <div>
-
-        </div>
-
-
-
       </div>
 
       <div className={s.inputButtonAndText}>
 
         <textarea type="text" placeholder="Помурчи в дискорде" id="mess" className={s.inputPage} />
-        <button type='submit' onClick={() => { outputMessage(); }}>
-          Мяукнуть
+        <button className={s.inputButton} type='submit' onClick={() => { outputMessage(); }}>          Мяукнуть
         </button>
 
 

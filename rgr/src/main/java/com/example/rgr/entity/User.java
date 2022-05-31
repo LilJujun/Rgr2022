@@ -59,6 +59,6 @@ public class User {
     )
     private Set<Chat> chats = new HashSet<>();
 
-    @ManyToMany( mappedBy = "friends", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToMany( fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private Set<User> friends = new HashSet<>();
 }
