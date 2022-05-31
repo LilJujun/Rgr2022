@@ -32,6 +32,8 @@ public class ChatForm {
 
     private Long isAdmin;
 
+    private String friendname;
+
     private Set<User> users=new HashSet<>();
 
      /////make im service!!!!!!!1
