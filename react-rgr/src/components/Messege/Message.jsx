@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
 import s from './MessageCss.module.css';
 import './MessageCss.module.css';
-import '../../App.css';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import authHeader from '../../auth';
@@ -18,6 +17,9 @@ const Messages = (props) => {
   const [text, setText] = useState();
 
   
+
+
+  
   useEffect(() => {
     timer = setInterval(()=>{axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
       console.log("Zalupa")
@@ -28,6 +30,9 @@ const Messages = (props) => {
     return () => {clearInterval(timer);}
   }, [setMesseges]);
 
+  
+  
+
   function MessageList(props) {
 
     const messages = props.messeges;
@@ -35,22 +40,23 @@ const Messages = (props) => {
      
 
       if(props == user.id){
-        return 'right';
+        return "s.right";
       }else{
-        return 'left';
+        return "s.left";
       }
     }
     const listMessages = messages.sort((a, b) => a.id > b.id ? 1 : -1).map((ms) =>
 
       <li className={checkSender(ms.user_id)} key={ms.id}>
         
-        <div className={s.messUser}>{ms.username}</div>
+        <div>{ms.username}</div>
         {ms.text}
+        
 
       </li>
     );
     return (
-      <ul className={s.messList}>{listMessages}</ul>
+      <ul>{listMessages}</ul>
 
     )
   }
@@ -66,7 +72,6 @@ const Messages = (props) => {
       document.getElementById('mess').value = '';
       axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
 
-
         setMesseges(resp.data)
 
       })
@@ -78,25 +83,36 @@ const Messages = (props) => {
 
   return (
     <div className={s.messeng}>
-      <div className={s.nameDialog} >
-        <p className={s.nameDialogText}>
-        Сообщения c {chat.state.name}
-        </p>
-      </div>
 
+
+      <div className={s.nameDialog} >
+        Сообщения c {chat.state.name}
+
+      </div>
       <div className={s.messages}>
-        <div >
-          <MessageList  messeges={messeges} />
+        Сообщения
+
+        <div>
+          <MessageList messeges={messeges} />
         </div>
+
+        <div>
+
+        </div>
+
+
 
       </div>
 
       <div className={s.inputButtonAndText}>
 
         <textarea type="text" placeholder="Помурчи в дискорде" id="mess" className={s.inputPage} />
-        <button className={s.inputButton} type='submit' onClick={() => { outputMessage(); }}>
+        <button type='submit' onClick={() => { outputMessage(); }}>
           Мяукнуть
         </button>
+
+
+
       </div>
     </div>
   );

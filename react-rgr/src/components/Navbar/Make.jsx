@@ -13,7 +13,8 @@ function Make() {
         return {
             name: '',
             description: '',
-            type: ''
+            type: '',
+            friend:''
         }
     })
     const changeInputAddChat = event => {
@@ -30,21 +31,24 @@ function Make() {
         console.log(user.id)
         console.log(chat.name)
         console.log(chat.type)
+        if (chat.name === '') {
+            alert("Введите название чата")
+        }else{
         axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
             name: chat.name,
             description: chat.description,
-            type: chat.type
+            type: chat.type,
+            friendname:chat.friend
         }, { headers: authHeader() }).then((res) => {
-            if (chat.name === '') {
-                alert("Введите название чата")
-            } else {
+             alert(res.data)
 
                 window.location.href = "http://localhost:3000/emptytitle"
-            }
+            
 
         }).catch(function (error) {
             alert(error);
         });
+        }
     }
 
     return (
@@ -56,7 +60,10 @@ function Make() {
                     <p> Имя чата<input className={s.inputMakeChat} type='text' name="name" id="name" value={chat.name} onChange={changeInputAddChat} /> </p>
 
                     <p> Описание чата<input className={s.inputMakeChat} type='text' name="description" id="description" value={chat.description} onChange={changeInputAddChat} /></p>
+                    <p>Кого вы хотите добавить?
+                    <input  className={s.inputMakeChat} type='text' name="friend" id='friend' value={chat.friend} onChange={changeInputAddChat}></input>
 
+                    </p>
                     <p> Тип чата</p>
                     <div value={chat.type} className={s.inputRadio} onChange={changeInputAddChat}>
                     <label htmlFor='rad1'> Open</label><input id='rad1' type="radio" name="type" checked />
