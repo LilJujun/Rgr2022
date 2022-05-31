@@ -20,10 +20,8 @@ const chekingFriends = () =>{
     
     
   },{headers:authHeader()}).then((resp) =>{
-    alert(resp.data)
-  })
-  .then(function(){
-    console.log('aoa')
+    alert(resp.data);
+    console.log("get after post")
     axios.get(`http://localhost:8080/ms/friends/${user.id}`,{headers:authHeader()}).then((resp)=>{
     
     setFriends(resp.data)
@@ -31,6 +29,8 @@ const chekingFriends = () =>{
   }).catch(function(error){
     alert(error)
   })
+  
+  
 }
 
 useEffect(() => {
