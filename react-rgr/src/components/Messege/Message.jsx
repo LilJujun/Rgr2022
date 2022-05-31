@@ -18,16 +18,13 @@ const Messages = (props) => {
   const [text, setText] = useState();
 
   
-
-
-  
   useEffect(() => {
     timer = setInterval(()=>{axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
       console.log("Zalupa")
       setMesseges(resp.data)
     }).catch(function (error) {
       alert(error)
-    })},25000000)
+    })},2500)
     return () => {clearInterval(timer);}
   }, [setMesseges]);
 
@@ -47,13 +44,13 @@ const Messages = (props) => {
 
       <li className={checkSender(ms.user_id)} key={ms.id}>
         
-        <div>{ms.username}</div>
+        <div className={s.messUser}>{ms.username}</div>
         {ms.text}
 
       </li>
     );
     return (
-      <ul>{listMessages}</ul>
+      <ul className={s.messList}>{listMessages}</ul>
 
     )
   }
@@ -82,12 +79,12 @@ const Messages = (props) => {
   return (
     <div className={s.messeng}>
       <div className={s.nameDialog} >
+        <p className={s.nameDialogText}>
         Сообщения c {chat.state.name}
+        </p>
       </div>
 
       <div className={s.messages}>
-        Сообщения
-
         <div >
           <MessageList  messeges={messeges} />
         </div>
@@ -97,7 +94,7 @@ const Messages = (props) => {
       <div className={s.inputButtonAndText}>
 
         <textarea type="text" placeholder="Помурчи в дискорде" id="mess" className={s.inputPage} />
-        <button type='submit' onClick={() => { outputMessage(); }}>
+        <button className={s.inputButton} type='submit' onClick={() => { outputMessage(); }}>
           Мяукнуть
         </button>
       </div>
