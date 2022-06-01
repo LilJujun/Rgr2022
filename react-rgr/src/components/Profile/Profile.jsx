@@ -1,7 +1,6 @@
 import axios from 'axios';
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import s from './Profile.module.css';
-import authHeader from '../../auth';
 
 
     // const handleSubmit = (event) => {
@@ -57,23 +56,7 @@ const Profile = () => {
           });
   }
 
-  function send() {
-   
-     let resp = axios({
-        method: "post",
-        url: `http://localhost:8080/${user.id}/image`,
-        data: formData,
-        withCredentials: true,
-        headers: {"Content-Type": "multipart/form-data"},
-    })
-        .then( (response) =>{
-            //handle success
-           if (response.status === 200){setAdder(true)}
-            console.log("Success")
-            return response.data
-        });
-
-}
+  
     return (
 
         <div className={s.content}>
