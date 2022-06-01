@@ -108,7 +108,7 @@ public class ChatController {
 
     }
 
-    @DeleteMapping("/chatuser/{chat_id}")
+    @PostMapping("/delete/userchat/{chat_id}")
     ResponseEntity<?> deleteUserFromChat(@PathVariable Long chat_id, @Valid @RequestBody UserModel userModel){
 
         return ResponseEntity.ok(userService.deleteFromChat(chat_id, userModel.getNickname()));
