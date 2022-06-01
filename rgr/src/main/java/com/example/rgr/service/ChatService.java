@@ -51,6 +51,10 @@ public class ChatService {
         return userchats;
     }
     public void deleteById(Long id){
+        Chat chat = chatRepository.findById(id).get();
+        chat.getUsers().clear();
+        chatRepository.save(chat);
+
         chatRepository.deleteById(id);
     }
 
