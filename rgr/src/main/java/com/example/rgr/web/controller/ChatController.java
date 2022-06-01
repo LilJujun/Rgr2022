@@ -167,7 +167,7 @@ public class ChatController {
         return ResponseEntity.ok("Вы вошли");
     }
 
-    @GetMapping(value = "{/{user_id}/photo/{path}", produces = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @GetMapping(value = "/{user_id}/photo/{path}", produces = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> getImage (@PathVariable("path") String path) throws IOException {
         return ResponseEntity
                 .ok()
