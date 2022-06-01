@@ -60,7 +60,7 @@ public class ChatService {
         chatRepository.save(chat);
 
 
-//        chatRepository.deleteById(id);
+        chatRepository.deleteById(id);
     }
 
     public Optional <Chat> findByName(String name){
