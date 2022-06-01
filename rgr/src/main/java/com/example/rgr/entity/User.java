@@ -43,12 +43,7 @@ public class User {
         return enabled;
     }
 
-    @OneToMany(mappedBy = "user", cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.PERSIST
-    })
+    @OneToMany
     private List<Message> messages;
 
     @ManyToMany(cascade = {
