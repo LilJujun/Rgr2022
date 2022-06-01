@@ -73,12 +73,12 @@ const Messages = (props) => {
   const changeDeleteUser = event => {
     event.persist()
     setUsers(prev => {
-        return {
-            ...prev,
-            [event.target.name]: event.target.value,
-        }
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      }
     })
-}
+  }
 
   function UserList(props) {
     const user = props.users;
@@ -114,24 +114,42 @@ const Messages = (props) => {
 
 
   const submitDelete = event => {
-   
+
     let del = document.getElementById('delete').value;
-    if(del === user.username){
+    if (del === user.username) {
       alert("Вы не можете удалить самого себя")
-    }else if(user.id != chat.state.isAdmin){
-        alert("Вы не являетесь админом")
-    }else{
-    console.log("aoa");
-    axios.post(`http://localhost:8080/ms/userchat/${chat.state.id}/`, {
-      nickname: del
-    }, { headers: authHeader() }).then((res) => {
+    } else if (user.id != chat.state.isAdmin) {
+      alert("Вы не являетесь админом")
+    } else {
+      console.log("aoa");
+      axios.post(`http://localhost:8080/ms/userchat/${chat.state.id}/`, {
+        nickname: del
+      }, { headers: authHeader() }).then((res) => {
         alert(res.data);
 
-    }).catch(function (error) {
-      alert(error);
-    });
+      }).catch(function (error) {
+        alert(error);
+      });
+    }
   }
+
+  function deleteChat() {
+    if (user.id != chat.state.isAdmin) {
+      alert("Вы не являетесь админом")
+    }else{
+
+    axios.get(`http://localhost:8080/ms/deletechat/${chat.state.id}/`,
+      { headers: authHeader() }).then((res) => {
+        
+        window.location.href = "http://localhost:3000/emptytitle"
+
+      }).catch(function (error) {
+        alert(error);
+      });}
   }
+
+
+
 
   return (
     <div className={s.messeng}>
@@ -139,11 +157,12 @@ const Messages = (props) => {
 
       <div className={s.nameDialog}  >
         <UserList users={users} />
-       
+
         <p className={s.nameDialogText}>
           Сообщения c {chat.state.name}
-        <input type="text" name='delete' id='delete'></input>
-        <input type='submit' onClick={submitDelete} value="Удалить"></input>
+          <input type="text" name='delete' id='delete'></input>
+          <input type='submit' onClick={submitDelete} value="Удалить"></input>
+          <button name="deleteChat" onClick={deleteChat}>Удалить этот чат</button>
         </p>
       </div>
       <div className={s.messages}>
