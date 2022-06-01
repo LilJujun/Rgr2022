@@ -108,7 +108,7 @@ public class ChatController {
         return ResponseEntity.ok(userService.deleteFromChat(chat_id, userModel.getNickname()));
     }
 
-    @GetMapping("/deletechat/{chat_id} ")
+    @GetMapping("/deletechat/{chat_id}")
     public ResponseEntity<?> deleteChat(@PathVariable Long chat_id){
         chatService.deleteById(chat_id);
         return ResponseEntity.ok("Чат удален");
