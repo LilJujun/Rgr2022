@@ -35,7 +35,7 @@ public class Chat  {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chat")
     private List<AttachedFile> attachedFiles;
 
     @Column(name = "isAdmin", nullable = false)
@@ -47,7 +47,7 @@ public class Chat  {
     @Column(name = "chatPhoto")
     private String photoPath;
 
-    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chat")
     private List<Message> messages;
 
 

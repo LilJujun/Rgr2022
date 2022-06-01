@@ -43,10 +43,10 @@ public class User {
         return enabled;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<Message> messages;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "user_chat",
             joinColumns = {
             @JoinColumn(name = "user_id", referencedColumnName = "id",
@@ -59,7 +59,7 @@ public class User {
     )
     private Set<Chat> chats = new HashSet<>();
 
-    @ManyToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany( fetch = FetchType.LAZY)
     private Set<User> friends = new HashSet<>();
 
 //    @OneToOne

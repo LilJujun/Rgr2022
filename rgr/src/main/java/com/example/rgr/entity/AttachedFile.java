@@ -23,10 +23,10 @@ public class AttachedFile {
     @Column(nullable = false)
     private String path;
 
-    @OneToOne(mappedBy = "attachedFile", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "attachedFile")
     private Message message;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "attachedFiles")
     private Chat chat;
 

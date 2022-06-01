@@ -29,15 +29,15 @@ public class Message {
 
     private MessageStatus status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "chat_id")
     private Chat chat;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "attachedFile_id")
     private AttachedFile attachedFile;
 
