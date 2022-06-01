@@ -17,7 +17,7 @@ import java.util.List;
 public class MessageDto { //to display messages in chat
 
 
-    public MessageDto(Long id, String text, Long chat_id, Long user_id, Date date) {
+    public MessageDto(Long id, String text, Long chat_id, Long user_id, String date) {
         this.id = id;
         this.text = text;
         this.chat_id = chat_id;
@@ -30,7 +30,7 @@ public class MessageDto { //to display messages in chat
     private Long chat_id;
     private Long user_id;
     private String path="";
-    private Date date;
+    private String  date;
 
 
     public static MessageDto build(Message message){

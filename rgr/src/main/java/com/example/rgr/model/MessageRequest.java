@@ -22,9 +22,9 @@ public class MessageRequest {
         private Long user_id;
         private String username;
         private String path="";
-        private Date date;
+        private String  date;
 
-    public MessageRequest(Long id, String text, Long chat_id, Long user_id, String path, Date date) {
+    public MessageRequest(Long id, String text, Long chat_id, Long user_id, String path, String date) {
         this.id = id;
         this.text = text;
         this.chat_id = chat_id;
@@ -33,7 +33,7 @@ public class MessageRequest {
         this.date = date;
     }
 
-    public MessageRequest(Long id, String text, Long chat_id, Long user_id, Date date) {
+    public MessageRequest(Long id, String text, Long chat_id, Long user_id, String date) {
         this.id = id;
         this.text = text;
         this.chat_id = chat_id;

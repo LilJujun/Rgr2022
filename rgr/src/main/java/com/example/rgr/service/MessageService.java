@@ -10,10 +10,7 @@ import com.example.rgr.repo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class MessageService {
@@ -36,7 +33,8 @@ public class MessageService {
     }
 
     public Message save(MessageDto messageDto, Long chat_id){
-        Date date = new Date();
+        String date = Integer.toString(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) +":"+ Integer.toString(Calendar.getInstance().get(Calendar.MINUTE));
+
 
         Message message=MessageDto.toMessage(messageDto);
         message.setUser(userService.findById(messageDto.getUser_id()));

@@ -24,7 +24,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date date;
+    private String  date;
     private String content;
 
     private MessageStatus status;
