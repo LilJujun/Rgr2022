@@ -35,7 +35,7 @@ public class Chat  {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "chat")
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
     private List<AttachedFile> attachedFiles;
 
     @Column(name = "isAdmin", nullable = false)
@@ -47,11 +47,16 @@ public class Chat  {
     @Column(name = "chatPhoto")
     private String photoPath;
 
-    @OneToMany(mappedBy = "chat")
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
     private List<Message> messages;
 
 
-    @ManyToMany(mappedBy = "chats")
+    @ManyToMany(mappedBy = "chats", cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    })
     Set<User> users = new HashSet<>();
 
 
