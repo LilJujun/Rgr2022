@@ -95,11 +95,20 @@ public class UserService {
     }
 
     public String  deleteFromChat(Long id, String name){
+        if(userRepository.findByNickname(name).isEmpty()){
+            return "Нет такого котика";
+        }
         User user = userRepository.findByNickname(name).get();
         Chat chat = chatRepository.findById(id).get();
-        user.getChats().remove(chat);
-        userRepository.save(user);
-        return "Котик удален";
+        for(User usr : chat.getUsers()){
+            if(Objects.equals(user.getId(), usr.getId())){
+                user.getChats().remove(chat);
+                userRepository.save(user);
+                return "Котик удален";
+            }
+
+        }
+        return "Котик не состоит в этом чате";
     }
 
     public User save(@Valid UserForm form) { //changing chat params
