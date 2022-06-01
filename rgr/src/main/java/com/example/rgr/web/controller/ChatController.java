@@ -91,6 +91,16 @@ public class ChatController {
     public ResponseEntity<?> findChatInfo(@PathVariable Long chat_id){
         return ResponseEntity.ok(chatService.findById(chat_id).get());
     }
+
+    @GetMapping("/chat/users/{chat_id}")
+    public ResponseEntity<?> findChatUsers(@PathVariable Long chat_id){
+        Chat chat = chatService.findById(chat_id).get();
+        List<String > names=new ArrayList<>();
+        for(User user: chat.getUsers()){
+            names.add(user.getNickname());
+        }
+        return ResponseEntity.ok(names);
+    }
     @DeleteMapping("/chat/{chat_id}/info")
     ResponseEntity<?> deleteChat (@PathVariable Long chat_id){
         chatService.deleteById(chat_id);
