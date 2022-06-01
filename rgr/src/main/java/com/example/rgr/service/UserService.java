@@ -3,6 +3,7 @@ package com.example.rgr.service;
 import com.example.rgr.entity.Chat;
 import com.example.rgr.entity.User;
 import com.example.rgr.exception.UserExistsException;
+import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.repo.UserRepository;
 import com.example.rgr.web.form.ChatForm;
 import com.example.rgr.web.form.UserForm;
@@ -28,6 +29,9 @@ public class UserService {
     @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    ChatRepository chatRepository;
 
 
     public List<User> getList() {
@@ -88,6 +92,14 @@ public class UserService {
         BeanUtils.copyProperties(form, u,"password");
         u.setPassword(passwordEncoder.encode(form.getPassword()));
         return userRepository.save(u);
+    }
+
+    public String  deleteFromChat(Long id, String name){
+        User user = userRepository.findByNickname(name).get();
+        Chat chat = chatRepository.findById(id).get();
+        user.getChats().remove(chat);
+        userRepository.save(user);
+        return "Котик удален";
     }
 
     public User save(@Valid UserForm form) { //changing chat params

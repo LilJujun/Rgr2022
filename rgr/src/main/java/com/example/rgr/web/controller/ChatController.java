@@ -108,6 +108,12 @@ public class ChatController {
 
     }
 
+    @DeleteMapping("/chatuser/{chat_id}")
+    ResponseEntity<?> deleteUserFromChat(@PathVariable Long chat_id, @Valid @RequestBody UserModel userModel){
+
+        return ResponseEntity.ok(userService.deleteFromChat(chat_id, userModel.getNickname()));
+    }
+
     @PutMapping("/chat/{chat_id}/info")
     public ResponseEntity<?> updateChat (@RequestBody ChatForm chatForm){
         return ResponseEntity.ok(ChatDto.build(chatService.update(chatForm)));
