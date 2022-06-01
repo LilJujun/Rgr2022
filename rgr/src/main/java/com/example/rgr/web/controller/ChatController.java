@@ -101,15 +101,11 @@ public class ChatController {
         }
         return ResponseEntity.ok(names);
     }
-    @DeleteMapping("/chat/{chat_id}/info")
-    ResponseEntity<?> deleteChat (@PathVariable Long chat_id){
-        chatService.deleteById(chat_id);
-        return ResponseEntity.ok("chat deleted");
 
-    }
 
-    @PostMapping("/delete/userchat/{chat_id}")
-    ResponseEntity<?> deleteUserFromChat(@PathVariable Long chat_id, @Valid @RequestBody UserModel userModel){
+
+    @DeleteMapping("/userchat/{chat_id}")
+    public ResponseEntity<?> deleteUserFromChat(@PathVariable Long chat_id, @Valid @RequestBody UserModel userModel){
 
         return ResponseEntity.ok(userService.deleteFromChat(chat_id, userModel.getNickname()));
     }
