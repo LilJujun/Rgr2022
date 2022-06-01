@@ -13,7 +13,7 @@ function Make() {
         return {
             name: '',
             description: '',
-            type: '',
+            type: 'Open',
             friend:''
         }
     })
@@ -28,11 +28,10 @@ function Make() {
     }
     const submitChecking = event => {
         event.preventDefault();
-        console.log(user.id)
-        console.log(chat.name)
-        console.log(chat.type)
         if (chat.name === '') {
             alert("Введите название чата")
+        }else if(chat.friend===''){
+            alert("Введите друга, с которым хотите начать чат")
         }else{
         axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
             name: chat.name,
@@ -73,7 +72,7 @@ function Make() {
                     </div> */}
                     <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
                             <option disabled>Выберите тип чата</option>
-                            <option>Open</option>
+                            <option >Open</option>
                             <option>Closed</option>
                         </select>
 
