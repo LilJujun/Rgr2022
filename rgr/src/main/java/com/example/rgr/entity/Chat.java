@@ -51,7 +51,7 @@ public class Chat  {
     private List<Message> messages;
 
 
-    @ManyToMany(mappedBy = "chats", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "chats")
     Set<User> users = new HashSet<>();
 
 
