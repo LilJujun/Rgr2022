@@ -61,4 +61,8 @@ public class User {
 
     @ManyToMany( fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private Set<User> friends = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "attachedFile_id")
+    private AttachedFile attachedFile;
 }

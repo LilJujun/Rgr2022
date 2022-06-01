@@ -20,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -166,13 +167,25 @@ public class ChatController {
         return ResponseEntity.ok("Вы вошли");
     }
 
-    @GetMapping(value = "get/photo/{path}", produces = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @GetMapping(value = "{/{user_id}/photo/{path}", produces = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> getImage (@PathVariable("path") String path) throws IOException {
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.parseMediaType(MediaType.IMAGE_PNG_VALUE))
                 .body(attachedFileService.getImage(path));
     }
+
+    @PostMapping("/{user_id}/image")
+    public ResponseEntity<?> uploadImage(@PathVariable Long id, @RequestBody MultipartFile file)
+    {
+        AttachedFile attachedFile = attachedFileService.saveImage(file);
+        attachedFileService.saveImage(file);
+        User user = userService.findById(id);
+        user.setPhoto(attachedFile.getPath());
+        return ResponseEntity.ok(attachedFile);
+    }
+
+
 
 
 

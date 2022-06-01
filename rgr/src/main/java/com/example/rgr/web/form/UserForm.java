@@ -1,6 +1,7 @@
 package com.example.rgr.web.form;
 import com.example.rgr.entity.User;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -33,7 +34,7 @@ public class UserForm { //for reg/auth
 
     private String status;
 
-    private String photo;
+    private MultipartFile multipartFile;
 
 
 
