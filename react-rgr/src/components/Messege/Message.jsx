@@ -16,18 +16,25 @@ const Messages = (props) => {
 
   const [messeges, setMesseges] = useState([]);
   const [text, setText] = useState();
-
+  const [users,setUsers] = useState([]);
   
 
 
   
   useEffect(() => {
     timer = setInterval(()=>{axios.get(`http://localhost:8080/ms/chat/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
-      console.log("Zalupa")
+      console.log("Работает")
       setMesseges(resp.data)
     }).catch(function (error) {
       alert(error)
-    })},2500)
+    });
+    axios.get(`http://localhost:8080/ms/chat/users/${chat.state.id}`, { headers: authHeader() }).then((resp) => {
+      alert(resp.data)
+      setUsers(resp.data)
+    }).catch(function(error){
+      alert(error)
+    });
+  },2500)
     return () => {clearInterval(timer);}
   }, [setMesseges]);
 
@@ -62,6 +69,24 @@ const Messages = (props) => {
     )
   }
 
+
+function UserList(props){
+  const users = props.users;
+  const usersList = users.map((ms)=>
+  
+  <option >
+    {ms}
+  </option>
+  
+  );
+  return(
+    <select>{usersList}</select>
+  )
+  
+}
+
+
+
   function outputMessage() {
 
 
@@ -87,6 +112,7 @@ const Messages = (props) => {
 
 
       <div className={s.nameDialog} >
+        <UserList users={users}/>
       <p className={s.nameDialogText}>
         Сообщения c {chat.state.name}
         </p>
