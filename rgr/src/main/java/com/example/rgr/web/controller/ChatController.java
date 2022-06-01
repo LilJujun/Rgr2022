@@ -92,7 +92,7 @@ public class ChatController {
         return ResponseEntity.ok(chatService.findById(chat_id).get());
     }
 
-    @GetMapping("/chat/users/{chat_id}")
+    @GetMapping("/chatusers/{chat_id}")
     public ResponseEntity<?> findChatUsers(@PathVariable Long chat_id){
         Chat chat = chatService.findById(chat_id).get();
         List<String > names=new ArrayList<>();
