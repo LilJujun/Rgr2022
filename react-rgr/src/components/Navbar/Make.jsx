@@ -65,16 +65,17 @@ function Make() {
 
                     </p>
                     <p> Тип чата</p>
-                    <div value={chat.type} className={s.inputRadio} onChange={changeInputAddChat}>
+                    {/* <div value={chat.type} className={s.inputRadio} onChange={changeInputAddChat}>
                     <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
                             <option>Open</option>
                             <option>Closed</option>
                         </select>
-                    </div>
-                    {/* <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
+                    </div> */}
+                    <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
+                            <option disabled>Выберите тип чата</option>
                             <option>Open</option>
                             <option>Closed</option>
-                        </select> */}
+                        </select>
 
                     <p><input className={s.btnMakeChat} type="submit" value="Создать чат" />  </p>
                 </form>

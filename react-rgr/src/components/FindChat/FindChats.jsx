@@ -40,6 +40,7 @@ return (
     <div className={s.messages}>
       
     <input className={s.inputChats} type='text' name='find' id='find' playcholder="Введите имя пользователя"></input>
+    
     <button className={s.btnChats} onClick={chekingChats}>Присоединиться</button>
     
      

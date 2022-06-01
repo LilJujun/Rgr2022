@@ -3,41 +3,77 @@ import React, { Component, useState } from 'react';
 import s from './Profile.module.css';
 import authHeader from '../../auth';
 
-const user = JSON.parse(localStorage.getItem("user"))
-const Profile = () => {
-    const [avatar, setAvatar] = useState();
 
-    // const avatarSelected = (e) => {
-    //     let fileReader = new FileReader();
-    //     fileReader.onload = () => {
-    //         document.getElementById('img1').src = fileReader.result;
-    //         console.log('updated');
-    //     }
-
-    //     fileReader.readAsDataURL(e.target.files[0]);
-    //     const file = e.target.files[0];
-    //     const formData = new FormData()
-    //     formData.append('file', file)
-    //     axios.put(`http://localhost:8080/users/${id}/avatar`, formData,
-    //         {
-    //             headers: 
-    //                 authHeader()
-                
-    //         })
+    // const handleSubmit = (event) => {
+    //   event.preventDefault()
+    //   const formData = new FormData();
+    //   formData.append("selectedFile", selectedFile);
+    //   try {
+    //     const response =axios.post({
+    //       url: "/api/upload/file",
+    //       data: formData,
+    //       headers: { "Content-Type": "multipart/form-data" },
+    //     });
+    //   } catch(error) {
+    //     console.log(error)
+    //   }
+    // }
+  
+    // const handleFileSelect = (event) => {
+    //   setSelectedFile(event.target.files[0])
     // }
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8080/users/${id}/avatar`,
-    //         {
-    //             headers: 
-    //                 authHeader()
-                 
-    //         }).then((resp) => {
-    //             setAvatar(URL.createObjectURL(resp.data));
-    //         });
-    // }, [setAvatar]);
+const user = JSON.parse(localStorage.getItem("user"))
+const Profile = () => {
+  const formData = new FormData();
+    const [avatar, setAvatar] = useState(null);
+    let [adder, setAdder] = useState(false);
 
+    let addPhoto = (e) => {
+      //console.log(e.target.files[0])
+      setAvatar(
+          e.target.files[0]
+      )
+      formData.append('mainimage', e.target.files[0]);
 
+      console.log(avatar)
+      
+    
+      console.log(formData.get('mainimage'))
+      axios({
+          method: "post",
+          url: `http://localhost:8080/${user.id}/image`,
+          data: formData,
+          withCredentials: true,
+          headers: {"Content-Type": "multipart/form-data"},
+      })
+          .then(function (response) {
+              //handle success
+              setAdder(true);
+          })
+          .catch(function (response) {
+              setAdder(false);
+              console.log(response);
+          });
+  }
+
+  function send() {
+   
+     let resp = axios({
+        method: "post",
+        url: `http://localhost:8080/${user.id}/image`,
+        data: formData,
+        withCredentials: true,
+        headers: {"Content-Type": "multipart/form-data"},
+    })
+        .then( (response) =>{
+            //handle success
+           if (response.status === 200){setAdder(true)}
+            console.log("Success")
+            return response.data
+        });
+
+}
     return (
 
         <div className={s.content}>
@@ -47,26 +83,19 @@ const Profile = () => {
             </div>
 
             <div>
-                <form>
+                
 
-                    <div>
-                        {/* <img className='userSize' id='img1' src={avatar}></img>
-                        {
-                            user.id == id ? (
-                                <input type='file' className='AvatarLoad' onChange={avatarSelected}></input>
-                            ) : (<></>)
-                        } */}
+                    <div >
+                          Фото
+                          <input id="filer" type='file' onChange={e => { addPhoto(e)}}/>
 
                     </div>
 
 
                     <div className={s.textField}>
                         <label className={s.textField__label} for="username">Имя</label>
-                        <input className={s.textField__input} type="text" name="username" id="username" placeholder={user.username} ></input>
-                        <button type="button" onClick={() => {
-                            <input type="text" name="username" id="username"></input>
-
-                        }}> Изменить</button>
+                        <input className={s.textField__input} type="text" name="username" id="username" value={user.username} disabled></input>
+                        
                     </div>
                     <div className={s.textField}>
                         <label className={s.textField__label}>@mail</label>
@@ -78,7 +107,7 @@ const Profile = () => {
                         <label className={s.textField__label}>Статус</label>
                         <input className={s.textField__input} type="text" name="status" id="status" value={user.status}></input>
                     </div>
-                </form>
+                
 
             </div>
 
