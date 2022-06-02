@@ -9,6 +9,7 @@ import MadeChat from './components/Navbar/MadeChat';
 import EmptyTitle from './components/EmptyTitle/EmptyTitle';
 import Find from './components/FindUsers/Find';
 import FindCh from './components/FindChat/FindCh';
+import Error from './Error';
 
 
 
@@ -27,6 +28,7 @@ const App = () => (
       <Route path='/madechat' element={<MadeChat />} />
       <Route path='/friends' element={<Find />} />
       <Route path='/findchats' element={<FindCh />} />
+      <Route path='/errorr' element={<Error/>}/>
     </Routes>
 
   </div>

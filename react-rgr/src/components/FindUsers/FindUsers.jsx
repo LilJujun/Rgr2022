@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
 import s from './FindUsers.module.css';
 import axios from 'axios';
 import authHeader from '../../auth';
+import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 let timer = null;
@@ -27,6 +28,7 @@ const chekingFriends = () =>{
     setFriends(resp.data)
     })
   }).catch(function(error){
+    <Link to='/error'/>
     alert(error)
   })
   
@@ -38,6 +40,7 @@ useEffect(() => {
     console.log("Zalupa")
     setFriends(resp.data)
   }).catch(function (error) {
+    <Link to='/error'/>
     alert(error)
   })
   

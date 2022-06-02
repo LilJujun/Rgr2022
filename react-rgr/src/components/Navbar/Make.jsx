@@ -3,6 +3,7 @@ import s from './Make.module.css';
 import './Make.module.css';
 import axios from 'axios';
 import authHeader from '../../auth';
+import { Link } from "react-router-dom";
 
 
 
@@ -45,6 +46,7 @@ function Make() {
 
 
             }).catch(function (error) {
+                <Link to='/error'/>
                 alert(error);
             });
         }

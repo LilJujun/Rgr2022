@@ -1,26 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import s from './Profile.module.css';
 
 
-    // const handleSubmit = (event) => {
-    //   event.preventDefault()
-    //   const formData = new FormData();
-    //   formData.append("selectedFile", selectedFile);
-    //   try {
-    //     const response =axios.post({
-    //       url: "/api/upload/file",
-    //       data: formData,
-    //       headers: { "Content-Type": "multipart/form-data" },
-    //     });
-    //   } catch(error) {
-    //     console.log(error)
-    //   }
-    // }
-  
-    // const handleFileSelect = (event) => {
-    //   setSelectedFile(event.target.files[0])
-    // }
+   
 
 const user = JSON.parse(localStorage.getItem("user"))
 const Profile = () => {
@@ -51,6 +35,7 @@ const Profile = () => {
               setAdder(true);
           })
           .catch(function (response) {
+            <Link to='/error'></Link>
               setAdder(false);
               console.log(response);
           });
