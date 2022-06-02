@@ -24,14 +24,14 @@ import './ChatList.module.css';
 
         function ChatsList(props) {
             const chats = props.chat;
-            
+
             const listChats = chats.sort((a, b) => a.id > b.id ? 1 : -1).map((ch) =>
-            
-            
-                
+
+
+
                 <li className={s.liChat} key={ch.id}><NavLink to={`/ms`} state={ch}       > {ch.name} </NavLink>
                 </li>
-            
+
             );
             
             return (
