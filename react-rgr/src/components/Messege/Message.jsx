@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import authHeader from '../../auth';
 import { toBeChecked } from '@testing-library/jest-dom/dist/matchers';
+import { Link } from "react-router-dom";
 
 
 const user = JSON.parse(localStorage.getItem("user"))
@@ -33,6 +34,7 @@ const Messages = (props) => {
 
         setUsers(resp.data)
       }).catch(function (error) {
+        <Link to='/error'/>
         alert(error)
       });
     }, 2500)
@@ -108,6 +110,7 @@ const Messages = (props) => {
         setMesseges(resp.data)
       })
     }).catch(function (error) {
+      <Link to='/error'/>
       alert(error);
     });
   }
@@ -128,6 +131,7 @@ const Messages = (props) => {
         alert(res.data);
 
       }).catch(function (error) {
+        <Link to='/error'/>
         alert(error);
       });
     }
@@ -144,6 +148,7 @@ const Messages = (props) => {
         window.location.href = "http://localhost:3000/emptytitle"
 
       }).catch(function (error) {
+        <Link to='/error'/>
         alert(error);
       });}
   }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import authHeader from "../../auth";
-import { NavLink } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import s from './ChatList.module.css';
 import './ChatList.module.css';
 
@@ -17,6 +17,7 @@ import './ChatList.module.css';
                 setChat(resp.data)
 
             }).catch(function (error) {
+                <Link to='/error'/>
                 alert(error)
             })
         }, [setChat]);

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React,{useState}  from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import s from "./Login.module.css";
 
 
@@ -39,6 +39,7 @@ export default function Login() {
             }
             return res.data;
         }).catch(function (error){
+          <Link to='/error'></Link>
             alert(error);});
     }
 

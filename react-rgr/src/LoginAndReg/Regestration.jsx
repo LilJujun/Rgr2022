@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import s from "./Regestration.module.css";
 import axios from "axios";
 import validator from "validator";
@@ -44,6 +44,7 @@ export default function Registration() {
             }).then((res) => {
                     window.location.href = "http://localhost:3000/accept"
             }).catch(function (error){
+                <Link to='/error'></Link>
                 alert(error);});
         }
     }

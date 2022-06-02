@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import s from "./Accept.module.css";
 import axios from "axios";
 
@@ -36,6 +36,7 @@ export default function Accept() {
                 .then((res) => {
                     window.location.href = "http://localhost:3000"
                 }).catch(function (error) {
+                    <Link to='/error'/>
                     alert(error);
                 });
         }else{
