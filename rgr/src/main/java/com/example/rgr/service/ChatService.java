@@ -68,10 +68,10 @@ public class ChatService {
             userRepository.save(usr);
         }
         chat.getUsers().clear();
-        chatRepository.save(chat);
+        Chat ch = chatRepository.save(chat);
 
 
-        chatRepository.deleteById(id);
+        chatRepository.deleteById(ch.getId());
     }
 
     public Optional <Chat> findByName(String name){

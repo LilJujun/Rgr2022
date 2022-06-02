@@ -92,7 +92,7 @@ const Messages = (props) => {
 
     );
     return (
-      <select  >{usersList}</select>
+      <select className={s.userList}  >{usersList}</select>
     )
 
   }
@@ -163,12 +163,12 @@ const Messages = (props) => {
       <div className={s.nameDialog}  >
         <UserList users={users} />
 
-        <p className={s.nameDialogText}>
+
           Сообщения c {chat.state.name}
-          <input type="text" name='delete' id='delete'></input>
-          <input type='submit' onClick={submitDelete} value="Удалить"></input>
-          <button name="deleteChat" onClick={deleteChat}>Удалить этот чат</button>
-        </p>
+          <input className={s.deleteUserInp} type="text" name='delete' id='delete'></input>
+          <input className={s.deleteUserSubmit} type='submit' onClick={submitDelete} value="Удалить"></input>
+          <button className={s.deleteChat} name="deleteChat" onClick={deleteChat}>Удалить этот чат</button>
+        
       </div>
       <div className={s.messages}>
 

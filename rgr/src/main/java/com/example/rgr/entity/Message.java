@@ -33,7 +33,7 @@ public class Message {
     @JoinColumn(name = "chat_id")
     private Chat chat;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

@@ -43,7 +43,7 @@ public class User {
         return enabled;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<Message> messages;
 
     @ManyToMany(cascade = CascadeType.ALL)
