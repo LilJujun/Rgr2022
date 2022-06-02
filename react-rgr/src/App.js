@@ -28,7 +28,7 @@ const App = () => (
       <Route path='/madechat' element={<MadeChat />} />
       <Route path='/friends' element={<Find />} />
       <Route path='/findchats' element={<FindCh />} />
-      <Route path='/errorr' element={<Error/>}/>
+      <Route path='/error' element={<Error/>}/>
     </Routes>
 
   </div>

@@ -28,6 +28,7 @@ const chekingFriends = () =>{
     setFriends(resp.data)
     })
   }).catch(function(error){
+    window.location.href = "http://localhost:3000/error";
     <Link to='/error'/>
     alert(error)
   })
@@ -37,9 +38,9 @@ const chekingFriends = () =>{
 
 useEffect(() => {
  axios.get(`http://localhost:8080/ms/friends/${user.id}`, { headers: authHeader() }).then((resp) => {
-    console.log("Zalupa")
     setFriends(resp.data)
   }).catch(function (error) {
+    window.location.href = "http://localhost:3000/error";
     <Link to='/error'/>
     alert(error)
   })
