@@ -2,6 +2,7 @@
     list-style-type: none;
     font: italic 20px cursive;
     color: rgb(3, 45, 70);
+    word-wrap: break-word;
     border: solid 0px;
     background-color: rgb(187, 217, 234);
     border-radius: 15px;
@@ -15,6 +16,7 @@
     list-style-type: none;
     font: italic 20px cursive;
     color: rgb(3, 45, 70);
+    word-wrap: break-word;
     border: solid 0px;
     background-color: rgb(187, 217, 234);
     border-radius: 15px;
