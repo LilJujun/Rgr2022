@@ -26,6 +26,7 @@ export default function Accept() {
         axios.get("http://localhost:8080/auth/accept/").then((res) => {
             setCount(res.data)
         }).catch(function (error) {
+            window.location.href = "http://localhost:3000/error";
             alert(error);
         })
     }
@@ -36,6 +37,7 @@ export default function Accept() {
                 .then((res) => {
                     window.location.href = "http://localhost:3000"
                 }).catch(function (error) {
+                    window.location.href = "http://localhost:3000/error";
                     <Link to='/error'/>
                     alert(error);
                 });

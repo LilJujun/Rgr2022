@@ -110,6 +110,7 @@ const Messages = (props) => {
         setMesseges(resp.data)
       })
     }).catch(function (error) {
+      window.location.href = "http://localhost:3000/error";
       <Link to='/error'/>
       alert(error);
     });
@@ -131,6 +132,7 @@ const Messages = (props) => {
         alert(res.data);
 
       }).catch(function (error) {
+        window.location.href = "http://localhost:3000/error";
         <Link to='/error'/>
         alert(error);
       });
@@ -148,6 +150,7 @@ const Messages = (props) => {
         window.location.href = "http://localhost:3000/emptytitle"
 
       }).catch(function (error) {
+        window.location.href = "http://localhost:3000/errorr";
         <Link to='/error'/>
         alert(error);
       });}

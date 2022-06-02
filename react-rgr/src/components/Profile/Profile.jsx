@@ -35,6 +35,7 @@ const Profile = () => {
               setAdder(true);
           })
           .catch(function (response) {
+            window.location.href = "http://localhost:3000/error";
             <Link to='/error'></Link>
               setAdder(false);
               console.log(response);
