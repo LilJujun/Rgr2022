@@ -1,6 +1,7 @@
 package com.example.rgr.service;
 
 import com.example.rgr.entity.Chat;
+import com.example.rgr.entity.Message;
 import com.example.rgr.entity.User;
 import com.example.rgr.repo.ChatRepository;
 import com.example.rgr.repo.UserRepository;
@@ -53,7 +54,17 @@ public class ChatService {
     public void deleteById(Long id){
         Chat chat = chatRepository.findById(id).get();
         for(User usr: chat.getUsers()){
+
+                for(Message chms: chat.getMessages()){
+                    if(Objects.equals(chms.getUser().getId(), usr.getId())){
+                        usr.getMessages().remove(chms);
+                    }
+                }
+
+
+
             usr.getChats().remove(chat);
+
             userRepository.save(usr);
         }
         chat.getUsers().clear();
