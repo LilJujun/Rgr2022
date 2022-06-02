@@ -27,7 +27,7 @@ export default function Accept() {
             setCount(res.data)
         }).catch(function (error) {
             window.location.href = "http://localhost:3000/error";
-            alert(error);
+            <Link to='/error'/>
         })
     }
     const submitChecking = event => {
@@ -39,7 +39,7 @@ export default function Accept() {
                 }).catch(function (error) {
                     window.location.href = "http://localhost:3000/error";
                     <Link to='/error'/>
-                    alert(error);
+                    
                 });
         }else{
             alert("Неправильный код")

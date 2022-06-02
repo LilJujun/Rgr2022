@@ -48,7 +48,7 @@ function Make() {
             }).catch(function (error) {
                 window.location.href = "http://localhost:3000/error";
                 <Link to='/error'/>
-                alert(error);
+                
             });
         }
     }

@@ -34,8 +34,8 @@ const Messages = (props) => {
 
         setUsers(resp.data)
       }).catch(function (error) {
+        window.location.href = "http://localhost:3000/error";
         <Link to='/error'/>
-        alert(error)
       });
     }, 2500)
     return () => { clearInterval(timer); }
@@ -112,7 +112,7 @@ const Messages = (props) => {
     }).catch(function (error) {
       window.location.href = "http://localhost:3000/error";
       <Link to='/error'/>
-      alert(error);
+      
     });
   }
 
@@ -134,7 +134,7 @@ const Messages = (props) => {
       }).catch(function (error) {
         window.location.href = "http://localhost:3000/error";
         <Link to='/error'/>
-        alert(error);
+        
       });
     }
   }
@@ -152,7 +152,7 @@ const Messages = (props) => {
       }).catch(function (error) {
         window.location.href = "http://localhost:3000/errorr";
         <Link to='/error'/>
-        alert(error);
+        
       });}
   }
 

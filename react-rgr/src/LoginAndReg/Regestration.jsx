@@ -44,8 +44,9 @@ export default function Registration() {
             }).then((res) => {
                     window.location.href = "http://localhost:3000/accept"
             }).catch(function (error){
+                window.location.href = "http://localhost:3000/error";
                 <Link to='/error'></Link>
-                alert(error);});
+                });
         }
     }
     return (

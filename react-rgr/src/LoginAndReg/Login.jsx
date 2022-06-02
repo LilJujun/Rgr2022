@@ -41,7 +41,7 @@ export default function Login() {
         }).catch(function (error){
           window.location.href = "http://localhost:3000/error";
           <Link to='/error'></Link>
-            alert(error);});
+            });
     }
 
   
