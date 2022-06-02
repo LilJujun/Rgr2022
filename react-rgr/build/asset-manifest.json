@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fd8b63be.css",
+    "main.js": "/static/js/main.ff31500e.js",
+    "static/js/787.ef26086e.chunk.js": "/static/js/787.ef26086e.chunk.js",
+    "static/media/kotik.png": "/static/media/kotik.585f3e7439429e901dac.png",
+    "index.html": "/index.html",
+    "main.fd8b63be.css.map": "/static/css/main.fd8b63be.css.map",
+    "main.ff31500e.js.map": "/static/js/main.ff31500e.js.map",
+    "787.ef26086e.chunk.js.map": "/static/js/787.ef26086e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd8b63be.css",
+    "static/js/main.ff31500e.js"
+  ]
+}
