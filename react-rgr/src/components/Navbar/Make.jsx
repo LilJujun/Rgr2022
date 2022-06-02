@@ -14,7 +14,7 @@ function Make() {
             name: '',
             description: '',
             type: 'Open',
-            friend:''
+            friend: ''
         }
     })
     const changeInputAddChat = event => {
@@ -30,23 +30,23 @@ function Make() {
         event.preventDefault();
         if (chat.name === '') {
             alert("Введите название чата")
-        }else if(chat.friend===''){
+        } else if (chat.friend === '') {
             alert("Введите друга, с которым хотите начать чат")
-        }else{
-        axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
-            name: chat.name,
-            description: chat.description,
-            type: chat.type,
-            friendname:chat.friend
-        }, { headers: authHeader() }).then((res) => {
-             alert(res.data)
+        } else {
+            axios.post(`http://localhost:8080/ms/${user.id}/chat`, {
+                name: chat.name,
+                description: chat.description,
+                type: chat.type,
+                friendname: chat.friend
+            }, { headers: authHeader() }).then((res) => {
+                alert(res.data)
 
                 window.location.href = "http://localhost:3000/emptytitle"
-            
 
-        }).catch(function (error) {
-            alert(error);
-        });
+
+            }).catch(function (error) {
+                alert(error);
+            });
         }
     }
 
@@ -57,25 +57,14 @@ function Make() {
                 <p className={s.h}>Создание чата</p>
                 <form className={s.dialogsItem} onSubmit={submitChecking}>
                     <p> Имя чата<input className={s.inputMakeChat} type='text' name="name" id="name" value={chat.name} onChange={changeInputAddChat} /> </p>
-
                     <p> Описание чата<input className={s.inputMakeChat} type='text' name="description" id="description" value={chat.description} onChange={changeInputAddChat} /></p>
-                    <p>Кого вы хотите добавить?
-                    <input  className={s.inputMakeChat} type='text' name="friend" id='friend' value={chat.friend} onChange={changeInputAddChat}></input>
-
-                    </p>
+                    <p> Кого вы хотите добавить?<input className={s.inputMakeChat} type='text' name="friend" id='friend' value={chat.friend} onChange={changeInputAddChat}></input> </p>
                     <p> Тип чата</p>
-                    {/* <div value={chat.type} className={s.inputRadio} onChange={changeInputAddChat}>
                     <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
-                            <option>Open</option>
-                            <option>Closed</option>
-                        </select>
-                    </div> */}
-                    <select name="type" value={chat.type} className={s.inputPage} onChange={changeInputAddChat}>
-                            <option disabled>Выберите тип чата</option>
-                            <option >Open</option>
-                            <option>Closed</option>
-                        </select>
-
+                        <option disabled>Выберите тип чата</option>
+                        <option >Open</option>
+                        <option>Closed</option>
+                    </select>
                     <p><input className={s.btnMakeChat} type="submit" value="Создать чат" />  </p>
                 </form>
             </div>
