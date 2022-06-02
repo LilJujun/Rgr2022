@@ -56,9 +56,9 @@ public class ChatService {
         for(User usr: chat.getUsers()){
 
                 for(Message chms: chat.getMessages()){
-                    if(Objects.equals(chms.getUser().getId(), usr.getId())){
+
                         usr.getMessages().remove(chms);
-                    }
+
                 }
 
 
